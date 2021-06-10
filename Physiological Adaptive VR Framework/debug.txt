@@ -1,0 +1,9 @@
+[OVRPlugin][INFO] CliD3D11CompositorClient initialized[OVRPlugin][INFO] CliD3D11CompositorClient releasedSymbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+  <none>
+[OVRPlugin][INFO] OVRInterface classes and interfaces:
+    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
+      Interface Id: 0xb00b00053345520
+    Class Id: 0xb00b000538d08ac1, class Name: OpenXRExtensionAddition
+      Interface Id: 0xb00b000538d08ac0
+[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.55.0(build = 0) feature version = 0. Client runs version (prod = 1).1.55.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 66.8mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initialized
