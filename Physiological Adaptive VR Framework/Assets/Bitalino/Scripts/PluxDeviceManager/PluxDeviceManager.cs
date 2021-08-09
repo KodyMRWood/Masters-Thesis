@@ -259,6 +259,7 @@ public class PluxDeviceManager
     private void StartLoopUnity()
     {
         // Storage of a reference to the main thread.
+
         if (MainThread == null)
         {
             MainThread = Thread.CurrentThread;

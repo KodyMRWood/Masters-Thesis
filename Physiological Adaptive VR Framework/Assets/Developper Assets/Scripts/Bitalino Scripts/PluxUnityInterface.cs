@@ -82,6 +82,9 @@ namespace Assets.Scripts
         public bool UpdatePlotFlag = false;
         public string SelectedDevice = "";
 
+        //Variables that will hold the data from the channel we are looking for.
+        List<int[]> packageOfDataPerChannel = new List<int[]>();
+        public List<List<int>> MultiThreadSubListPerChannel = new List<List<int>>();
 
         // Awake is called when the script instance is being loaded.
         void Awake()
@@ -103,8 +106,10 @@ namespace Assets.Scripts
             MultiThreadList = new List<List<int>>();
             ActiveChannels = new List<int>();
 
-            // Initialization of graphical zone.
-            WindowGraph.IGraphVisual graphVisual = new WindowGraph.LineGraphVisual(GraphContainer, DotSprite, new Color(0, 158, 227, 0), new Color(0, 158, 227));
+
+
+        // Initialization of graphical zone.
+        WindowGraph.IGraphVisual graphVisual = new WindowGraph.LineGraphVisual(GraphContainer, DotSprite, new Color(0, 158, 227, 0), new Color(0, 158, 227));
             GraphContainer = graphVisual.GetGraphContainer();
             GraphZone = new WindowGraph(GraphContainer, graphVisual);
             GraphZone.ShowGraph(new List<int>() { 0 }, graphVisual, -1, (int _i) => "" + (_i), (float _f) => Mathf.RoundToInt(_f) + "k");
@@ -120,15 +125,28 @@ namespace Assets.Scripts
         // Update function, being constantly invoked by Unity.
         void Update()
         {
+            
             try
             {
-                // Get packages of data.
-                int[] pacakgeOfData = PluxDevManager.GetPackageOfData(VisualizationChannel, ActiveChannels, UpdatePlotFlag);
+                // Get packages of data that will be shown on the graphic
+                int[] packageOfData = PluxDevManager.GetPackageOfData(VisualizationChannel, ActiveChannels, UpdatePlotFlag); //This will be for the graphic only
 
-                // Check if there it was communicated an event/error code.
-                if (pacakgeOfData != null)
+                //Get packeges from every channel
+                List<int[]> packageOfDataPerChannel =  new List<int[]>();
+                List<List<int>> MultiThreadSubListPerChannel = new List<List<int>>();
+
+                //Depending on how many active channels, get the information from them
+                for (int x = 0; x < ActiveChannels.Count; x++)
                 {
-                    if (pacakgeOfData.Length != 0)
+                    int[] packageOfDataChannel = PluxDevManager.GetPackageOfData(ActiveChannels[x], ActiveChannels, UpdatePlotFlag);
+                    packageOfDataPerChannel.Add(packageOfDataChannel);
+                }
+                
+                
+                // Check if there it was communicated an event/error code.
+                if (packageOfData != null)
+                {
+                    if (packageOfData.Length != 0)
                     {
                         // Creation of the first graphical representation of the results.
                         if (MultiThreadList[VisualizationChannel].Count >= 0)
@@ -147,11 +165,18 @@ namespace Assets.Scripts
                             // Update plot.
                             else if (FirstPlot == false)
                             {
-                                // This if clause ensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
-                                if (UpdatePlotFlag == true && pacakgeOfData != null)
+                                // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
+                                if (UpdatePlotFlag == true && packageOfData != null)
                                 {
                                     // Get the values linked with the last 10 seconds of information.
-                                    MultiThreadSubList = GetSubSampleList(pacakgeOfData, SamplingRate, GraphWindSize);
+                                    MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
+                                   
+                                   //Get the data from the packages and create a sublist that has only sample rate amount of values
+                                   for (int y = 0; y < packageOfDataPerChannel.Count; y++)
+                                   {
+                                       MultiThreadSubListPerChannel.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
+                                   }
+
                                     GraphZone.UpdateValue(MultiThreadSubList);
 
                                     // Reboot flag.
@@ -260,7 +285,7 @@ namespace Assets.Scripts
 
                     // Disable "Device Configuration" panel options.
                     SamplingRateInput.interactable = false;
-                    SamplingRateInput.text = "1000";
+                    SamplingRateInput.text = "100";
                     ResolutionInput.interactable = false;
                     ResolutionDropdown.interactable = false;
 
