@@ -128,6 +128,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9096973480792066129, guid: 06191215bd42c9c4d8c4e3f2e85e3e95, type: 3}
   m_PrefabInstance: {fileID: 9096973481320375181}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &198649557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9096973481256202517, guid: 06191215bd42c9c4d8c4e3f2e85e3e95, type: 3}
+  m_PrefabInstance: {fileID: 9096973481320375181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &198649562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198649557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3483c1b02276ecd43a7b134c025420f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontralSens: 100
+  verticalSens: 100
+  player: {fileID: 9096973481320375184}
 --- !u!1001 &693067019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,8 +335,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyThresholds: []
+  Bitalino: {fileID: 0}
+  MultiThreadSubList: 
   weightHR: 0.5
   weightEDA: 0.5
+  weightPerChannel: []
 --- !u!1001 &951620186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1006,3 +1029,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06191215bd42c9c4d8c4e3f2e85e3e95, type: 3}
+--- !u!1 &9096973481320375182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9096973481256202513, guid: 06191215bd42c9c4d8c4e3f2e85e3e95, type: 3}
+  m_PrefabInstance: {fileID: 9096973481320375181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9096973481320375183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9096973481320375182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee6b093bc062840428ca4d75af58ee5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.01
+  camSpeed: 0.01
+  character: {fileID: 9096973481320375188}
+--- !u!4 &9096973481320375184 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9096973481256103231, guid: 06191215bd42c9c4d8c4e3f2e85e3e95, type: 3}
+  m_PrefabInstance: {fileID: 9096973481320375181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &9096973481320375188 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 9096973481261073625, guid: 06191215bd42c9c4d8c4e3f2e85e3e95, type: 3}
+  m_PrefabInstance: {fileID: 9096973481320375181}
+  m_PrefabAsset: {fileID: 0}

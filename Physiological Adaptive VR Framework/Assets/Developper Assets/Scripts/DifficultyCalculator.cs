@@ -34,6 +34,11 @@ public class DifficultyCalculator : MonoBehaviour
     float currentEDA = 0.0f;
     public float weightEDA = 0.5f;
 
+    //Framework
+    public List<float> weightPerChannel = null;
+    List<float> averagePerChannel = null;
+    List<float> averagePerChannelLast = null;
+
     //physioScore will be the "score" calculated with the two physiological metrics to help determine which difficulty the user should be on
     float physioScore = 0.0f; 
 
@@ -81,11 +86,63 @@ public class DifficultyCalculator : MonoBehaviour
             average += readings[channel][y];
         }
         return average / readings.Count;
-            
+
+        //Framework
+        /*
+         *  float average = 0.0f;
+         *  for (int y = 0; y < readings[channel].Count; y++)
+         *  {
+         *      average += readings[channel][y];
+         *  }
+         *  averagePerChannel[y] = average / readings.Count;
+         *  return  averagePerChannel[y];
+         *
+         * 
+         * 
+        */
+
+        //Each Metric listed is the average of all the samples in that aquisition
+        //General
+        //Score = ((edanow - edalast)*edaweight) + ((hrnow - hrlast)*hrweight)
+        
+        //Framework
+        /*
+         * 
+         *
+         * for (int x = 0; x< Bitalino.ActiveChannels.Count; x++)
+         * {
+         *  Score += (averagePerChannel[y] - averagePerChannelLast[y]) * weightPerChannel[x]
+         * }
+         * 
+         * averagePerChannelLast = averagePerChannel;
+        */
+
     }
     private void AdaptDifficulty(float physioScoreCurrrent)
     {
         //This function will calculate the difference in scores
+
+
+
+
+
+        //Compare last score to this one
+        /* if (Score <= scoreLast-10)
+         * {
+         *  difficulty--;
+         * }
+         * elseif (score > scorelast - 10 && score < scorelast + 10)
+         * {
+         *  //Nothing changes
+         *  break;
+         * }
+         * elseif (score >= scorelast + 10)
+         * {
+         *  difficulty ++;
+         * }
+         * scoreLast = Score
+         * 
+         */
     }
 
 }
