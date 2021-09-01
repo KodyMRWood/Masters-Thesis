@@ -1,5 +1,6 @@
 Waiting on threads to park on joinable thread list timed out.
 rs-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 [OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
   <none>
 [OVRPlugin][INFO] OVRInterface classes and interfaces:
@@ -7,20 +8,16 @@ rs-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext
       Interface Id: 0x223362abe367d30a
     Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
       Interface Id: 0xb00b00053345520
-[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.63.0(build = 0) feature version = 0. Client runs version (prod = 1).1.63.0(build = 0) feature version = 0362abe367d30a
-    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
-      Interface Id: 0xb00b00053345520
-[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.63.0(build = 0) feature version = 0. Client runs version (prod = 1).1.63.0(build = 0) feature version = 0362abe367d30a
-    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
-      Interface Id: 0xb00b00053345520
-[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.63.0(build = 0) feature version = 0. Client runs version (prod = 1).1.63.0(build = 0) feature version = 0ime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.63.0(build = 0) feature version = 0. Client runs version (prod = 1).1.63.0(build = 0) feature version = 0runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.64.0(build = 0) feature version = 0. Client runs version (prod = 1).1.64.0(build = 0) feature version = 0ime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.64.0(build = 0) feature version = 0. Client runs version (prod = 1).1.64.0(build = 0) feature version = 0geCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
   <none>
 [OVRPlugin][INFO] OVRInterface classes and interfaces:
     Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
       Interface Id: 0x223362abe367d30a
     Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
       Interface Id: 0xb00b00053345520
-[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.63.0(build = 0) feature version = 0. Client runs version (prod = 1).1.63.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 66.9mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializedBITalino
+[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.64.0(build = 0) feature version = 0. Client runs version (prod = 1).1.64.0(build = 0) feature version = 0 located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.63.0(build = 0) feature version = 0. Client runs version (prod = 1).1.63.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 66.9mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializedBITalino
 BITalino
 New Event raised: 3
 Digital input event - Clock source: 2  Clock value: 0  New input state: 1

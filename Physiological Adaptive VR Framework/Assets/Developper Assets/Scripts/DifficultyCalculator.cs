@@ -13,136 +13,120 @@ using UnityEngine;
 public class DifficultyCalculator : MonoBehaviour
 {
     //--- Public Variables ---
-    [Tooltip("This is the threshhold for the difficulties. Once the PhysioScore reaches one of these thresholds, the difficulty will switch accordingly")]
-    public float[] difficultyThresholds;
 
-
-
-    //--- Private Variables ---
     public Assets.Scripts.PluxUnityInterface Bitalino;
-    int activeChannels;
-    List<List<int>> readings;
     public List<int> MultiThreadSubList = null;
 
 
-    //--- Calculation Variables ---
-    float baseHR = 0.0f;
-    float currentHR = 0.0f;
-    public float weightHR = 0.5f;
-
-    float baseEDA = 0.0f;
-    float currentEDA = 0.0f;
-    public float weightEDA = 0.5f;
+    //--- Private Variables ---
+    private int activeChannels = 0;
+    private List<List<int>> readings;
+    private StateMachine stateMachine;
+    private int adaptScore = 0;
 
     //Framework
     public List<float> weightPerChannel = null;
     List<float> averagePerChannel = null;
     List<float> averagePerChannelLast = null;
 
-    //physioScore will be the "score" calculated with the two physiological metrics to help determine which difficulty the user should be on
-    float physioScore = 0.0f; 
-
-
-    // Start is called before the first frame update
-    float physioScoreLast = 0.0f;
-
-    public enum Difficulty
-    {
-        EASY = 1,
-        MEDIUM = 2,
-        HARD = 3
-    };
-    //Refference
-    //public Difficulty diff = Difficulty.EASY;
 
 
 
     void Awake()
     {
         Bitalino = FindObjectOfType<Assets.Scripts.PluxUnityInterface>();
+        stateMachine = FindObjectOfType<StateMachine>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Change this into a different function that will be called at certain points
         activeChannels = Bitalino.ActiveChannels.Count;
 
         if(activeChannels > 0)
         {
             readings = Bitalino.MultiThreadSubListPerChannel;
+
+            //Testing
             MultiThreadSubList = readings[0];
-            //physioScore = CalculatePhysioScore(0);
-            Debug.Log(physioScore);
         }
+        CalculateAdaptScore();
     }
 
-    float CalculatePhysioScore(int channel)
+    //Return the average of a specific channel
+    private void CalculateAveragePerChannel(int channel)
     {
 
-        float average = 0.0f;
-        for (int y = 0; y < readings[channel].Count; y++)
-        {
-            average += readings[channel][y];
-        }
-        return average / readings.Count;
-
         //Framework
-        /*
-         *  float average = 0.0f;
-         *  for (int y = 0; y < readings[channel].Count; y++)
-         *  {
-         *      average += readings[channel][y];
-         *  }
-         *  averagePerChannel[y] = average / readings.Count;
-         *  return  averagePerChannel[y];
-         *
-         * 
-         * 
-        */
-
-        //Each Metric listed is the average of all the samples in that aquisition
-        //General
-        //Score = ((edanow - edalast)*edaweight) + ((hrnow - hrlast)*hrweight)
         
-        //Framework
-        /*
-         * 
-         *
-         * for (int x = 0; x< Bitalino.ActiveChannels.Count; x++)
-         * {
-         *  Score += (averagePerChannel[y] - averagePerChannelLast[y]) * weightPerChannel[x]
-         * }
-         * 
-         * averagePerChannelLast = averagePerChannel;
-        */
+         float average = 0.0f;
+         for (int y = 0; y < readings[channel].Count; y++)
+         {
+             average += readings[channel][y];
+         }
+         averagePerChannel[channel] = average / readings.Count;
+    }
+
+
+    //Return the average of a all the  channels
+    private void CalculateAverageAllChannels()
+    {
+
+        //Framewor
+        float average = 0.0f;
+        for (int channel = 0; channel < activeChannels; channel++)
+        {
+
+            for (int sample = 0; sample < readings[channel].Count; sample++)
+            {
+                average += readings[channel][sample];
+                averagePerChannel[channel] = average / readings.Count;
+            }
+        }
+    }
+
+
+    private void CalculateAdaptScore()
+    {
+        //Most if you want one specific channel but this will get you all the channels
+        //for(int x=0; x< activeChannels; x++)
+        //{
+        //    CalculateAveragePerChannel(x);
+        //}
+
+        
+        CalculateAverageAllChannels();
+
+        for(int x = 0; x < averagePerChannel.Count; x++)
+        {
+            if (averagePerChannel[x] < averagePerChannelLast[x])
+            {
+                adaptScore++;
+            }
+            else if (averagePerChannel[x] == averagePerChannelLast[x])
+            {
+                //Doesnt change the score
+            }
+
+            else if(averagePerChannel[x] > averagePerChannelLast[x])
+            {
+                adaptScore--;
+            }
+
+            averagePerChannelLast = averagePerChannel;
+
+        }
+
+        AdaptDifficulty(adaptScore);
 
     }
-    private void AdaptDifficulty(float physioScoreCurrrent)
+        private void AdaptDifficulty(float physioScoreCurrrent)
     {
-        //This function will calculate the difference in scores
+        //Call the statemachines adapt function
+        stateMachine.AdaptSimulation(physioScoreCurrrent);
 
-
-
-
-
-        //Compare last score to this one
-        /* if (Score <= scoreLast-10)
-         * {
-         *  difficulty--;
-         * }
-         * elseif (score > scorelast - 10 && score < scorelast + 10)
-         * {
-         *  //Nothing changes
-         *  break;
-         * }
-         * elseif (score >= scorelast + 10)
-         * {
-         *  difficulty ++;
-         * }
-         * scoreLast = Score
-         * 
-         */
     }
 
 }
