@@ -1,0 +1,11 @@
+﻿Element,A,Z,N,Meta-stable,Full name,Decay,Decay probability (%),Beta energy (MeV),Meta-stable daughter,Gamma energy (MeV),Half-life,Units
+Co,60,33,27,FALSE,Co-60,B-,99.88,0.31,FALSE,2.5057,5.272,yr
+Co,60,33,27,FALSE,Co-60,B-,0.12,1.48,FALSE,1.3325,5.272,yr
+,,,,,,,,,,,,
+Cs,137,55,82,,Cs-137,B-,94.6,0.512,TRUE,,30.17,yr
+Cs,137,55,82,,Cs-137,B-,5.4,1.174,FALSE,,30.17,yr
+,,,,,,,,,,,,
+Ba,137,56,81,TRUE,Ba-137m,Gamma,100,,FALSE,0.662,2.6,mn
+,,,,,,,,,,,,
+I,131,53,78,FALSE,I-131,B-,7.27,0.3338,FALSE,1.001,8.0197,dy
+I,131,53,78,FALSE,I-131,B-,89.9,0.6063,FALSE,0.364,8.0197,dy

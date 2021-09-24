@@ -69,6 +69,7 @@ namespace Assets.Scripts
         public PluxDeviceManager PluxDevManager;
         public List<List<int>> MultiThreadList = null;
         public List<int> MultiThreadSubList = null;
+
         public List<int> ActiveChannels;
         public List<string> ListDevices;
         public int tempInt;
@@ -83,8 +84,8 @@ namespace Assets.Scripts
         public string SelectedDevice = "";
 
         //Variables that will hold the data from the channel we are looking for.
-        List<int[]> packageOfDataPerChannel = new List<int[]>();
-        public List<List<int>> MultiThreadSubListPerChannel = new List<List<int>>();
+       public List<List<int>> MultiThreadSubListPerChannel2 = new List<List<int>>();
+       public List<int> MultiThreadSubList2 = null;
 
         // Awake is called when the script instance is being loaded.
         void Awake()
@@ -107,9 +108,13 @@ namespace Assets.Scripts
             ActiveChannels = new List<int>();
 
 
+            //List<int[]> packageOfDataPerChannel = new List<int[]>();
+            MultiThreadSubListPerChannel2 = new List<List<int>>();
 
-        // Initialization of graphical zone.
-        WindowGraph.IGraphVisual graphVisual = new WindowGraph.LineGraphVisual(GraphContainer, DotSprite, new Color(0, 158, 227, 0), new Color(0, 158, 227));
+
+
+            // Initialization of graphical zone.
+            WindowGraph.IGraphVisual graphVisual = new WindowGraph.LineGraphVisual(GraphContainer, DotSprite, new Color(0, 158, 227, 0), new Color(0, 158, 227));
             GraphContainer = graphVisual.GetGraphContainer();
             GraphZone = new WindowGraph(GraphContainer, graphVisual);
             GraphZone.ShowGraph(new List<int>() { 0 }, graphVisual, -1, (int _i) => "" + (_i), (float _f) => Mathf.RoundToInt(_f) + "k");
@@ -170,12 +175,15 @@ namespace Assets.Scripts
                                 {
                                     // Get the values linked with the last 10 seconds of information.
                                     MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
-                                   
-                                   //Get the data from the packages and create a sublist that has only sample rate amount of values
-                                   for (int y = 0; y < packageOfDataPerChannel.Count; y++)
-                                   {
-                                       MultiThreadSubListPerChannel.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
-                                   }
+
+                                    //Get the data from the packages and create a sublist that has only sample rate amount of values
+                                    for (int y = 0; y < packageOfDataPerChannel.Count; y++)
+                                    {
+                                        //******* NEED TO ACCESS THIS SOMEHOW PUBLIC VARIABLES DO NOTH WORK *****
+                                        MultiThreadSubListPerChannel.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
+                                        MultiThreadSubListPerChannel2.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
+                                    }
+                                    MultiThreadSubList2 = MultiThreadSubListPerChannel2[0];
 
                                     GraphZone.UpdateValue(MultiThreadSubList);
 

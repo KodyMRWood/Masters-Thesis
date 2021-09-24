@@ -20,7 +20,7 @@ public class DifficultyCalculator : MonoBehaviour
 
     //--- Private Variables ---
     private int activeChannels = 0;
-    private List<List<int>> readings;
+    public List<List<int>> readings;
     private StateMachine stateMachine;
     private int adaptScore = 0;
 
@@ -47,12 +47,16 @@ public class DifficultyCalculator : MonoBehaviour
 
         if(activeChannels > 0)
         {
-            readings = Bitalino.MultiThreadSubListPerChannel;
+                if(Input.GetKeyDown(KeyCode.A))
+            {
+                readings = Bitalino.MultiThreadSubListPerChannel2;
+                MultiThreadSubList = readings[0];
+            }
 
             //Testing
-            MultiThreadSubList = readings[0];
+            //MultiThreadSubList = readings[0];
         }
-        CalculateAdaptScore();
+        //CalculateAdaptScore();
     }
 
     //Return the average of a specific channel
