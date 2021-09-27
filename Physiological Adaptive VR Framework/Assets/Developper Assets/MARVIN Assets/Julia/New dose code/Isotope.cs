@@ -229,7 +229,7 @@ public class Isotope {
         
         isotopeData = new List<Dictionary<string , string>>();
 
-        string fileData = System.IO.File.ReadAllText( "Assets/Julia/RadioNuke.csv" );
+        string fileData = System.IO.File.ReadAllText( "Assets/Developper Assets/MARVIN Assets/Julia/RadioNuke.csv" );
         string[] lines = fileData.Split( "\n".ToCharArray() );
         
         if ( lines.Length > 2 ) {

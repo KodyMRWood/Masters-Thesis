@@ -169,7 +169,7 @@ public class SocialPlatformManager : MonoBehaviour
         }
 
         // Next get the identity of the user that launched the Application.
-        Users.GetLoggedInUser().OnComplete(GetLoggedInUserCallback);
+        //Users.GetLoggedInUser().OnComplete(GetLoggedInUserCallback);
     }
 
     void GetLoggedInUserCallback(Message<User> msg)
@@ -180,8 +180,8 @@ public class SocialPlatformManager : MonoBehaviour
             return;
         }
 
-        myID = msg.Data.ID;
-        myOculusID = msg.Data.OculusID;
+        //myID = msg.Data.ID;
+        //myOculusID = msg.Data.OculusID;
 
         localAvatar = Instantiate(localAvatarPrefab);
         localAvatar.CanOwnMicrophone = false;

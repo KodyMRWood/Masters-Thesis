@@ -201,20 +201,20 @@ public class RoomManager
 
         if (msg.Data.UsersOptional != null)
         {
-            foreach (User user in msg.Data.UsersOptional)
-            {
-                if (user.ID != SocialPlatformManager.MyID)
-                {
-                    if (!SocialPlatformManager.IsUserInRoom(user.ID))
-                    {
-                        SocialPlatformManager.AddRemoteUser(user.ID);
-                    }
-                    else
-                    {
-                        SocialPlatformManager.MarkRemoteUserInRoom(user.ID);
-                    }
-                }
-            }
+            //foreach (User user in msg.Data.UsersOptional)
+            //{
+            //    if (user.ID != SocialPlatformManager.MyID)
+            //    {
+            //        if (!SocialPlatformManager.IsUserInRoom(user.ID))
+            //        {
+            //            SocialPlatformManager.AddRemoteUser(user.ID);
+            //        }
+            //        else
+            //        {
+            //            SocialPlatformManager.MarkRemoteUserInRoom(user.ID);
+            //        }
+            //    }
+            //}
         }
 
         SocialPlatformManager.ForgetRemoteUsersNotInRoom();

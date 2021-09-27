@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4660858815554975634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3773289624391360458}
+  - component: {fileID: 4660858815554975661}
+  - component: {fileID: 5257197997393804608}
+  m_Layer: 0
+  m_Name: Event_Manager 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3773289624391360458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660858815554975634}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.3418317, y: -0.092285395, z: 2.373}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4660858815554975661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660858815554975634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6bf5863be640c741b37ec10a35d93a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Geiger: {fileID: 0}
+  TestSource: {fileID: 0}
+  SearchSource: {fileID: 0}
+  trainingTimer: 0
+  objective: No objective
+  startTraining: 0
+--- !u!114 &5257197997393804608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660858815554975634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8565c42cea5a9d42a560fd43b757ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoFindDevices: 0
+  leftController: {fileID: 0}
+  rightController: {fileID: 0}
+  headset: {fileID: 0}
+  logsPerSecond: 10
+  transformsToTrack: []
+  currentRoom: 0
+  instructionsAsText: {fileID: 0}
+  imageObjectsInOrder: []
+  dynamicObjects: {fileID: 0}

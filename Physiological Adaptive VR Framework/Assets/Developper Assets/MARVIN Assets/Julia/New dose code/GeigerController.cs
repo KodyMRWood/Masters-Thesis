@@ -166,7 +166,7 @@ public class GeigerController : DoseBody {
 
             //float inputTrigger = SteamVR_Actions.default_ControllerTrigger.GetAxis(SteamVR_Input_Sources.Any);
 
-            bool triggerDown = inputTrigger == 1f;
+            bool triggerDown = true;
 
             if ( triggerDown ) {
 

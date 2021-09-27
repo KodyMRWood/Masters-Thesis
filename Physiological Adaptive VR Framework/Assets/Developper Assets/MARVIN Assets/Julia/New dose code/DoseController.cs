@@ -54,16 +54,16 @@ public class DoseController : MonoBehaviour {
             float countRate = rates[ 0 ];
             body.setCountRate(countRate);
             //If they are training dose will go up
-            if (eventManager.gameObject.GetComponent<Event_Mananger_Script>().startTraining)
-            {
-                float doseRate = rates[ 1 ];
-                body.setDoseRate(doseRate);
-            }
-            //Or it will stay at zero or the number after they have completed the training
-            else if (!eventManager.gameObject.GetComponent<Event_Mananger_Script>().startTraining)
-            {
-                body.setDoseRate(0.0f);
-            }
+            //if (eventManager.gameObject.GetComponent<Event_Mananger_Script>().startTraining)
+            //{
+            //    float doseRate = rates[ 1 ];
+            //    body.setDoseRate(doseRate);
+            //}
+            ////Or it will stay at zero or the number after they have completed the training
+            //else if (!eventManager.gameObject.GetComponent<Event_Mananger_Script>().startTraining)
+            //{
+            //    body.setDoseRate(0.0f);
+            //}
 
 
         }
@@ -468,7 +468,7 @@ public class DoseController : MonoBehaviour {
 
     private void readCSV() {
 
-        string fileData = System.IO.File.ReadAllText("Assets/Julia/Attenuation Coefficients - All.csv");
+        string fileData = System.IO.File.ReadAllText("Assets/Developper Assets/MARVIN Assets/Julia/Attenuation Coefficients - All.csv");
         string[] lines = fileData.Split("\n".ToCharArray());
 
         if ( lines.Length > 0 ) {
