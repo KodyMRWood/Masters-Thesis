@@ -16,20 +16,24 @@ public class DifficultyCalculator : MonoBehaviour
 
     public Assets.Scripts.PluxUnityInterface Bitalino;
     public List<int> MultiThreadSubList = null;
+    
+    // This array will be set in the inspector. It will determine what the rresearcher considers a significant change in the metric
+    // ie. HR + 5bpm is significantly higher
+    public float[] significantChange; 
+
 
 
     //--- Private Variables ---
     private int activeChannels = 0;
     public List<List<int>> readings;
     private StateMachine stateMachine;
-    private int adaptScore = 0;
-
+    private List<float> baselineAverage;
     //Framework
     public List<float> weightPerChannel = null;
     List<float> averagePerChannel = null;
     List<float> averagePerChannelLast = null;
 
-
+    
 
 
     void Awake()
@@ -78,15 +82,31 @@ public class DifficultyCalculator : MonoBehaviour
     private void CalculateAverageAllChannels()
     {
 
-        //Framewor
-        float average = 0.0f;
+        //Framework
         for (int channel = 0; channel < activeChannels; channel++)
         {
 
+            float average = 0.0f;
             for (int sample = 0; sample < readings[channel].Count; sample++)
             {
                 average += readings[channel][sample];
                 averagePerChannel[channel] = average / readings.Count;
+            }
+        }
+    }
+
+    //This function will be used to calculate the average measurements for each channel to get the baseline of the user whmen they are in a  relaxed state. It will be stored in the baseLineAverage list which will be used when determining the difficulty.
+
+    private void CalculateAverageAllChannelsBaseline()
+    {
+        //Framework
+        for (int channel = 0; channel < activeChannels; channel++)
+        {
+            float average = 0.0f;
+            for (int sample = 0; sample < readings[channel].Count; sample++)
+            {
+                average += readings[channel][sample];
+                baselineAverage[channel] = average / readings.Count;
             }
         }
     }
@@ -100,7 +120,8 @@ public class DifficultyCalculator : MonoBehaviour
         //    CalculateAveragePerChannel(x);
         //}
 
-        
+        int adaptScore = 0;
+
         CalculateAverageAllChannels();
 
         for(int x = 0; x < averagePerChannel.Count; x++)
@@ -126,10 +147,50 @@ public class DifficultyCalculator : MonoBehaviour
         AdaptDifficulty(adaptScore);
 
     }
-        private void AdaptDifficulty(float physioScoreCurrrent)
+        
+    
+    
+    private void AdaptDifficulty(float physioScoreCurrrent)
     {
         //Call the statemachines adapt function
         stateMachine.AdaptSimulation(physioScoreCurrrent);
+
+    }
+
+
+
+    private void CalculateAdaptScoreTrueTable()
+    {
+
+        int adaptScore = 0;
+
+        CalculateAverageAllChannels();
+
+
+        // If the average of a measurement is higher than the baseline of the same measurement the score will get higher 
+        // visa versa, if avearage is lower than baseline score will be lower
+        // If the score is lower, it means that the measurements were lower than the baseline,  therefore the difficulty needs to get harderr
+        // If the score is higher, it means the measurmenets werrer higher than the baseline, therefore diffculty needs to get easier
+        
+        //Change it so that is baseline + significant Change in metric (i.e hr baseline+5bpm)
+        for (int x = 0; x < averagePerChannel.Count; x++)
+        {
+            if (averagePerChannel[x] < baselineAverage[x] + significantChange[x])
+            {
+                adaptScore--;
+            }
+            else if (averagePerChannel[x] == baselineAverage[x] + significantChange[x])
+            {
+                //Doesnt change the score
+            }
+
+            else if (averagePerChannel[x] > baselineAverage[x] + significantChange[x])
+            {
+                adaptScore++;
+            }
+        }
+
+        AdaptDifficulty(adaptScore);
 
     }
 

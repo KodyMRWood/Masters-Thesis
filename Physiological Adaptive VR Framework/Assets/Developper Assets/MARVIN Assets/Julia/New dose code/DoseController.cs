@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoseController : MonoBehaviour {
 
-    public GameObject eventManager;
+    //public GameObject eventManager;
 
     public bool applyCorrectionCode = false;
     private Dictionary<string , Dictionary<float , float>> attenConstants = new Dictionary<string , Dictionary<float , float>>();

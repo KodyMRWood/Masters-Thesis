@@ -1,7 +1,5 @@
-[OVRPlugin][INFO] CliD3D11CompositorClient initialized[OVRPlugin][INFO] CliD3D11CompositorClient releasedWaiting on threads to park on joinable thread list timed out.
-custom\nunit.framework.dll
-Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
-Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Waiting on threads to park on joinable thread list timed out.
+n][INFO] CliD3D11CompositorClient releasedSymbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 [OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
   Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
     Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
@@ -19,7 +17,7 @@ Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiol
       Interface Id: 0xb00b00053345520
     Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
       Interface Id: 0xae0b8a9331378a85
-    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 67.3mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializedrnal_memory[OVRPlugin][INFO]   VK_KHR_external_memory_win32[OVRPlugin][INFO]   VK_KHR_external_fence[OVRPlugin][INFO]   VK_KHR_external_fence_win32[OVRPlugin][INFO]   VK_KHR_external_semaphore[OVRPlugin][INFO]   VK_KHR_external_semaphore_win32[OVRPlugin][INFO] ProfilerSystem: verbose mode 0[OVRPlugin][INFO] OVRPlugin 1.51.1 ... preinitialized[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 67.4mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initialized44[OVRPlugin][INFO] IAD changed to 67.4mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializedHR_external_semaphore_capabilities[OVRPlugin][INFO]   VK_KHR_get_physical_device_properties2[OVRPlugin][INFO] VkDeviceExtensions:[OVRPlugin][INFO]   VK_KHR_swapchain[OVRPlugin][INFO]   VK_KHR_external_memory[OVRPlugin][INFO]   VK_KHR_external_memory_win32[OVRPlugin][INFO]   VK_KHR_external_fence[OVRPlugin][INFO]   VK_KHR_external_fence_win32[OVRPlugin][INFO]   VK_KHR_external_semaphore[OVRPlugin][INFO]   VK_KHR_external_semaphore_win32[OVRPlugin][INFO] ProfilerSystem: verbose mode 0[OVRPlugin][INFO] OVRPlugin 1.51.1 ... preinitialized[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
   Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
     Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
       Interface Id: 0x4adefbb87b1845cf
@@ -36,7 +34,7 @@ Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiol
       Interface Id: 0xb00b00053345520
     Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
       Interface Id: 0xae0b8a9331378a85
-    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 67.3mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initialized[INFO] OVRPlugin 1.51.1 ... initializedonInterrupt
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 67.4mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initialized[INFO] OVRPlugin 1.51.1 ... initializedonInterrupt
 BITalino
 BITalino
 BITalino
