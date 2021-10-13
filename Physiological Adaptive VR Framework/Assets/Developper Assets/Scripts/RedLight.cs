@@ -21,7 +21,11 @@ public class RedLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Rotate(this.transform.up * (spinRate * Time.deltaTime));
+        //this.transform.Rotate(this.transform.up * (spinRate * Time.deltaTime));
+        //this.transform.Rotate(this.transform.up, (spinRate * Time.deltaTime));
+        this.transform.Rotate(0,(spinRate * Time.deltaTime),0, Space.Self);
+
+
 
         if (isFlashing)
         {
@@ -30,7 +34,7 @@ public class RedLight : MonoBehaviour
                 spotLight1.intensity -= flashRate * Time.deltaTime;
                 spotLight2.intensity -= flashRate * Time.deltaTime;
                 pointLight.intensity -= flashRate * Time.deltaTime;
-                if (pointLight.intensity <= 0.0f)
+                if (pointLight.intensity <= 0.1f)
                 {
                     isOn = false;
                 }

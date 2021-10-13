@@ -5,12 +5,12 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Timers;
-//using Boo.Lang.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-//using DllExportTest;
-//using unity_api;
+using UnityEngine.EventSystems;
+using System.IO;
+
 
 namespace Assets.Scripts
 {
@@ -58,8 +58,10 @@ namespace Assets.Scripts
         public Text BatteryLevel;
         public Text CurrentChannel;
         public RectTransform GraphContainer;
-        [SerializeField] public Sprite DotSprite;
+        public RectTransform GraphContainer2;
         public WindowGraph GraphZone;
+        public WindowGraph GraphZone2;
+        [SerializeField] public Sprite DotSprite;
 
         // [Delegate References]
         // Delegates (needed for callback purposes).
@@ -76,6 +78,7 @@ namespace Assets.Scripts
         public int LastLenMultiThreadString = 0;
         public int GraphWindSize = -1;
         public bool FirstPlot = true;
+        public bool FirstPlot2 = true;
         public List<string> ResolutionDropDownOptions = new List<string>() {"8", "16"};
         public int VisualizationChannel = -1;
         public int SamplingRate;
@@ -83,15 +86,69 @@ namespace Assets.Scripts
         public bool UpdatePlotFlag = false;
         public string SelectedDevice = "";
 
+
+        //////////////////////////////// Edit by Lillian Fan//////////////////////////////
+        // [Addtional Variable]
+        // Different sensor's record data in string
+        string EMGData = "";
+        string ECGData = "";
+        string ECGHR = "";
+        string EDAData = "";
+        string FolderPath = "";
+
+        // Different sensor's record data in list
+        List<double> EMGDataList = new List<double>() { };
+        List<double> RMSDataList = new List<double>() { };
+        int RMSSampleRate = 100;
+
+        // Boolean for if certain datain been update in cetain time interval or not
+        bool EMGUpdate = false;
+        bool ECGUpdate = false;
+        bool EDAUpdate = false;
+
+        // Base line for EMG and EDA
+        public double thoresholdEMG = 0.1f;
+        public float thoresholdEDA = 0.5f;
+
+        // Data use to compare EDA each 5s
+        int sampleingCount = 1;
+        List<double> EDAPre = new List<double>() { };
+        List<double> EDANow = new List<double>() { };
+
+        // Feedback
+        public Image flashImage;
+        private bool isFlashing = false;
+        public float flashSpeed;
+        public Color flashColor;
+
+        // Calculate heart rate
+        double[] HBtens = new double[] { };
+        int HBCount = 1;
+        public Text HRText;
+
+
+        //Create a timer that controls the update of real-time plot.
+        System.Timers.Timer waitForPlotTimer = new System.Timers.Timer();
+        //////////////////////////////////////////////////////////////////////////////////
+
+        ///////////////////////////////////Edited by Kody Wood/////////////////////////////////////////////
         //Variables that will hold the data from the channel we are looking for.
-       public List<List<int>> MultiThreadSubListPerChannel2 = new List<List<int>>();
-       public List<int> MultiThreadSubList2 = null;
+        public List<List<int>> MultiThreadSubListPerChannel2 = new List<List<int>>();
+        public List<int> MultiThreadSubList2 = null;
+        //Second graph variables
+        public bool UpdatePlotFlag2 = false;
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
         // Awake is called when the script instance is being loaded.
         void Awake()
         {
             // Find references to graphical objects.
-            GraphContainer = transform.Find("WindowGraph/GraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
+            GraphContainer = transform.Find("WindowGraph/EDAGraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
         }
 
         // Start is called before the first frame update
@@ -108,9 +165,17 @@ namespace Assets.Scripts
             ActiveChannels = new List<int>();
 
 
+            ///////////////////////////////////Edited by Kody Wood/////////////////////////////////////////////
             //List<int[]> packageOfDataPerChannel = new List<int[]>();
             MultiThreadSubListPerChannel2 = new List<List<int>>();
-
+            /////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////// Edit by Lillian Fan//////////////////////////////
+            // Initial second graph
+            WindowGraph.IGraphVisual graphVisual2 = new WindowGraph.LineGraphVisual(GraphContainer2, DotSprite, new Color(0, 158, 227, 0), new Color(0, 158, 227));
+            GraphContainer2 = graphVisual2.GetGraphContainer();
+            GraphZone2 = new WindowGraph(GraphContainer2, graphVisual2);
+            GraphZone2.ShowGraph(new List<int>() { 0 }, graphVisual2, -1, (int _i) => "" + (_i), (float _f) => Mathf.RoundToInt(_f) + "k");
+            //////////////////////////////////////////////////////////////////////////////////
 
 
             // Initialization of graphical zone.
@@ -130,9 +195,200 @@ namespace Assets.Scripts
         // Update function, being constantly invoked by Unity.
         void Update()
         {
-            
+            ////////////////////////////////////////////////// Edit by Lillian Fan////////////////////////////////////////////////////
+            // Update EMG baseline after first 30s record and reset all variable
+            if (MenuManage.calcuEMGThres == true)
+            {
+                thoresholdEMG = RMSDataList.Average() + 0.01;
+                RMSDataList.Clear();
+                EMGData = "";
+                ECGData = "";
+                ECGHR = "";
+                EDAData = "";
+                MenuManage.calcuEMGThres = false;
+            }
+            // Update flash image when EMG or EDA change higher than the baseline
+            if (isFlashing)
+            {
+                flashImage.color = flashColor;
+                isFlashing = false;
+            }
+            else
+            {
+                flashImage.color = Color.Lerp(flashImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            }
+            // Press Different Key to control the connection between Bitalino and Unity
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                // Searching device
+                ExecuteEvents.Execute(ScanButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                // Connect to device
+                ExecuteEvents.Execute(ConnectButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) || MenuManage.activeSensor == true)
+            {
+                // Start recording
+                ExecuteEvents.Execute(StartButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+                MenuManage.activeSensor = false;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) || MenuManage.stopSensor == true)
+            {
+                // Stop recording
+                ExecuteEvents.Execute(StopButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+                MenuManage.stopSensor = false;
+            }
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
             try
             {
+                //Use this to control the timer to get the recordings.
+                waitForPlotTimer.Enabled = false;
+
+
+                ////////////////////////////////////////////////// Edit by Lillian Fan///////////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////Record EMG,ECG and EDA Data//////////////////////////////////////////////////////////////////
+                //EMG data record and reaction
+                int[] pacakgeOfDataEMG = PluxDevManager.GetPackageOfData(1, ActiveChannels, EMGUpdate);
+                if (EMGUpdate == true && pacakgeOfDataEMG != null && pacakgeOfDataEMG.Length != 0)
+                {
+                    for (int i = 0; i < pacakgeOfDataEMG.Length; i++)
+                    {
+                        if (i % 10 == 0)
+                        {
+                            // resualt will between -1.64mV to 1.64mV
+                            double tmp = (pacakgeOfDataEMG[i] / Math.Pow(2, 10) - 0.5) * 3.3 / 1009 * 1000;
+
+                            // calculate the RMS
+                            EMGDataList.Add(tmp);
+                            double RMS = 0;
+
+                            if (EMGDataList.Count() >= RMSSampleRate)
+                            {
+                                for (int e = 0; e < RMSSampleRate; e++)
+                                {
+                                    RMS += Math.Pow(EMGDataList[EMGDataList.Count() - 1 - e], 2);
+                                }
+                                RMS = RMS / RMSSampleRate;
+                                RMS = Math.Sqrt(RMS);
+                                RMSDataList.Add(RMS);
+                            }
+
+                            EMGData += String.Format("{0:0.0000}", tmp) + "," + String.Format("{0:0.0000}", RMS) + "\n";
+                        }
+                    }
+                    EMGUpdate = false;
+
+                    if (RMSDataList.Count() > 0)
+                    {
+                        if (RMSDataList[RMSDataList.Count() - 1] > thoresholdEMG)
+                        {
+                            isFlashing = true;
+                            MenuManage.stressTimeEMG++;
+                        }
+                    }
+                }
+                //ECG data record and reaction
+                int[] pacakgeOfDataECG = PluxDevManager.GetPackageOfData(2, ActiveChannels, ECGUpdate);
+                if (ECGUpdate == true && pacakgeOfDataECG != null && pacakgeOfDataECG.Length != 0)
+                {
+                    // variable for calculate heart rate
+                    double[] tmpAr = new double[0];
+
+                    if (pacakgeOfDataECG.Length != 0)
+                    {
+                        for (int i = 0; i < pacakgeOfDataECG.Length; i++)
+                        {
+                            if (i % 10 == 0)
+                            {
+                                // resualt will between -1.5mV to 1.5mV
+                                double tmp = (pacakgeOfDataECG[i] / Math.Pow(2, 10) - 0.5) * 3.3 / 1100 * 1000;
+                                ECGData += String.Format("{0:0.0000}", tmp) + "\n";
+
+                                // data for calculate heart rate
+                                Array.Resize(ref tmpAr, tmpAr.Length + 1);
+                                tmpAr[tmpAr.Length - 1] = tmp;
+                            }
+                        }
+                    }
+                    // Calculating heart rate
+                    var tmpList = new List<double>();
+                    tmpList.AddRange(HBtens);
+                    tmpList.AddRange(tmpAr);
+                    HBtens = tmpList.ToArray();
+                    if (HBCount == 10)
+                    {
+                        int Heartrate = 0;
+
+                        for (int i = 0; i < HBtens.Length - 4; i++)
+                        {
+                            if ((HBtens[i] < HBtens[i + 1]) && (HBtens[i + 1] < HBtens[i + 2]) && (HBtens[i + 2] < HBtens[i + 3]) && (HBtens[i + 3] > HBtens[i + 4]) && (HBtens[i + 3] - HBtens[i] > 0.15))
+                            {
+                                Heartrate++;
+                            }
+                        }
+                        Heartrate *= 6;
+                        //Output to screen
+                        HRText.text = "Heart Rate: " + Heartrate;
+                        //Add to the string to be outputed to CSV
+                        ECGHR += Heartrate + "\n";
+
+                        //Resetting Variables
+                        HBtens = new double[] { };
+                        HBCount = 1;
+                    }
+                    else
+                        HBCount++;
+                    ECGUpdate = false;
+                }
+                //EDA data record and reaction
+                int[] pacakgeOfDataEDA = PluxDevManager.GetPackageOfData(3, ActiveChannels, EDAUpdate);
+                if (EDAUpdate == true && pacakgeOfDataEDA != null && pacakgeOfDataEDA.Length != 0)
+                {
+                    if (pacakgeOfDataEDA.Length != 0)
+                    {
+
+                        for (int i = 0; i < pacakgeOfDataEDA.Length; i++)
+                        {
+                            if (i % 10 == 0)
+                            {
+                                // resualt will between 0uS to 25uS
+                                double tmp = pacakgeOfDataEDA[i] / Math.Pow(2, 10) * 3.3 / 0.132;
+                                EDAData += String.Format("{0:0.0000}", tmp) + "\n";
+                                EDANow.Add(tmp);
+                            }
+                        }
+                    }
+                    EDAUpdate = false;
+
+                    // EDA detection
+                    if (sampleingCount == 5)
+                    {
+                        if (EDAPre.Count != 0)
+                        {
+                            if (EDANow.Average() - EDAPre.Average() > thoresholdEDA)
+                            {
+                                isFlashing = true;
+                                MenuManage.stressTimeEDA++;
+                            }
+                        }
+                        EDAPre.Clear();
+                        EDAPre = EDANow.ToList();
+                        EDANow.Clear();
+                        sampleingCount = 1;
+
+                    }
+                    else
+                        sampleingCount++;
+                }
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
                 // Get packages of data that will be shown on the graphic
                 int[] packageOfData = PluxDevManager.GetPackageOfData(VisualizationChannel, ActiveChannels, UpdatePlotFlag); //This will be for the graphic only
 
@@ -146,7 +402,7 @@ namespace Assets.Scripts
                     int[] packageOfDataChannel = PluxDevManager.GetPackageOfData(ActiveChannels[x], ActiveChannels, UpdatePlotFlag);
                     packageOfDataPerChannel.Add(packageOfDataChannel);
                 }
-                
+
                 
                 // Check if there it was communicated an event/error code.
                 if (packageOfData != null)
@@ -173,22 +429,61 @@ namespace Assets.Scripts
                                 // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
                                 if (UpdatePlotFlag == true && packageOfData != null)
                                 {
-                                    // Get the values linked with the last 10 seconds of information.
-                                    MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
+                                    //// Get the values linked with the last 10 seconds of information.
+                                    //MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
 
                                     //Get the data from the packages and create a sublist that has only sample rate amount of values
-                                    for (int y = 0; y < packageOfDataPerChannel.Count; y++)
-                                    {
-                                        //******* NEED TO ACCESS THIS SOMEHOW PUBLIC VARIABLES DO NOTH WORK *****
-                                        MultiThreadSubListPerChannel.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
-                                        MultiThreadSubListPerChannel2.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
-                                    }
-                                    MultiThreadSubList2 = MultiThreadSubListPerChannel2[0];
-
+                                    //for (int y = 0; y < packageOfDataPerChannel.Count; y++)
+                                    //{
+                                    //    //******* NEED TO ACCESS THIS SOMEHOW PUBLIC VARIABLES DO NOTH WORK *****
+                                    //    MultiThreadSubListPerChannel.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
+                                    //    MultiThreadSubListPerChannel2.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
+                                    //}
+                                    //MultiThreadSubList2 = MultiThreadSubListPerChannel2[0];
+                                    MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
                                     GraphZone.UpdateValue(MultiThreadSubList);
 
                                     // Reboot flag.
                                     UpdatePlotFlag = false;
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                ///////////////////////////////////EDA Graph//////////////////////////////////////////////////
+                int[] packageOfData2 = PluxDevManager.GetPackageOfData(3, ActiveChannels, UpdatePlotFlag2); //This will be for the graphic only
+                if (packageOfData2 != null)
+                {
+                    if (packageOfData2.Length != 0)
+                    {
+                        // Creation of the first graphical representation of the results.
+                        if (MultiThreadList[VisualizationChannel].Count >= 0)
+                        {
+                            if (FirstPlot2 == true)
+                            {
+                                // Update flag (after this step we won't enter again on this statement).
+                                FirstPlot2 = false;
+
+                                // Plot first set of data.
+                                // Subsampling if sampling rate is bigger than 100 Hz.
+                                List<int> subSamplingList = GetSubSampleList(new int[GraphWindSize], SamplingRate, GraphWindSize);
+                                GraphZone2.ShowGraph(subSamplingList, null, -1, (int _i) => "-" + (GraphWindSize - _i),
+                                    (float _f) => Mathf.RoundToInt(_f / 1000) + "k");
+                            }
+                            // Update plot.
+                            else if (FirstPlot2 == false)
+                            {
+                                // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
+                                if (UpdatePlotFlag == true && packageOfData2 != null)
+                                {
+                                    //MultiThreadSubListPerChannel2.Add(GetSubSampleList(packageOfData2, SamplingRate, GraphWindSize));
+                                    MultiThreadSubList = GetSubSampleList(packageOfData2, SamplingRate, GraphWindSize);
+                                    GraphZone2.UpdateValue(MultiThreadSubList);
+
+                                    // Reboot flag.
+                                    UpdatePlotFlag2 = false;
                                 }
                             }
                         }
@@ -216,6 +511,17 @@ namespace Assets.Scripts
         // Method invoked when the application was closed.
         void OnApplicationQuit()
         {
+            //////////////////////////////// Edit by Lillian Fan//////////////////////////////
+            // Out put the EMG and EDA data to the file
+            OutPutEMG();
+            OutPutEDA();
+            OutPutECG();
+            // Clean up EMG and EDA's data
+            EMGData = "";
+            EDAData = "";
+            ECGData = "";
+            //////////////////////////////////////////////////////////////////////////////////
+            ///
             // Disconnect from device.
             PluxDevManager.DisconnectPluxDev();
             Debug.Log("Application ending after " + Time.time + " seconds");
@@ -865,12 +1171,24 @@ namespace Assets.Scripts
             GraphWindSize = -1;
             VisualizationChannel = -1;
             UpdatePlotFlag = false;
+            //////////////////////////////// Edit by Lillian Fan//////////////////////////////
+            UpdatePlotFlag2 = false;
+            EMGUpdate = false;
+            ECGUpdate = false;
+            EDAUpdate = false;
+            //////////////////////////////////////////////////////////////////////////////////
         }
 
         public void OnWaitingTimeEnds(object source, ElapsedEventArgs e)
         {
             // Update flag, which will trigger the update of real-time plot.
             UpdatePlotFlag = true;
+            //////////////////////////////// Edit by Lillian Fan//////////////////////////////
+            UpdatePlotFlag2 = true;
+            EMGUpdate = true;
+            ECGUpdate = true;
+            EDAUpdate = true;
+            /////////////////////////////////////////////////////////////////////////////////
         }
 
         // Get the number of active toggle buttons.
@@ -889,5 +1207,33 @@ namespace Assets.Scripts
 
             return nbrChannels;
         }
+
+        //////////////////////////////// Edit by Lillian Fan//////////////////////////////
+        // Out Put Data
+        public void OutPutEMG()
+        {
+            // Create Recording File
+            string path = FolderPath + "/EMGData.csv";
+            if (!File.Exists(path))
+                File.WriteAllText(path, EMGData);
+        }
+        public void OutPutECG()
+        {
+            // Create Recording File
+            string path = FolderPath + "/ECGData.csv";
+            if (!File.Exists(path))
+                File.WriteAllText(path, ECGData);
+            path = FolderPath + "/ECGHR.csv";
+            if (!File.Exists(path))
+                File.WriteAllText(path, ECGHR);
+        }
+        public void OutPutEDA()
+        {
+            // Create Recording File
+            string path = FolderPath + "/EDAData.csv";
+            if (!File.Exists(path))
+                File.WriteAllText(path, EDAData);
+        }
+        ///////////////////////////////////////////////////////////////////////////////////
     }
 }
