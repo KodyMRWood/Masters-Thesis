@@ -20,12 +20,12 @@ public class MenuManage : MonoBehaviour
     public GameObject developers;
 
 
-    // Controllers
-    public GameObject leftHand;
-    public GameObject rightHand;
-    public GameObject leftController;
-    public GameObject rightController;
-    public GameObject pointer;
+    //// Controllers Hand Tracking
+    //public GameObject leftHand;
+    //public GameObject rightHand;
+    //public GameObject leftController;
+    //public GameObject rightController;
+    //public GameObject pointer;
 
     //Activate the sensors
     float baseTime = 30;
@@ -43,15 +43,15 @@ public class MenuManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        readyForCollecting.SetActive(true); 
-        collectingIntro.SetActive(false);
-        collectingTime.gameObject.SetActive(false);
-        dataToMenu.SetActive(false);
-        
-        menu.SetActive(false);
-        gamePlay.SetActive(false);
-        collection.SetActive(false);
-        developers.SetActive(false);
+        //readyForCollecting.SetActive(true); 
+        //collectingIntro.SetActive(false);
+        //collectingTime.gameObject.SetActive(false);
+        //dataToMenu.SetActive(false);
+        //
+        //menu.SetActive(false);
+        //gamePlay.SetActive(false);
+        //collection.SetActive(false);
+        //developers.SetActive(false);
 
 
     }
@@ -76,18 +76,18 @@ public class MenuManage : MonoBehaviour
             }
         }
 
-        // Set controller unenable when using hands tracking
-        if(leftHand.GetComponent<SkinnedMeshRenderer>().enabled == true || rightHand.GetComponent<SkinnedMeshRenderer>().enabled == true){
-            leftController.SetActive(false);
-            rightController.SetActive(false);
-            pointer.SetActive(false);
-        }
-        else
-        {
-            leftController.SetActive(true);
-            rightController.SetActive(true);
-            pointer.SetActive(true);
-        }
+        //// Set controller unenable when using hands tracking
+        //if(leftHand.GetComponent<SkinnedMeshRenderer>().enabled == true || rightHand.GetComponent<SkinnedMeshRenderer>().enabled == true){
+        //    leftController.SetActive(false);
+        //    rightController.SetActive(false);
+        //    pointer.SetActive(false);
+        //}
+        //else
+        //{
+        //    leftController.SetActive(true);
+        //    rightController.SetActive(true);
+        //    pointer.SetActive(true);
+        //}
 
         
     }

@@ -79,7 +79,7 @@ namespace Assets.Scripts
         public int GraphWindSize = -1;
         public bool FirstPlot = true;
         public bool FirstPlot2 = true;
-        public List<string> ResolutionDropDownOptions = new List<string>() {"8", "16"};
+        public List<string> ResolutionDropDownOptions = new List<string>() { "8", "16" };
         public int VisualizationChannel = -1;
         public int SamplingRate;
         public int WindowInMemorySize;
@@ -137,33 +137,32 @@ namespace Assets.Scripts
         public List<int> MultiThreadSubList2 = null;
         //Second graph variables
         public bool UpdatePlotFlag2 = false;
+        [Tooltip("How long to record data when activated")]
+        public float recordTime = 10.0f;
+        [Tooltip("How long the data has been recorded")]
+        public float recordTimer;
 
 
         /////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
         // Awake is called when the script instance is being loaded.
         void Awake()
         {
             // Find references to graphical objects.
-            GraphContainer = transform.Find("WindowGraph/EDAGraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
+            GraphContainer = transform.Find("WindowGraph/EDA GraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
         }
-
         // Start is called before the first frame update
         void Start()
         {
             // Welcome Message, showing that the communication between C++ dll and Unity was established correctly.
             Debug.Log("Connection between C++ Interface and Unity established with success !\n");
-            PluxDevManager = new PluxDeviceManager(ScanResults, ConnectionDone);
+            PluxDevManager = new PluxDeviceManager();
             int welcomeNumber = PluxDevManager.WelcomeFunctionUnity();
             Debug.Log("Welcome Number: " + welcomeNumber);
 
             // Initialization of Variables.      
             MultiThreadList = new List<List<int>>();
             ActiveChannels = new List<int>();
-
 
             ///////////////////////////////////Edited by Kody Wood/////////////////////////////////////////////
             //List<int[]> packageOfDataPerChannel = new List<int[]>();
@@ -191,7 +190,6 @@ namespace Assets.Scripts
             waitForPlotTimer.Enabled = true;
             waitForPlotTimer.AutoReset = true;
         }
-
         // Update function, being constantly invoked by Unity.
         void Update()
         {
@@ -247,153 +245,54 @@ namespace Assets.Scripts
 
             try
             {
-                //Use this to control the timer to get the recordings.
-                waitForPlotTimer.Enabled = false;
+                ////Use this to control the timer to get the recordings.
+                //waitForPlotTimer.Enabled = false;
 
 
                 ////////////////////////////////////////////////// Edit by Lillian Fan///////////////////////////////////////////////////////////////////////
                 ////////////////////////////////////////////////Record EMG,ECG and EDA Data//////////////////////////////////////////////////////////////////
+                
+                if(Input.GetKeyDown(KeyCode.Alpha0))
+                {
+                    waitForPlotTimer.Enabled = !waitForPlotTimer.Enabled;
+                    Debug.Log(waitForPlotTimer.Enabled);
+                }
                 //EMG data record and reaction
-                int[] pacakgeOfDataEMG = PluxDevManager.GetPackageOfData(1, ActiveChannels, EMGUpdate);
-                if (EMGUpdate == true && pacakgeOfDataEMG != null && pacakgeOfDataEMG.Length != 0)
+                if (waitForPlotTimer.Enabled)
                 {
-                    for (int i = 0; i < pacakgeOfDataEMG.Length; i++)
+
+                    int[] packageOfDataEMG = PluxDevManager.GetPackageOfData(1, ActiveChannels, EMGUpdate);
+                    if (EMGUpdate == true && packageOfDataEMG != null && packageOfDataEMG.Length != 0)
                     {
-                        if (i % 10 == 0)
-                        {
-                            // resualt will between -1.64mV to 1.64mV
-                            double tmp = (pacakgeOfDataEMG[i] / Math.Pow(2, 10) - 0.5) * 3.3 / 1009 * 1000;
-
-                            // calculate the RMS
-                            EMGDataList.Add(tmp);
-                            double RMS = 0;
-
-                            if (EMGDataList.Count() >= RMSSampleRate)
-                            {
-                                for (int e = 0; e < RMSSampleRate; e++)
-                                {
-                                    RMS += Math.Pow(EMGDataList[EMGDataList.Count() - 1 - e], 2);
-                                }
-                                RMS = RMS / RMSSampleRate;
-                                RMS = Math.Sqrt(RMS);
-                                RMSDataList.Add(RMS);
-                            }
-
-                            EMGData += String.Format("{0:0.0000}", tmp) + "," + String.Format("{0:0.0000}", RMS) + "\n";
-                        }
+                        RecordEMG(packageOfDataEMG);
                     }
-                    EMGUpdate = false;
-
-                    if (RMSDataList.Count() > 0)
+                    //ECG data record and reaction
+                    int[] packageOfDataECG = PluxDevManager.GetPackageOfData(2, ActiveChannels, ECGUpdate);
+                    if (ECGUpdate == true && packageOfDataECG != null && packageOfDataECG.Length != 0)
                     {
-                        if (RMSDataList[RMSDataList.Count() - 1] > thoresholdEMG)
-                        {
-                            isFlashing = true;
-                            MenuManage.stressTimeEMG++;
-                        }
+                        RecordECG(packageOfDataECG);
                     }
-                }
-                //ECG data record and reaction
-                int[] pacakgeOfDataECG = PluxDevManager.GetPackageOfData(2, ActiveChannels, ECGUpdate);
-                if (ECGUpdate == true && pacakgeOfDataECG != null && pacakgeOfDataECG.Length != 0)
-                {
-                    // variable for calculate heart rate
-                    double[] tmpAr = new double[0];
-
-                    if (pacakgeOfDataECG.Length != 0)
+                    //EDA data record and reaction
+                    int[] packageOfDataEDA = PluxDevManager.GetPackageOfData(3, ActiveChannels, EDAUpdate);
+                    if (EDAUpdate == true && packageOfDataEDA != null && packageOfDataEDA.Length != 0)
                     {
-                        for (int i = 0; i < pacakgeOfDataECG.Length; i++)
-                        {
-                            if (i % 10 == 0)
-                            {
-                                // resualt will between -1.5mV to 1.5mV
-                                double tmp = (pacakgeOfDataECG[i] / Math.Pow(2, 10) - 0.5) * 3.3 / 1100 * 1000;
-                                ECGData += String.Format("{0:0.0000}", tmp) + "\n";
-
-                                // data for calculate heart rate
-                                Array.Resize(ref tmpAr, tmpAr.Length + 1);
-                                tmpAr[tmpAr.Length - 1] = tmp;
-                            }
-                        }
+                        RecordEDA(packageOfDataEDA);
                     }
-                    // Calculating heart rate
-                    var tmpList = new List<double>();
-                    tmpList.AddRange(HBtens);
-                    tmpList.AddRange(tmpAr);
-                    HBtens = tmpList.ToArray();
-                    if (HBCount == 10)
+
+                    recordTimer += Time.deltaTime;
+                    if(recordTimer >= recordTime)
                     {
-                        int Heartrate = 0;
-
-                        for (int i = 0; i < HBtens.Length - 4; i++)
-                        {
-                            if ((HBtens[i] < HBtens[i + 1]) && (HBtens[i + 1] < HBtens[i + 2]) && (HBtens[i + 2] < HBtens[i + 3]) && (HBtens[i + 3] > HBtens[i + 4]) && (HBtens[i + 3] - HBtens[i] > 0.15))
-                            {
-                                Heartrate++;
-                            }
-                        }
-                        Heartrate *= 6;
-                        //Output to screen
-                        HRText.text = "Heart Rate: " + Heartrate;
-                        //Add to the string to be outputed to CSV
-                        ECGHR += Heartrate + "\n";
-
-                        //Resetting Variables
-                        HBtens = new double[] { };
-                        HBCount = 1;
+                        waitForPlotTimer.Enabled = false;
+                        recordTimer = 0.0f;
                     }
-                    else
-                        HBCount++;
-                    ECGUpdate = false;
-                }
-                //EDA data record and reaction
-                int[] pacakgeOfDataEDA = PluxDevManager.GetPackageOfData(3, ActiveChannels, EDAUpdate);
-                if (EDAUpdate == true && pacakgeOfDataEDA != null && pacakgeOfDataEDA.Length != 0)
-                {
-                    if (pacakgeOfDataEDA.Length != 0)
-                    {
-
-                        for (int i = 0; i < pacakgeOfDataEDA.Length; i++)
-                        {
-                            if (i % 10 == 0)
-                            {
-                                // resualt will between 0uS to 25uS
-                                double tmp = pacakgeOfDataEDA[i] / Math.Pow(2, 10) * 3.3 / 0.132;
-                                EDAData += String.Format("{0:0.0000}", tmp) + "\n";
-                                EDANow.Add(tmp);
-                            }
-                        }
-                    }
-                    EDAUpdate = false;
-
-                    // EDA detection
-                    if (sampleingCount == 5)
-                    {
-                        if (EDAPre.Count != 0)
-                        {
-                            if (EDANow.Average() - EDAPre.Average() > thoresholdEDA)
-                            {
-                                isFlashing = true;
-                                MenuManage.stressTimeEDA++;
-                            }
-                        }
-                        EDAPre.Clear();
-                        EDAPre = EDANow.ToList();
-                        EDANow.Clear();
-                        sampleingCount = 1;
-
-                    }
-                    else
-                        sampleingCount++;
                 }
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
                 // Get packages of data that will be shown on the graphic
                 int[] packageOfData = PluxDevManager.GetPackageOfData(VisualizationChannel, ActiveChannels, UpdatePlotFlag); //This will be for the graphic only
 
                 //Get packeges from every channel
-                List<int[]> packageOfDataPerChannel =  new List<int[]>();
+                List<int[]> packageOfDataPerChannel = new List<int[]>();
                 List<List<int>> MultiThreadSubListPerChannel = new List<List<int>>();
 
                 //Depending on how many active channels, get the information from them
@@ -403,7 +302,7 @@ namespace Assets.Scripts
                     packageOfDataPerChannel.Add(packageOfDataChannel);
                 }
 
-                
+
                 // Check if there it was communicated an event/error code.
                 if (packageOfData != null)
                 {
@@ -498,7 +397,7 @@ namespace Assets.Scripts
             catch (ExternalException exc)
             {
                 Debug.Log("ExternalException in the Update() callback:\n" + exc.Message + "\n" + exc.StackTrace);
-                
+
                 // Stop Acquisition in a secure way.
                 StopButtonFunction(-1);
             }
@@ -546,10 +445,55 @@ namespace Assets.Scripts
                     listOfDomains.Add("BLE");
                 }
 
-                PluxDevManager.GetDetectableDevicesUnity(listOfDomains);
+                this.ListDevices = PluxDevManager.GetDetectableDevicesUnity(listOfDomains);
+                // Info message for development purposes.
+                Console.WriteLine("Number of Detected Devices: " + this.ListDevices.Count);
+                for (int i = 0; i < this.ListDevices.Count; i++)
+                {
+                    Console.WriteLine("Device--> " + this.ListDevices[i]);
+                }
 
-                // Disable scan button.
-                ScanButton.interactable = false;
+                // Enable Dropdown if the list of devices is not empty.
+                if (this.ListDevices.Count != 0)
+                {
+                    // Add the new options to the drop-down box included in our GUI.
+                    //Create a List of new Dropdown options
+                    List<string> dropDevices = new List<string>();
+
+                    // Convert array to list format.
+                    dropDevices.AddRange(this.ListDevices);
+
+                    // A check into the list of devices.
+                    dropDevices = dropDevices.GetRange(0, dropDevices.Count);
+                    for (int i = dropDevices.Count - 1; i >= 0; i--)
+                    {
+                        // Accept only strings containing "BTH" or "BLE" substrings "flagging" a PLUX Bluetooth device.
+                        if (!dropDevices[i].Contains("BTH") && !dropDevices[i].Contains("BLE"))
+                        {
+                            dropDevices.RemoveAt(i);
+                        }
+                    }
+
+                    // Raise an exception if none device was detected.
+                    if (dropDevices.Count == 0)
+                    {
+                        throw new ArgumentException();
+                    }
+
+                    //Clear the old options of the Dropdown menu
+                    DeviceDropdown.ClearOptions();
+
+                    //Add the options created in the List above
+                    DeviceDropdown.AddOptions(dropDevices);
+
+                    // Enable drop-down and Connect button if a PLUX Device was detected .
+                    DeviceDropdown.interactable = true;
+                    ConnectButton.interactable = true;
+
+                    // Hide info message.
+                    ConnectInfoPanel.SetActive(false);
+
+                }
             }
             catch (Exception e)
             {
@@ -569,6 +513,7 @@ namespace Assets.Scripts
         {
             try
             {
+                
                 // Change the color and text of "Connect" button.
                 if (ConnectText.text == "Connect")
                 {
@@ -579,6 +524,149 @@ namespace Assets.Scripts
                     Debug.Log("Trying to establish a connection with device " + this.SelectedDevice);
                     Console.WriteLine("Selected Device: " + this.SelectedDevice);
                     PluxDevManager.PluxDev(this.SelectedDevice);
+                    Debug.Log("Connection with device " + this.SelectedDevice + " established with success!");
+
+                    ConnectText.text = "Disconnect";
+                    GreenFlag.SetActive(true);
+                    RedFlag.SetActive(false);
+
+                    // Enable "Device Configuration" panel options.
+                    SamplingRateInput.interactable = true;
+                    ResolutionInput.interactable = true;
+                    ResolutionDropdown.interactable = true;
+
+                    // Enable channel selection buttons accordingly to the type of device.
+                    string devType = PluxDevManager.GetDeviceTypeUnity();
+                    if (devType == "MuscleBAN BE Plux")
+                    {
+                        CH1Toggle.interactable = true;
+
+                        //Clear the old options of the Dropdown menu
+                        ResolutionDropdown.ClearOptions();
+
+                        //Add the options created in the List above
+                        ResolutionDropdown.AddOptions(new List<string>() { "8", "16" });
+                    }
+                    else if (devType == "BITalino")
+                    {
+                        CH1Toggle.interactable = true;
+                        CH2Toggle.interactable = true;
+                        CH3Toggle.interactable = true;
+                        CH4Toggle.interactable = true;
+                        CH5Toggle.interactable = true;
+                        CH6Toggle.interactable = true;
+
+                        //Clear the old options of the Dropdown menu
+                        ResolutionDropdown.ClearOptions();
+
+                        //Add the options created in the List above
+                        ResolutionDropdown.AddOptions(new List<string>() { "10" });
+                    }
+                    else if (devType == "biosignalsplux" || devType == "BioPlux")
+                    {
+                        CH1Toggle.interactable = true;
+                        CH2Toggle.interactable = true;
+                        CH3Toggle.interactable = true;
+                        CH4Toggle.interactable = true;
+                        CH5Toggle.interactable = true;
+                        CH6Toggle.interactable = true;
+                        CH7Toggle.interactable = true;
+                        CH8Toggle.interactable = true;
+
+                        //Clear the old options of the Dropdown menu
+                        ResolutionDropdown.ClearOptions();
+
+                        //Add the options created in the List above
+                        if (devType == "biosignalsplux")
+                        {
+                            ResolutionDropdown.AddOptions(new List<string>() { "8", "16" });
+                            ResolutionDropDownOptions = new List<string>() { "8", "16" };
+                        }
+                        else
+                        {
+                            ResolutionDropdown.AddOptions(new List<string>() { "8", "12" });
+                            ResolutionDropDownOptions = new List<string>() { "8", "12" };
+                        }
+                    }
+                    else if (devType == "OpenBANPlux")
+                    {
+                        CH1Toggle.interactable = true;
+                        CH2Toggle.interactable = true;
+
+                        //Clear the old options of the Dropdown menu
+                        ResolutionDropdown.ClearOptions();
+
+                        //Add the options created in the List above
+                        ResolutionDropdown.AddOptions(new List<string>() { "8", "16" });
+                    }
+                    else
+                    {
+                        throw new NotSupportedException();
+                    }
+
+                    // Enable Start and Device Configuration buttons.
+                    StartButton.interactable = true;
+
+                    // Disable Connect Button.
+                    //ConnectButton.interactable = false;
+
+                    // Hide show Info message if it is active.
+                    ConnectInfoPanel.SetActive(false);
+
+                    // Update Battery Level.
+                    int batteryLevel = -1;
+                    if (devType != "BioPlux")
+                    {
+                        batteryLevel = PluxDevManager.GetBatteryUnity();
+                    }
+
+                    // Battery icon accordingly to the battery level.
+                    List<GameObject> ListBatteryIcons = new List<GameObject>() { BatteryIcon0, BatteryIcon10, BatteryIcon50, BatteryIcon100, BatteryIconUnknown };
+                    GameObject currImage;
+                    if (batteryLevel > 50)
+                    {
+                        BatteryIcon100.SetActive(true);
+                        currImage = BatteryIcon100;
+                    }
+                    else if (batteryLevel <= 50 && batteryLevel > 10)
+                    {
+                        BatteryIcon50.SetActive(true);
+                        currImage = BatteryIcon50;
+                    }
+                    else if (batteryLevel <= 10 && batteryLevel > 1)
+                    {
+                        BatteryIcon10.SetActive(true);
+                        currImage = BatteryIcon10;
+                    }
+                    else if (batteryLevel == 0)
+                    {
+                        BatteryIcon0.SetActive(true);
+                        currImage = BatteryIcon0;
+                    }
+                    else
+                    {
+                        BatteryIconUnknown.SetActive(true);
+                        currImage = BatteryIconUnknown;
+                    }
+
+                    // Disable the remaining images.
+                    foreach (var batImg in ListBatteryIcons)
+                    {
+                        if (batImg != currImage)
+                        {
+                            batImg.SetActive(false);
+                        }
+                    }
+
+                    // Show the quantitative battery value.
+                    if (batteryLevel != -1)
+                    {
+                        BatteryLevel.text = batteryLevel.ToString() + "%";
+                    }
+                    else
+                    {
+                        BatteryLevel.text = "N.A.";
+                    }
                 }
                 else if (ConnectText.text == "Disconnect")
                 {
@@ -631,7 +719,7 @@ namespace Assets.Scripts
                     DeviceDropdown.ClearOptions();
 
                     //Add the options created in the List above
-                    DeviceDropdown.AddOptions(new List<string>(){"Select Device"});
+                    DeviceDropdown.AddOptions(new List<string>() { "Select Device" });
 
                     // Disable drop-down and Connect button if a PLUX Device was disconnected.
                     DeviceDropdown.interactable = false;
@@ -645,7 +733,7 @@ namespace Assets.Scripts
                     RebootVariables();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 // Print information about the exception.
                 Debug.Log(e);
@@ -703,6 +791,20 @@ namespace Assets.Scripts
                 // Check if at least one channel is active.
                 if (ActiveChannels.Count != 0)
                 {
+
+                    /////////////////////////////////////////// Edited by Kody Wood ////////////////////////////////////
+                    ///                   // Update the label with the Current Channel Number.
+                    CurrentChannel.text = "EMG";
+
+                    // Create a folder for data
+                    string t = "" + System.DateTime.Now;
+                    t = t.Replace("/", ",").Replace(" ", ",").Replace(":", ",");
+                    string path = Application.dataPath + "/BitalinoData" + "/" + t;
+                    FolderPath = path;
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    //////////////////////////////////////////////////////////////////////////////////////////////////
+
                     // Start of Acquisition.
                     //Thread.CurrentThread.Name = "MAIN_THREAD";
                     if (PluxDevManager.GetDeviceTypeUnity() != "MuscleBAN BE Plux")
@@ -764,7 +866,7 @@ namespace Assets.Scripts
 
                 // Hide object after 5 seconds.
                 StartCoroutine(RemoveAfterSeconds(5, ConnectInfoPanel));
-                   
+
                 // Reboot interface.
                 ConnectButtonFunction(true);
             }
@@ -772,7 +874,7 @@ namespace Assets.Scripts
         }
 
         // Function invoked during the onClick event of "StopButton".
-        public void StopButtonFunction(int forceStop=0)
+        public void StopButtonFunction(int forceStop = 0)
         {
             // Invoke stop function from PluxDeviceManager.
             bool typeOfStop;
@@ -882,7 +984,7 @@ namespace Assets.Scripts
         // Function invoked during the onValueChanged event of the Bluetooth Toggle Button Inputs.
         public void BTToogleButtonOnChangeFunction(int btNbr)
         {
-            Toggle[] toggleArray = new[] {BTHToggle, BLEToggle};
+            Toggle[] toggleArray = new[] { BTHToggle, BLEToggle };
             if (!BTHToggle.isOn && !BLEToggle.isOn)
             {
                 // Ignore the change command and keep the button active.
@@ -913,65 +1015,20 @@ namespace Assets.Scripts
             }
 
             // Update the label with the Current Channel Number.
-            CurrentChannel.text = "CH" + VisualizationChannel;
-        }
-
-        // Callback that receives the list of PLUX devices found during the Bluetooth scan.
-        public void ScanResults(List<string> listDevices)
-        {
-            // Store list of devices in a global variable.
-            this.ListDevices = listDevices;
-
-            // Info message for development purposes.
-            Console.WriteLine("Number of Detected Devices: " + this.ListDevices.Count);
-            for (int i = 0; i < this.ListDevices.Count; i++)
-            {
-                Console.WriteLine("Device--> " + this.ListDevices[i]);
-            }
-
-            // Enable Dropdown if the list of devices is not empty.
-            if (this.ListDevices.Count != 0)
-            {
-                // Add the new options to the drop-down box included in our GUI.
-                //Create a List of new Dropdown options
-                List<string> dropDevices = new List<string>();
-
-                // Convert array to list format.
-                dropDevices.AddRange(this.ListDevices);
-
-                // A check into the list of devices.
-                dropDevices = dropDevices.GetRange(0, dropDevices.Count);
-                for (int i = dropDevices.Count - 1; i >= 0; i--)
-                {
-                    // Accept only strings containing "BTH" or "BLE" substrings "flagging" a PLUX Bluetooth device.
-                    if (!dropDevices[i].Contains("BTH") && !dropDevices[i].Contains("BLE"))
-                    {
-                        dropDevices.RemoveAt(i);
-                    }
-                }
-
-                // Raise an exception if none device was detected.
-                if (dropDevices.Count == 0)
-                {
-                    throw new ArgumentException();
-                }
-
-                //Clear the old options of the Dropdown menu
-                DeviceDropdown.ClearOptions();
-
-                //Add the options created in the List above
-                DeviceDropdown.AddOptions(dropDevices);
-
-                // Enable drop-down and Connect button if a PLUX Device was detected .
-                DeviceDropdown.interactable = true;
-                ConnectButton.interactable = true;
-
-                // Hide info message.
-                ConnectInfoPanel.SetActive(false);
-            }
-
-            // Enable scan button.
-            ScanButton.interactable = true;
+            if (VisualizationChannel == 1)
+                CurrentChannel.text = "EMG";
+            else if (VisualizationChannel == 2)
+                CurrentChannel.text = "ECG";
+            else if (VisualizationChannel == 3)
+                CurrentChannel.text = "EDA";
+            else if (VisualizationChannel == 4)
+                CurrentChannel.text = "EEG";
+            else if (VisualizationChannel == 5)
+                CurrentChannel.text = "ACC";
+            else if (VisualizationChannel == 6)
+                CurrentChannel.text = "LUX";
+            else
+                CurrentChannel.text = "CH" + VisualizationChannel;
         }
 
         // Callback invoked once the connection with a PLUX device was established.
@@ -1196,7 +1253,7 @@ namespace Assets.Scripts
         {
             // Number of Active Channels.
             int nbrChannels = 0;
-            Toggle[] toggleArray = new Toggle[]{CH1Toggle, CH2Toggle, CH3Toggle, CH4Toggle, CH5Toggle, CH6Toggle, CH7Toggle, CH8Toggle};
+            Toggle[] toggleArray = new Toggle[] { CH1Toggle, CH2Toggle, CH3Toggle, CH4Toggle, CH5Toggle, CH6Toggle, CH7Toggle, CH8Toggle };
             for (int i = 0; i < toggleArray.Length; i++)
             {
                 if (toggleArray[i].isOn == true)
@@ -1235,5 +1292,142 @@ namespace Assets.Scripts
                 File.WriteAllText(path, EDAData);
         }
         ///////////////////////////////////////////////////////////////////////////////////
+        ///
+
+        //////////////////////////////// Edit by Kody Wood//////////////////////////////
+
+        //Record EMG
+        private void RecordEMG(int[] packageOfDataEMG)
+        {
+
+            for (int i = 0; i < packageOfDataEMG.Length; i++)
+            {
+                if (i % 10 == 0)
+                {
+                    // resualt will between -1.64mV to 1.64mV
+                    double tmp = (packageOfDataEMG[i] / Math.Pow(2, 10) - 0.5) * 3.3 / 1009 * 1000;
+
+                    // calculate the RMS
+                    EMGDataList.Add(tmp);
+                    double RMS = 0;
+
+                    if (EMGDataList.Count() >= RMSSampleRate)
+                    {
+                        for (int e = 0; e < RMSSampleRate; e++)
+                        {
+                            RMS += Math.Pow(EMGDataList[EMGDataList.Count() - 1 - e], 2);
+                        }
+                        RMS = RMS / RMSSampleRate;
+                        RMS = Math.Sqrt(RMS);
+                        RMSDataList.Add(RMS);
+                    }
+
+                    EMGData += String.Format("{0:0.0000}", tmp) + "," + String.Format("{0:0.0000}", RMS) + "\n";
+                }
+            }
+            EMGUpdate = false;
+
+            if (RMSDataList.Count() > 0)
+            {
+                if (RMSDataList[RMSDataList.Count() - 1] > thoresholdEMG)
+                {
+                    isFlashing = true;
+                    MenuManage.stressTimeEMG++;
+                }
+            }
+        }
+
+        private void RecordEDA(int[] packageOfDataEDA)
+        {
+            if (packageOfDataEDA.Length != 0)
+            {
+
+                for (int i = 0; i < packageOfDataEDA.Length; i++)
+                {
+                    if (i % 10 == 0)
+                    {
+                        // resualt will between 0uS to 25uS
+                        double tmp = packageOfDataEDA[i] / Math.Pow(2, 10) * 3.3 / 0.132;
+                        EDAData += String.Format("{0:0.0000}", tmp) + "\n";
+                        EDANow.Add(tmp);
+                    }
+                }
+            }
+            EDAUpdate = false;
+
+            // EDA detection
+            if (sampleingCount == 5)
+            {
+                if (EDAPre.Count != 0)
+                {
+                    if (EDANow.Average() - EDAPre.Average() > thoresholdEDA)
+                    {
+                        isFlashing = true;
+                        MenuManage.stressTimeEDA++;
+                    }
+                }
+                EDAPre.Clear();
+                EDAPre = EDANow.ToList();
+                EDANow.Clear();
+                sampleingCount = 1;
+
+            }
+            else
+                sampleingCount++;
+        }
+
+        private void RecordECG(int[] packageOfDataECG)
+        {
+            // variable for calculate heart rate
+            double[] tmpAr = new double[0];
+
+            if (packageOfDataECG.Length != 0)
+            {
+                for (int i = 0; i < packageOfDataECG.Length; i++)
+                {
+                    if (i % 10 == 0)
+                    {
+                        // resualt will between -1.5mV to 1.5mV
+                        double tmp = (packageOfDataECG[i] / Math.Pow(2, 10) - 0.5) * 3.3 / 1100 * 1000;
+                        ECGData += String.Format("{0:0.0000}", tmp) + "\n";
+
+                        // data for calculate heart rate
+                        Array.Resize(ref tmpAr, tmpAr.Length + 1);
+                        tmpAr[tmpAr.Length - 1] = tmp;
+                    }
+                }
+            }
+            // Calculating heart rate
+            var tmpList = new List<double>();
+            tmpList.AddRange(HBtens);
+            tmpList.AddRange(tmpAr);
+            HBtens = tmpList.ToArray();
+            if (HBCount == 10)
+            {
+                int Heartrate = 0;
+
+                for (int i = 0; i < HBtens.Length - 4; i++)
+                {
+                    if ((HBtens[i] < HBtens[i + 1]) && (HBtens[i + 1] < HBtens[i + 2]) && (HBtens[i + 2] < HBtens[i + 3]) && (HBtens[i + 3] > HBtens[i + 4]) && (HBtens[i + 3] - HBtens[i] > 0.15))
+                    {
+                        Heartrate++;
+                    }
+                }
+                Heartrate *= 6;
+                //Output to screen
+                HRText.text = "Heart Rate: " + Heartrate;
+                //Add to the string to be outputed to CSV
+                ECGHR += Heartrate + "\n";
+
+                //Resetting Variables
+                HBtens = new double[] { };
+                HBCount = 1;
+            }
+            else
+                HBCount++;
+            ECGUpdate = false;
+        }
+        ///////////////////////////////////////////////////////////////////////////////////
+
     }
 }
