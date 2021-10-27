@@ -115,6 +115,7 @@ namespace Assets.Scripts
         List<double> EDAPre = new List<double>() { };
         List<double> EDANow = new List<double>() { };
 
+
         // Feedback
         public Image flashImage;
         private bool isFlashing = false;
@@ -138,11 +139,17 @@ namespace Assets.Scripts
         //Second graph variables
         public bool UpdatePlotFlag2 = false;
         [Tooltip("How long to record data when activated")]
-        public float recordTime = 10.0f;
+        public float recordTime = 1000.0f;
         [Tooltip("How long the data has been recorded")]
         public float recordTimer;
 
+        // Variables to send variables to difficulty script
+        List<double> EMGDataCalc = new List<double>() { }; //For completion
+        List<double> RMSDataCalc = new List<double>() { }; //For completion
+        List<double> EDADataCalc = new List<double>() { };
+        List<double> ECGDataCalc = new List<double>() { };
 
+        public DifficultyCalculator eventManager;
         /////////////////////////////////////////////////////////////////////////////////////////
 
         // Awake is called when the script instance is being loaded.
@@ -150,6 +157,7 @@ namespace Assets.Scripts
         {
             // Find references to graphical objects.
             GraphContainer = transform.Find("WindowGraph/EDA GraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
+            GraphContainer = transform.Find("WindowGraph/ECG GraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
         }
         // Start is called before the first frame update
         void Start()
@@ -165,7 +173,6 @@ namespace Assets.Scripts
             ActiveChannels = new List<int>();
 
             ///////////////////////////////////Edited by Kody Wood/////////////////////////////////////////////
-            //List<int[]> packageOfDataPerChannel = new List<int[]>();
             MultiThreadSubListPerChannel2 = new List<List<int>>();
             /////////////////////////////////////////////////////////////////////////////////////////
             //////////////////////////////// Edit by Lillian Fan//////////////////////////////
@@ -184,26 +191,37 @@ namespace Assets.Scripts
             GraphZone.ShowGraph(new List<int>() { 0 }, graphVisual, -1, (int _i) => "" + (_i), (float _f) => Mathf.RoundToInt(_f) + "k");
 
             // Create a timer that controls the update of real-time plot.
-            System.Timers.Timer waitForPlotTimer = new System.Timers.Timer();
+            //System.Timers.Timer waitForPlotTimer = new System.Timers.Timer();
             waitForPlotTimer.Elapsed += new ElapsedEventHandler(OnWaitingTimeEnds);
             waitForPlotTimer.Interval = 1000; // 1 second.
-            waitForPlotTimer.Enabled = true;
+            waitForPlotTimer.Enabled = false;
             waitForPlotTimer.AutoReset = true;
         }
         // Update function, being constantly invoked by Unity.
         void Update()
         {
             ////////////////////////////////////////////////// Edit by Lillian Fan////////////////////////////////////////////////////
+            
             // Update EMG baseline after first 30s record and reset all variable
-            if (MenuManage.calcuEMGThres == true)
+            // Save baseline Stats and reset all variables for other measurements
+            if (MenuManage.isRecordBaseLineDone == true)
             {
-                thoresholdEMG = RMSDataList.Average() + 0.01;
-                RMSDataList.Clear();
+                //EMG baseline recording for my thesis we do not need
+                //thoresholdEMG = RMSDataList.Average() + 0.01;
+                //RMSDataList.Clear();
+
+                //Send
+                eventManager.baseLineEDA = EDADataCalc;
+                eventManager.baseLineECG = ECGDataCalc;
+                //Reset
+                EDADataCalc.Clear();
+                ECGDataCalc.Clear();
+
                 EMGData = "";
                 ECGData = "";
                 ECGHR = "";
                 EDAData = "";
-                MenuManage.calcuEMGThres = false;
+                MenuManage.isRecordBaseLineDone = false;
             }
             // Update flash image when EMG or EDA change higher than the baseline
             if (isFlashing)
@@ -284,6 +302,13 @@ namespace Assets.Scripts
                     {
                         waitForPlotTimer.Enabled = false;
                         recordTimer = 0.0f;
+                        //Send and Reset Variables
+                        //Send
+                        eventManager.currentEDA = EDADataCalc;
+                        eventManager.currentECG = ECGDataCalc;
+                        //Reset
+                        EDADataCalc.Clear();
+                        ECGDataCalc.Clear();
                     }
                 }
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -328,17 +353,7 @@ namespace Assets.Scripts
                                 // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
                                 if (UpdatePlotFlag == true && packageOfData != null)
                                 {
-                                    //// Get the values linked with the last 10 seconds of information.
-                                    //MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
-
-                                    //Get the data from the packages and create a sublist that has only sample rate amount of values
-                                    //for (int y = 0; y < packageOfDataPerChannel.Count; y++)
-                                    //{
-                                    //    //******* NEED TO ACCESS THIS SOMEHOW PUBLIC VARIABLES DO NOTH WORK *****
-                                    //    MultiThreadSubListPerChannel.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
-                                    //    MultiThreadSubListPerChannel2.Add(GetSubSampleList(packageOfDataPerChannel[y], SamplingRate, GraphWindSize));
-                                    //}
-                                    //MultiThreadSubList2 = MultiThreadSubListPerChannel2[0];
+                                    
                                     MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
                                     GraphZone.UpdateValue(MultiThreadSubList);
 
@@ -358,7 +373,7 @@ namespace Assets.Scripts
                     if (packageOfData2.Length != 0)
                     {
                         // Creation of the first graphical representation of the results.
-                        if (MultiThreadList[VisualizationChannel].Count >= 0)
+                        if (MultiThreadList[3].Count >= 0)
                         {
                             if (FirstPlot2 == true)
                             {
@@ -1325,20 +1340,23 @@ namespace Assets.Scripts
                     EMGData += String.Format("{0:0.0000}", tmp) + "," + String.Format("{0:0.0000}", RMS) + "\n";
                 }
             }
+
             EMGUpdate = false;
 
-            if (RMSDataList.Count() > 0)
-            {
-                if (RMSDataList[RMSDataList.Count() - 1] > thoresholdEMG)
-                {
-                    isFlashing = true;
-                    MenuManage.stressTimeEMG++;
-                }
-            }
+            //Lillian's project
+            //if (RMSDataList.Count() > 0)
+            //{
+            //    if (RMSDataList[RMSDataList.Count() - 1] > thoresholdEMG)
+            //    {
+            //        isFlashing = true;
+            //        MenuManage.stressTimeEMG++;
+            //    }
+            //}
         }
 
         private void RecordEDA(int[] packageOfDataEDA)
         {
+            //https://bitalino.com/storage/uploads/media/electrodermal-activity-eda-user-manual.pdf page 5 is the formula
             if (packageOfDataEDA.Length != 0)
             {
 
@@ -1346,34 +1364,41 @@ namespace Assets.Scripts
                 {
                     if (i % 10 == 0)
                     {
-                        // resualt will between 0uS to 25uS
-                        double tmp = packageOfDataEDA[i] / Math.Pow(2, 10) * 3.3 / 0.132;
+                        //Result will be between 0uS to 25uS
+                        //Transfer function
+                        double tmp = packageOfDataEDA[i] / Math.Pow(2, 10) * 3.3 / 0.12;
+                        
                         EDAData += String.Format("{0:0.0000}", tmp) + "\n";
                         EDANow.Add(tmp);
+                        EDADataCalc.Add(tmp);
                     }
                 }
             }
             EDAUpdate = false;
 
-            // EDA detection
-            if (sampleingCount == 5)
-            {
-                if (EDAPre.Count != 0)
-                {
-                    if (EDANow.Average() - EDAPre.Average() > thoresholdEDA)
-                    {
-                        isFlashing = true;
-                        MenuManage.stressTimeEDA++;
-                    }
-                }
-                EDAPre.Clear();
-                EDAPre = EDANow.ToList();
-                EDANow.Clear();
-                sampleingCount = 1;
+            //Tranfer to calculator EDANow
 
-            }
-            else
-                sampleingCount++;
+
+            //Lillian's project
+            //// EDA detection
+            //if (sampleingCount == 5)
+            //{
+            //    if (EDAPre.Count != 0)
+            //    {
+            //        if (EDANow.Average() - EDAPre.Average() > thoresholdEDA)
+            //        {
+            //            isFlashing = true;
+            //            MenuManage.stressTimeEDA++;
+            //        }
+            //    }
+            //    EDAPre.Clear();
+            //    EDAPre = EDANow.ToList();
+            //    EDANow.Clear();
+            //    sampleingCount = 1;
+            //
+            //}
+            //else
+            //    sampleingCount++;
         }
 
         private void RecordECG(int[] packageOfDataECG)
@@ -1387,8 +1412,15 @@ namespace Assets.Scripts
                 {
                     if (i % 10 == 0)
                     {
-                        // resualt will between -1.5mV to 1.5mV
+
+                        // result will between -1.5mV to 1.5mV
+                        //Transfer function
                         double tmp = (packageOfDataECG[i] / Math.Pow(2, 10) - 0.5) * 3.3 / 1100 * 1000;
+                        
+                        //Record data to be sent to calculator
+                        ECGDataCalc.Add(tmp);
+
+                        //recording data
                         ECGData += String.Format("{0:0.0000}", tmp) + "\n";
 
                         // data for calculate heart rate
@@ -1397,6 +1429,19 @@ namespace Assets.Scripts
                     }
                 }
             }
+
+
+            //Check QRS complex
+            //Find maximum point of the R point
+            //The time between two R points = heart rate
+            //HR = 1 / (t(pointi-1) + t(pointi))
+            //L = a * max|ECG(t)| , a =0.6
+            //max|ECG(t)| = signals value at a certain time within a certain period of time
+            //Cycle through all values of L to find the highest one. The highest value is the R peak
+            //Do this a couple time and find the time at which both peak occur and then do the HR equations to find the heart rate
+            //Substituting tpi for one time and tpi-1  with the other
+            //https://www.wikihow.com/Calculate-Heart-Rate-from-ECG
+
             // Calculating heart rate
             var tmpList = new List<double>();
             tmpList.AddRange(HBtens);

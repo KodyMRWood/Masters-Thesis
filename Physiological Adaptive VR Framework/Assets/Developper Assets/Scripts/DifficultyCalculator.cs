@@ -33,7 +33,28 @@ public class DifficultyCalculator : MonoBehaviour
     List<float> averagePerChannel = null;
     List<float> averagePerChannelLast = null;
 
-    
+
+    //--- Data Sets ---
+    [HideInInspector]
+    public List<double> baseLineEMG = new List<double>() { }; // For completion
+    [HideInInspector]
+    public List<double> baseLineEDA = new List<double>() { };
+    [HideInInspector]
+    public List<double> baseLineECG = new List<double>() { };
+
+    [HideInInspector]
+    public List<double> currentEMG = new List<double>() { }; // For completion
+    [HideInInspector]
+    public List<double> currentEDA= new List<double>() { };
+    [HideInInspector]
+    public List<double> currentECG = new List<double>() { };
+
+    private float averageEMG = 0.0f;
+    private float averageEDA = 0.0f;
+    private float averageECG = 0.0f;
+
+
+
 
 
     void Awake()
@@ -51,64 +72,40 @@ public class DifficultyCalculator : MonoBehaviour
 
         if(activeChannels > 0)
         {
-                if(Input.GetKeyDown(KeyCode.A))
-            {
-                readings = Bitalino.MultiThreadSubListPerChannel2;
-                MultiThreadSubList = readings[0];
-            }
 
+               //readings = Bitalino.MultiThreadSubListPerChannel2;
+               //MultiThreadSubList = readings[0];
             //Testing
             //MultiThreadSubList = readings[0];
         }
         //CalculateAdaptScore();
     }
 
-    //Return the average of a specific channel
-    private void CalculateAveragePerChannel(int channel)
+
+
+    private void CalculateDataAverage()
     {
+        averageEMG = 0.0f;
+        averageEDA = 0.0f;
+        averageECG = 0.0f;
 
-        //Framework
-        
-         float average = 0.0f;
-         for (int y = 0; y < readings[channel].Count; y++)
-         {
-             average += readings[channel][y];
-         }
-         averagePerChannel[channel] = average / readings.Count;
-    }
-
-
-    //Return the average of a all the  channels
-    private void CalculateAverageAllChannels()
-    {
-
-        //Framework
-        for (int channel = 0; channel < activeChannels; channel++)
+        //Keep them in seperate loops incase the legnth of the list are different so it wont cause any errors.
+        for (int r = 0; r < currentEMG.Count; r++)
         {
-
-            float average = 0.0f;
-            for (int sample = 0; sample < readings[channel].Count; sample++)
-            {
-                average += readings[channel][sample];
-                averagePerChannel[channel] = average / readings.Count;
-            }
+            averageEMG += r;
         }
-    }
-
-    //This function will be used to calculate the average measurements for each channel to get the baseline of the user whmen they are in a  relaxed state. It will be stored in the baseLineAverage list which will be used when determining the difficulty.
-
-    private void CalculateAverageAllChannelsBaseline()
-    {
-        //Framework
-        for (int channel = 0; channel < activeChannels; channel++)
+        for (int r = 0; r < currentEDA.Count; r++)
         {
-            float average = 0.0f;
-            for (int sample = 0; sample < readings[channel].Count; sample++)
-            {
-                average += readings[channel][sample];
-                baselineAverage[channel] = average / readings.Count;
-            }
+            averageEDA += r;
         }
+        for (int r = 0; r < currentECG.Count; r++)
+        {
+            averageECG += r;
+        }
+
+        averageEMG /= currentEMG.Count;
+        averageEDA /= currentEDA.Count;
+        averageECG /= currentECG.Count;
     }
 
 
@@ -122,7 +119,7 @@ public class DifficultyCalculator : MonoBehaviour
 
         int adaptScore = 0;
 
-        CalculateAverageAllChannels();
+        CalculateAdaptScore();
 
         for(int x = 0; x < averagePerChannel.Count; x++)
         {
@@ -152,6 +149,15 @@ public class DifficultyCalculator : MonoBehaviour
     
     private void AdaptDifficulty(float physioScoreCurrrent)
     {
+        //------Truth Table-------
+        //HR = 5 bpm
+        //EDA = 5-7 mS
+        //What will be done in each state?
+        //Easy state Visual cues, audio cues, flashing light will be off, siren off
+        //Medium little- no visual or audio cues, flashing is slow, siren quiet
+        //hard no visual or audio cues, flashing light is faster, siren louder
+        //https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8482411/pdf/nihms-1741060.pdf help1
+
         //Call the statemachines adapt function
         stateMachine.AdaptSimulation(physioScoreCurrrent);
 
@@ -164,7 +170,7 @@ public class DifficultyCalculator : MonoBehaviour
 
         int adaptScore = 0;
 
-        CalculateAverageAllChannels();
+        CalculateAdaptScore();
 
 
         // If the average of a measurement is higher than the baseline of the same measurement the score will get higher 

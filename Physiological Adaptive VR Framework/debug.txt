@@ -1,90 +1,43 @@
+[OVRPlugin][INFO] CliD3D11CompositorClient initialized[OVRPlugin][INFO] CliD3D11CompositorClient releasedSymbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
-[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
-  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
-    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
-      Interface Id: 0x4adefbb87b1845cf
-    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
-      Interface Id: 0x4adefbb87b1845cf
-    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
-      Interface Id: 0x4adefbb87b1845cf
-    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
-    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
-      Interface Id: 0x223362abe367d30a
-    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
-      Interface Id: 0xba2299b1d57a30c7
-    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
-      Interface Id: 0xb00b00053345520
-    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
-      Interface Id: 0xae0b8a9331378a85
-    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0ime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0nRuntime
-      Interface Id: 0x223362abe367d30a
-    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
-      Interface Id: 0xba2299b1d57a30c7
-    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
-      Interface Id: 0xb00b00053345520
-    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
-      Interface Id: 0xae0b8a9331378a85
-    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 58.7mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializeds:
-  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
-    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
-      Interface Id: 0x4adefbb87b1845cf
-    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
-      Interface Id: 0x4adefbb87b1845cf
-    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
-      Interface Id: 0x4adefbb87b1845cf
-    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
-    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
-      Interface Id: 0x223362abe367d30a
-    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
-      Interface Id: 0xba2299b1d57a30c7
-    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
-      Interface Id: 0xb00b00053345520
-    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
-      Interface Id: 0xae0b8a9331378a85
-    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 0.006944[OVRPlugin][INFO] IAD changed to 58.7mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initialized[INFO] OVRPlugin 1.51.1 ... initializedonInterrupt
-BITalino
-BITalino
-BITalino
-BITalino
-BLE Plux exception °£}Di 
-BITalino
-BITalino
-[OVRPlugin][INFO] CliD3D11CompositorClient releasedSymbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
-[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
-  <none>
-[OVRPlugin][INFO] OVRInterface classes and interfaces:
-    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
-      Interface Id: 0x223362abe367d30a
-    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
-      Interface Id: 0xb00b00053345520
-[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.61.0(build = 0) feature version = 0. Client runs version (prod = 1).1.61.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 12.794463[OVRPlugin][INFO] IAD changed to 67.0mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializedBLE Plux exception Àö¼@i 
-BITalino
-BITalino
-BITalino
-BITalino
-[OVRPlugin][INFO] CliD3D11CompositorClient releasedSymbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
-[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
-  <none>
-[OVRPlugin][INFO] OVRInterface classes and interfaces:
-    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
-      Interface Id: 0x223362abe367d30a
-    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
-      Interface Id: 0xb00b00053345520
-[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.61.0(build = 0) feature version = 0. Client runs version (prod = 1).1.61.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 15.370650[OVRPlugin][INFO] IAD changed to 67.0mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializedBLE Plux exception Ð°\Di 
-BITalino
-BITalino
-BITalino
-BITalino
-BITalino
-[OVRPlugin][INFO] CliD3D11CompositorClient releasedSymbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
-[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
-  <none>
-[OVRPlugin][INFO] OVRInterface classes and interfaces:
-    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
-      Interface Id: 0x223362abe367d30a
-    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
-      Interface Id: 0xb00b00053345520
-[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.61.0(build = 0) feature version = 0. Client runs version (prod = 1).1.61.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 21.448477[OVRPlugin][INFO] IAD changed to 66.9mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializedBLE Plux exception €N?xi 
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Waiting on threads to park on joinable thread list timed out.
+.0(build = 0) feature version = 0[OVRPlugin][INFO] HMDState::CreateHMDState VsyncToFirstScanline = 21.448477[OVRPlugin][INFO] IAD changed to 66.9mm[OVRPlugin][INFO] OVRPlugin 1.51.1 ... initializedBLE Plux exception €N?xi 
 [OVRPlugin][INFO] CliD3D11CompositorClient releasedWaiting on threads to park on joinable thread list timed out.
 BITalino
 BITalino
@@ -998,5 +951,245 @@ New Event raised: 3
 Digital input event - Clock source: 2  Clock value: 0  New input state: 0
 New Event raised: 3
 Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Waiting on threads to park on joinable thread list timed out.
+onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
+    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
+    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
+      Interface Id: 0x223362abe367d30a
+    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
+      Interface Id: 0xba2299b1d57a30c7
+    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
+      Interface Id: 0xb00b00053345520
+    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
+      Interface Id: 0xae0b8a9331378a85
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
+    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
+    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
+      Interface Id: 0x223362abe367d30a
+    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
+      Interface Id: 0xba2299b1d57a30c7
+    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
+      Interface Id: 0xb00b00053345520
+    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
+      Interface Id: 0xae0b8a9331378a85
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
+    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
+    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
+      Interface Id: 0x223362abe367d30a
+    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
+      Interface Id: 0xba2299b1d57a30c7
+    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
+      Interface Id: 0xb00b00053345520
+    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
+      Interface Id: 0xae0b8a9331378a85
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
+    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
+    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
+      Interface Id: 0x223362abe367d30a
+    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
+      Interface Id: 0xba2299b1d57a30c7
+    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
+      Interface Id: 0xb00b00053345520
+    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
+      Interface Id: 0xae0b8a9331378a85
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
+    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
+    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
+      Interface Id: 0x223362abe367d30a
+    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
+      Interface Id: 0xba2299b1d57a30c7
+    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
+      Interface Id: 0xb00b00053345520
+    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
+      Interface Id: 0xae0b8a9331378a85
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
+    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
+    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
+      Interface Id: 0x223362abe367d30a
+    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
+      Interface Id: 0xba2299b1d57a30c7
+    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
+      Interface Id: 0xb00b00053345520
+    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
+      Interface Id: 0xae0b8a9331378a85
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
+  Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
+    Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0xed07f75800dea55c, class Name: XrFbHandTrackingAimExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x231a449959b76a41, class Name: XrFbHandTrackingCapsulesExtensionAddition
+      Interface Id: 0x4adefbb87b1845cf
+    Class Id: 0x5f77a98[OVRPlugin][INFO] OVRInterface classes and interfaces:
+    Class Id: 0x192ed17193ef5e74, class Name: OpenXRExtensionRuntime
+      Interface Id: 0x223362abe367d30a
+    Class Id: 0x71dee913e4ca6a35, class Name: OpenXRRuntimeHandle
+      Interface Id: 0xba2299b1d57a30c7
+    Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
+      Interface Id: 0xb00b00053345520
+    Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
+      Interface Id: 0xae0b8a9331378a85
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.65.0(build = 0) feature version = 0. Client runs version (prod = 1).1.65.0(build = 0) feature version = 0onInterrupt
+BITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+TimeoutBITalino
+BITalino
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 1
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+New Event raised: 3
+Digital input event - Clock source: 2  Clock value: 0  New input state: 0
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Waiting on threads to park on joinable thread list timed out.
 onInterrupt

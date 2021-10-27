@@ -10,8 +10,12 @@ public class MenuManage : MonoBehaviour
     public GameObject collectingIntro;
     public Text collectingTime;
     public GameObject dataToMenu;
+    [Tooltip("The amount of time the system will record for baseline mesurements. In seconds")]
+    public float baseLineRecordTime = 30.0f;
+
     float collectTime = 0;
     bool countCollectTime = false;
+
 
     // Main Menu
     public GameObject menu;
@@ -32,7 +36,7 @@ public class MenuManage : MonoBehaviour
     float totalTime = 0;
     static public bool activeSensor = false;
     static public bool stopSensor = false;
-    static public bool calcuEMGThres = false;
+    static public bool isRecordBaseLineDone = false;
 
     static public int stressTimeEMG = 0;
     static public int stressTimeECG = 0;
@@ -52,8 +56,6 @@ public class MenuManage : MonoBehaviour
         //gamePlay.SetActive(false);
         //collection.SetActive(false);
         //developers.SetActive(false);
-
-
     }
 
     // Update is called once per frame
@@ -65,13 +67,10 @@ public class MenuManage : MonoBehaviour
             collectTime += Time.deltaTime;
             collectingTime.text = Mathf.Round(collectTime) + "";
 
-            if(collectTime >= 30)
+            if(collectTime >= baseLineRecordTime)
             {
                 countCollectTime = false;
-
-                dataToMenu.SetActive(true);
-
-                calcuEMGThres = true;
+                isRecordBaseLineDone = true;
                 stopSensor = true;
             }
         }
