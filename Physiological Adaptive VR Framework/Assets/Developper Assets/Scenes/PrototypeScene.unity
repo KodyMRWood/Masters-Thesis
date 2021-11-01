@@ -2086,6 +2086,14 @@ PrefabInstance:
       propertyPath: EventManager
       value: 
       objectReference: {fileID: 773397028}
+    - target: {fileID: 6015889072947823153, guid: 720f33f1234d86d49afc1a717e2752cc, type: 3}
+      propertyPath: eventManager
+      value: 
+      objectReference: {fileID: 773397028}
+    - target: {fileID: 6015889072947823153, guid: 720f33f1234d86d49afc1a717e2752cc, type: 3}
+      propertyPath: recordTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6015889074469522187, guid: 720f33f1234d86d49afc1a717e2752cc, type: 3}
       propertyPath: m_Name
       value: PluxMenu

@@ -59,16 +59,16 @@ namespace Assets.Scripts
         public Text CurrentChannel;
         public RectTransform GraphContainer;
         public RectTransform GraphContainer2;
+        [SerializeField] public Sprite DotSprite;
         public WindowGraph GraphZone;
         public WindowGraph GraphZone2;
-        [SerializeField] public Sprite DotSprite;
 
         // [Delegate References]
         // Delegates (needed for callback purposes).
         public delegate bool FPtr(int nSeq, IntPtr dataIn, int dataInSize);
 
         // [Generic Variables]
-        public PluxDeviceManager PluxDevManager;
+        [SerializeField] public PluxDeviceManager PluxDevManager;
         public List<List<int>> MultiThreadList = null;
         public List<int> MultiThreadSubList = null;
 
@@ -131,11 +131,8 @@ namespace Assets.Scripts
         //Create a timer that controls the update of real-time plot.
         System.Timers.Timer waitForPlotTimer = new System.Timers.Timer();
         //////////////////////////////////////////////////////////////////////////////////
-
         ///////////////////////////////////Edited by Kody Wood/////////////////////////////////////////////
         //Variables that will hold the data from the channel we are looking for.
-        public List<List<int>> MultiThreadSubListPerChannel2 = new List<List<int>>();
-        public List<int> MultiThreadSubList2 = null;
         //Second graph variables
         public bool UpdatePlotFlag2 = false;
         [Tooltip("How long to record data when activated")]
@@ -148,6 +145,7 @@ namespace Assets.Scripts
         List<double> RMSDataCalc = new List<double>() { }; //For completion
         List<double> EDADataCalc = new List<double>() { };
         List<double> ECGDataCalc = new List<double>() { };
+        List<float> ECGDataHRCalc = new List<float>() { }; //This is to calculate the HR, we need to use float to access the Mathf.Max function
 
         public DifficultyCalculator eventManager;
         /////////////////////////////////////////////////////////////////////////////////////////
@@ -157,7 +155,7 @@ namespace Assets.Scripts
         {
             // Find references to graphical objects.
             GraphContainer = transform.Find("WindowGraph/EDA GraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
-            GraphContainer = transform.Find("WindowGraph/ECG GraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
+            GraphContainer2 = transform.Find("WindowGraph/ECG GraphContainer").GetComponent<RectTransform>();  // User interface zone where the acquired data will be plotted using the "WindowGraph.cs" script.
         }
         // Start is called before the first frame update
         void Start()
@@ -172,9 +170,12 @@ namespace Assets.Scripts
             MultiThreadList = new List<List<int>>();
             ActiveChannels = new List<int>();
 
-            ///////////////////////////////////Edited by Kody Wood/////////////////////////////////////////////
-            MultiThreadSubListPerChannel2 = new List<List<int>>();
-            /////////////////////////////////////////////////////////////////////////////////////////
+            // Initialization of graphical zone.
+            WindowGraph.IGraphVisual graphVisual = new WindowGraph.LineGraphVisual(GraphContainer, DotSprite, new Color(0, 158, 227, 0), new Color(0, 158, 227));
+            GraphContainer = graphVisual.GetGraphContainer();
+            GraphZone = new WindowGraph(GraphContainer, graphVisual);
+            GraphZone.ShowGraph(new List<int>() { 0 }, graphVisual, -1, (int _i) => "" + (_i), (float _f) => Mathf.RoundToInt(_f) + "k");
+
             //////////////////////////////// Edit by Lillian Fan//////////////////////////////
             // Initial second graph
             WindowGraph.IGraphVisual graphVisual2 = new WindowGraph.LineGraphVisual(GraphContainer2, DotSprite, new Color(0, 158, 227, 0), new Color(0, 158, 227));
@@ -183,12 +184,6 @@ namespace Assets.Scripts
             GraphZone2.ShowGraph(new List<int>() { 0 }, graphVisual2, -1, (int _i) => "" + (_i), (float _f) => Mathf.RoundToInt(_f) + "k");
             //////////////////////////////////////////////////////////////////////////////////
 
-
-            // Initialization of graphical zone.
-            WindowGraph.IGraphVisual graphVisual = new WindowGraph.LineGraphVisual(GraphContainer, DotSprite, new Color(0, 158, 227, 0), new Color(0, 158, 227));
-            GraphContainer = graphVisual.GetGraphContainer();
-            GraphZone = new WindowGraph(GraphContainer, graphVisual);
-            GraphZone.ShowGraph(new List<int>() { 0 }, graphVisual, -1, (int _i) => "" + (_i), (float _f) => Mathf.RoundToInt(_f) + "k");
 
             // Create a timer that controls the update of real-time plot.
             //System.Timers.Timer waitForPlotTimer = new System.Timers.Timer();
@@ -233,6 +228,7 @@ namespace Assets.Scripts
             {
                 flashImage.color = Color.Lerp(flashImage.color, Color.clear, flashSpeed * Time.deltaTime);
             }
+
             // Press Different Key to control the connection between Bitalino and Unity
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -269,21 +265,22 @@ namespace Assets.Scripts
 
                 ////////////////////////////////////////////////// Edit by Lillian Fan///////////////////////////////////////////////////////////////////////
                 ////////////////////////////////////////////////Record EMG,ECG and EDA Data//////////////////////////////////////////////////////////////////
-                
-                if(Input.GetKeyDown(KeyCode.Alpha0))
-                {
-                    waitForPlotTimer.Enabled = !waitForPlotTimer.Enabled;
-                    Debug.Log(waitForPlotTimer.Enabled);
-                }
-                //EMG data record and reaction
-                if (waitForPlotTimer.Enabled)
-                {
 
-                    int[] packageOfDataEMG = PluxDevManager.GetPackageOfData(1, ActiveChannels, EMGUpdate);
-                    if (EMGUpdate == true && packageOfDataEMG != null && packageOfDataEMG.Length != 0)
-                    {
-                        RecordEMG(packageOfDataEMG);
-                    }
+                //int[] packageOfDataEMG = PluxDevManager.GetPackageOfData(1, ActiveChannels, EMGUpdate);
+                //if (EMGUpdate == true && packageOfDataEMG != null && packageOfDataEMG.Length != 0)
+                //{
+                //    RecordEMG(packageOfDataEMG);
+                //}
+
+                if (Input.GetKeyDown(KeyCode.Alpha0) && recordTimer == 0.0f)
+                {
+                    // Start recording
+                    waitForPlotTimer.Enabled = true;
+
+
+                }
+                if (waitForPlotTimer.Enabled)
+                { 
                     //ECG data record and reaction
                     int[] packageOfDataECG = PluxDevManager.GetPackageOfData(2, ActiveChannels, ECGUpdate);
                     if (ECGUpdate == true && packageOfDataECG != null && packageOfDataECG.Length != 0)
@@ -298,10 +295,12 @@ namespace Assets.Scripts
                     }
 
                     recordTimer += Time.deltaTime;
-                    if(recordTimer >= recordTime)
+                    if (recordTimer >= recordTime)
                     {
                         waitForPlotTimer.Enabled = false;
                         recordTimer = 0.0f;
+                        //Calculate the heart rate once we have all the data
+                        CalculateHeartRate(ECGDataHRCalc);
                         //Send and Reset Variables
                         //Send
                         eventManager.currentEDA = EDADataCalc;
@@ -310,23 +309,19 @@ namespace Assets.Scripts
                         EDADataCalc.Clear();
                         ECGDataCalc.Clear();
                     }
+                    
                 }
+                else
+                {
+                    UpdatePlotFlag = true;
+                    UpdatePlotFlag2 = true;
+                }
+
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 // Get packages of data that will be shown on the graphic
-                int[] packageOfData = PluxDevManager.GetPackageOfData(VisualizationChannel, ActiveChannels, UpdatePlotFlag); //This will be for the graphic only
-
-                //Get packeges from every channel
-                List<int[]> packageOfDataPerChannel = new List<int[]>();
-                List<List<int>> MultiThreadSubListPerChannel = new List<List<int>>();
-
-                //Depending on how many active channels, get the information from them
-                for (int x = 0; x < ActiveChannels.Count; x++)
-                {
-                    int[] packageOfDataChannel = PluxDevManager.GetPackageOfData(ActiveChannels[x], ActiveChannels, UpdatePlotFlag);
-                    packageOfDataPerChannel.Add(packageOfDataChannel);
-                }
-
+                int[] packageOfData = PluxDevManager.GetPackageOfData(2, ActiveChannels, UpdatePlotFlag);
+                //int[] packageOfData = PluxDevManager.GetPackageOfData(VisualizationChannel, ActiveChannels, UpdatePlotFlag); //This will be for the graphic 
 
                 // Check if there it was communicated an event/error code.
                 if (packageOfData != null)
@@ -334,7 +329,7 @@ namespace Assets.Scripts
                     if (packageOfData.Length != 0)
                     {
                         // Creation of the first graphical representation of the results.
-                        if (MultiThreadList[VisualizationChannel].Count >= 0)
+                        if (MultiThreadList[2].Count >= 0)
                         {
                             if (FirstPlot == true)
                             {
@@ -390,7 +385,7 @@ namespace Assets.Scripts
                             else if (FirstPlot2 == false)
                             {
                                 // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
-                                if (UpdatePlotFlag == true && packageOfData2 != null)
+                                if (UpdatePlotFlag2 == true && packageOfData2 != null)
                                 {
                                     //MultiThreadSubListPerChannel2.Add(GetSubSampleList(packageOfData2, SamplingRate, GraphWindSize));
                                     MultiThreadSubList = GetSubSampleList(packageOfData2, SamplingRate, GraphWindSize);
@@ -1362,8 +1357,7 @@ namespace Assets.Scripts
 
                 for (int i = 0; i < packageOfDataEDA.Length; i++)
                 {
-                    if (i % 10 == 0)
-                    {
+
                         //Result will be between 0uS to 25uS
                         //Transfer function
                         double tmp = packageOfDataEDA[i] / Math.Pow(2, 10) * 3.3 / 0.12;
@@ -1371,7 +1365,6 @@ namespace Assets.Scripts
                         EDAData += String.Format("{0:0.0000}", tmp) + "\n";
                         EDANow.Add(tmp);
                         EDADataCalc.Add(tmp);
-                    }
                 }
             }
             EDAUpdate = false;
@@ -1410,8 +1403,7 @@ namespace Assets.Scripts
             {
                 for (int i = 0; i < packageOfDataECG.Length; i++)
                 {
-                    if (i % 10 == 0)
-                    {
+
 
                         // result will between -1.5mV to 1.5mV
                         //Transfer function
@@ -1419,18 +1411,53 @@ namespace Assets.Scripts
                         
                         //Record data to be sent to calculator
                         ECGDataCalc.Add(tmp);
-
+                        //Calculate HR
+                        ECGDataHRCalc.Add((float)tmp);
                         //recording data
                         ECGData += String.Format("{0:0.0000}", tmp) + "\n";
 
                         // data for calculate heart rate
                         Array.Resize(ref tmpAr, tmpAr.Length + 1);
                         tmpAr[tmpAr.Length - 1] = tmp;
-                    }
+                    
                 }
             }
 
 
+            
+            // Calculating heart rate
+            //var tmpList = new List<double>();
+            //tmpList.AddRange(HBtens);
+            //tmpList.AddRange(tmpAr);
+            //HBtens = tmpList.ToArray();
+            //if (HBCount == 10)
+            //{
+            //    int Heartrate = 0;
+            //
+            //    for (int i = 0; i < HBtens.Length - 4; i++)
+            //    {
+            //        if ((HBtens[i] < HBtens[i + 1]) && (HBtens[i + 1] < HBtens[i + 2]) && (HBtens[i + 2] < HBtens[i + 3]) && (HBtens[i + 3] > HBtens[i + 4]) && (HBtens[i + 3] - HBtens[i] > 0.15))
+            //        {
+            //            Heartrate++;
+            //        }
+            //    }
+            //    Heartrate *= 6;
+            //    //Output to screen
+            //    HRText.text = "Heart Rate: " + Heartrate;
+            //    //Add to the string to be outputed to CSV
+            //    ECGHR += Heartrate + "\n";
+            //
+            //    //Resetting Variables
+            //    HBtens = new double[] { };
+            //    HBCount = 1;
+            //}
+            //else
+            //    HBCount++;
+            ECGUpdate = false;
+        }
+
+        private void CalculateHeartRate(List<float> ECGData)
+        {
             //Check QRS complex
             //Find maximum point of the R point
             //The time between two R points = heart rate
@@ -1442,35 +1469,55 @@ namespace Assets.Scripts
             //Substituting tpi for one time and tpi-1  with the other
             //https://www.wikihow.com/Calculate-Heart-Rate-from-ECG
 
-            // Calculating heart rate
-            var tmpList = new List<double>();
-            tmpList.AddRange(HBtens);
-            tmpList.AddRange(tmpAr);
-            HBtens = tmpList.ToArray();
-            if (HBCount == 10)
+            //Calculate Heart rate based on R peaks
+            float a = 0.6f;
+            float maxECG = Mathf.Max(ECGDataHRCalc.ToArray());
+            float L = a * maxECG;
+            int counter = 0; // Counter how many peaks were found
+            float p1 = 0.0f; //Time of the first peak
+            float p2 = 0.0f; //Time of the second peak
+            float HR = 0.0f;
+            float HR2 = 0.0f;
+
+            int counter2 = 0;
+
+            //Compare the L to the ecg values to find R peaks
+            for (int i = 1; i < ECGDataHRCalc.Count; i++)
             {
-                int Heartrate = 0;
-
-                for (int i = 0; i < HBtens.Length - 4; i++)
+                if (ECGDataHRCalc[i - 1] < L && ECGDataHRCalc[i] > L && counter == 0)
                 {
-                    if ((HBtens[i] < HBtens[i + 1]) && (HBtens[i + 1] < HBtens[i + 2]) && (HBtens[i + 2] < HBtens[i + 3]) && (HBtens[i + 3] > HBtens[i + 4]) && (HBtens[i + 3] - HBtens[i] > 0.15))
-                    {
-                        Heartrate++;
-                    }
+                    p1 = recordTime / ECGDataHRCalc.Count * i; //RecordTime(s) / ECGDataHRCalc.Count * i
+                    counter++;
                 }
-                Heartrate *= 6;
-                //Output to screen
-                HRText.text = "Heart Rate: " + Heartrate;
-                //Add to the string to be outputed to CSV
-                ECGHR += Heartrate + "\n";
+                else if (ECGDataHRCalc[i - 1] < L && ECGDataHRCalc[i] > L && counter == 1)
+                {
+                    p2 = recordTime / ECGDataHRCalc.Count * i; //RecordTime(s) / ECGDataHRCalc.Count * i
+                    counter++;
+                }
 
-                //Resetting Variables
-                HBtens = new double[] { };
-                HBCount = 1;
+                //A way to break the for loop
+                if (counter == 2)
+                {
+                    i = ECGDataHRCalc.Count;
+                }
             }
-            else
-                HBCount++;
-            ECGUpdate = false;
+
+
+            //Compare the L to the ecg values to find R peaks
+            for (int x = 1; x < ECGDataHRCalc.Count; x++)
+            {
+                if (ECGDataHRCalc[x - 1] < L && ECGDataHRCalc[x] > L)
+                {
+                    counter2++;
+                }
+
+            }
+
+
+            HR2 = counter2 * 2;
+
+            //HR = 1.0f / (p1 + p2);
+            HRText.text = "Heart Rate: " + HR + "Heart Rate2 : " + HR;
         }
         ///////////////////////////////////////////////////////////////////////////////////
 

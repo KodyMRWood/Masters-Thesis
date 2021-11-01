@@ -14,7 +14,7 @@ public class MenuManage : MonoBehaviour
     public float baseLineRecordTime = 30.0f;
 
     float collectTime = 0;
-    bool countCollectTime = false;
+    public bool countCollectTime = false;
 
 
     // Main Menu
@@ -65,13 +65,13 @@ public class MenuManage : MonoBehaviour
         if (countCollectTime)
         {
             collectTime += Time.deltaTime;
-            collectingTime.text = Mathf.Round(collectTime) + "";
+            //collectingTime.text = Mathf.Round(collectTime) + "";
 
             if(collectTime >= baseLineRecordTime)
             {
                 countCollectTime = false;
                 isRecordBaseLineDone = true;
-                stopSensor = true;
+                //stopSensor = true;
             }
         }
 

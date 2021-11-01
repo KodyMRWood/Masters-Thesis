@@ -1673,7 +1673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: EMG Values
+  m_Text: ECG Values
 --- !u!1 &6015889073375473349
 GameObject:
   m_ObjectHideFlags: 0
@@ -6899,9 +6899,9 @@ MonoBehaviour:
   CurrentChannel: {fileID: 6015889073818325290}
   GraphContainer: {fileID: 6015889075053545884}
   GraphContainer2: {fileID: 6015889073975860756}
+  DotSprite: {fileID: 0}
   GraphZone: {fileID: 0}
   GraphZone2: {fileID: 0}
-  DotSprite: {fileID: 0}
   MultiThreadSubList: 
   ActiveChannels: 
   ListDevices: []
@@ -6924,10 +6924,10 @@ MonoBehaviour:
   flashSpeed: 2
   flashColor: {r: 1, g: 0, b: 0, a: 0}
   HRText: {fileID: 6015889072981159385}
-  MultiThreadSubList2: 
   UpdatePlotFlag2: 0
   recordTime: 10000
   recordTimer: 0
+  eventManager: {fileID: 0}
 --- !u!1 &6015889074256044891
 GameObject:
   m_ObjectHideFlags: 0
@@ -8629,7 +8629,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ECG Values
+  m_Text: EDA Values
 --- !u!1 &6015889074469176481
 GameObject:
   m_ObjectHideFlags: 0
@@ -8743,7 +8743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 12.872, y: 1.339}
+  m_AnchoredPosition: {x: 12.872009, y: 1.3389893}
   m_SizeDelta: {x: 1062.4, y: 663.01764}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6015889074469522199
