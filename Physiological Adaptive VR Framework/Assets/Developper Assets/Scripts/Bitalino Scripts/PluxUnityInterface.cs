@@ -308,6 +308,7 @@ namespace Assets.Scripts
                         //Reset
                         EDADataCalc.Clear();
                         ECGDataCalc.Clear();
+                        ECGDataHRCalc.Clear();
                     }
                     
                 }
@@ -1476,48 +1477,48 @@ namespace Assets.Scripts
             int counter = 0; // Counter how many peaks were found
             float p1 = 0.0f; //Time of the first peak
             float p2 = 0.0f; //Time of the second peak
-            float HR = 0.0f;
-            float HR2 = 0.0f;
+            int HR = 0;
+            float tempHR = 0.0f;
+            List <float> peaks = new List<float> { };
 
-            int counter2 = 0;
 
             //Compare the L to the ecg values to find R peaks
-            for (int i = 1; i < ECGDataHRCalc.Count; i++)
+            // We start at 1 and end 1 short to not trigger out ouf bounds error
+            for (int i = 1; i < ECGDataHRCalc.Count-1; i++)
             {
                 if (ECGDataHRCalc[i - 1] < L && ECGDataHRCalc[i] > L && counter == 0)
                 {
-                    p1 = recordTime / ECGDataHRCalc.Count * i; //RecordTime(s) / ECGDataHRCalc.Count * i
+                    p1 = recordTime / ECGDataHRCalc.Count * i; //RecordTime(s) / ECGDataHRCalc.Count * i sample rate 100hz = 1/100
                     counter++;
+                    Debug.Log("P1 " +p1);
                 }
-                else if (ECGDataHRCalc[i - 1] < L && ECGDataHRCalc[i] > L && counter == 1)
+                else if (ECGDataHRCalc[i - 1] > L && ECGDataHRCalc[i] < L && counter == 1)
                 {
                     p2 = recordTime / ECGDataHRCalc.Count * i; //RecordTime(s) / ECGDataHRCalc.Count * i
                     counter++;
+                    Debug.Log("P2 " + p2);
                 }
-
                 //A way to break the for loop
                 if (counter == 2)
+                {
+                    peaks.Add((p1+p2)/2.0f);
+                    counter = 0;
+                    //i = ECGDataHRCalc.Count;
+                }
+
+                //Stop after 2 peaks
+                //Comment this out for all peaks
+                if(peaks.Count==2)
                 {
                     i = ECGDataHRCalc.Count;
                 }
             }
 
-
-            //Compare the L to the ecg values to find R peaks
-            for (int x = 1; x < ECGDataHRCalc.Count; x++)
-            {
-                if (ECGDataHRCalc[x - 1] < L && ECGDataHRCalc[x] > L)
-                {
-                    counter2++;
-                }
-
-            }
+            tempHR = peaks[peaks.Count-1] - peaks[peaks.Count-2];
+            HR = Mathf.RoundToInt((1.0f / tempHR) * 60.0f);
 
 
-            HR2 = counter2 * 2;
-
-            //HR = 1.0f / (p1 + p2);
-            HRText.text = "Heart Rate: " + HR + "Heart Rate2 : " + HR;
+            HRText.text = "Heart Rate: " + HR;
         }
         ///////////////////////////////////////////////////////////////////////////////////
 

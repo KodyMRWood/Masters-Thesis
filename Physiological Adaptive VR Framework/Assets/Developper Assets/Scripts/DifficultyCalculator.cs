@@ -185,12 +185,12 @@ public class DifficultyCalculator : MonoBehaviour
             {
                 adaptScore--;
             }
-            else if (averagePerChannel[x] == baselineAverage[x] + significantChange[x])
+            else if (averagePerChannel[x] >= baselineAverage[x] + significantChange[x])
             {
                 //Doesnt change the score
             }
 
-            else if (averagePerChannel[x] > baselineAverage[x] + significantChange[x])
+            else if (averagePerChannel[x] > baselineAverage[x] + significantChange[x] * 2)
             {
                 adaptScore++;
             }

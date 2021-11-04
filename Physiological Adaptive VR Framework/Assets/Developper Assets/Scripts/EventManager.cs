@@ -13,13 +13,19 @@ public class EventManager : MonoBehaviour
         FREEROAM = 0,
         BASELINE = 1,
         TUTORIAL = 2,
-        TASK1 = 3,
-        TASK2 = 4,
-        TASK3 = 5,
+        TASK = 3,
     }
     public Task currentTask = Task.TUTORIAL;
 
+    public int sourcesFound = 0;
+    public bool isFirstRun = true;
+    //public GameObject[] sourcesSet1 = new GameObject[10];
+    //public GameObject[] sourcesSet2 = new GameObject[10];
+
+
     //-------- Private variables--------
+
+
 
     //Variable to know if the task just switched
     private Task lastTask = Task.FREEROAM;
@@ -33,6 +39,13 @@ public class EventManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checks to see if this is the participants first run.
+        //Changed manually by pressing the = key
+        //Depending on the run, the sources will spawn in different locations
+        if(isFirstRun && Input.GetKeyDown(KeyCode.Equals))
+        {
+            isFirstRun = false;
+        }
         //states
         switch(currentTask)
         {
@@ -53,7 +66,7 @@ public class EventManager : MonoBehaviour
 
                     if (lastTask != Task.BASELINE)
                     {
-                        //Activate the sources
+                        //Make Baseline start
 
                         lastTask = Task.BASELINE;
                     }
@@ -64,44 +77,31 @@ public class EventManager : MonoBehaviour
                     Debug.Log("Tutorial");
                     if (lastTask != Task.TUTORIAL)
                     {
-                        //Activate the sources
+                        //Start tutorial
 
                         lastTask = Task.TUTORIAL;
                     }
                     break;
                 }
-            case Task.TASK1:
+            case Task.TASK:
                 {
                     Debug.Log("TASK1");
-                    if(lastTask != Task.TASK1)
-                    {
-                        //Activate the sources
+                    //All initial variables that need to be set when first switching to the stage
+                    //That way it doesnt do any unnecessary computations
+                    //if(lastTask != Task.TASK)
+                    //{ 
+                    //    //Activate all sources
+                    //    if(isFirstRun)
+                    //    {
+                    //        for(int source = 0; source < sourcesSet1.Length; source++ )
+                    //        {
+                    //            sourcesSet1[source].gameObject.SetActive(true);
+                    //        }
+                    //    }
+                    //    lastTask = Task.TASK;
+                    //}
 
-                        lastTask = Task.TASK1;
-                    }
                     //Find Source number one
-                    break;
-                }
-            case Task.TASK2:
-                {
-                    Debug.Log("TASK2");
-                    if (lastTask != Task.TASK2)
-                    {
-                        //Activate the sources
-
-                        lastTask = Task.TASK2;
-                    }
-                    break;
-                }
-            case Task.TASK3:
-                {
-                    Debug.Log("TASK3");
-                    if (lastTask != Task.TASK3)
-                    {
-                        //Activate the sources
-
-                        lastTask = Task.TASK3;
-                    }
                     break;
                 }
 
