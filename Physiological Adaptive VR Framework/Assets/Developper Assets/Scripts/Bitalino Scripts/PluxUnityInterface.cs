@@ -146,8 +146,10 @@ namespace Assets.Scripts
         List<double> EDADataCalc = new List<double>() { };
         List<double> ECGDataCalc = new List<double>() { };
         List<float> ECGDataHRCalc = new List<float>() { }; //This is to calculate the HR, we need to use float to access the Mathf.Max function
-
+        int heartRate = 0;
         public DifficultyCalculator eventManager;
+
+        bool isFirstRecording = true;
         /////////////////////////////////////////////////////////////////////////////////////////
 
         // Awake is called when the script instance is being loaded.
@@ -191,33 +193,16 @@ namespace Assets.Scripts
             waitForPlotTimer.Interval = 1000; // 1 second.
             waitForPlotTimer.Enabled = false;
             waitForPlotTimer.AutoReset = true;
+
+;
+;
         }
         // Update function, being constantly invoked by Unity.
         void Update()
         {
             ////////////////////////////////////////////////// Edit by Lillian Fan////////////////////////////////////////////////////
             
-            // Update EMG baseline after first 30s record and reset all variable
-            // Save baseline Stats and reset all variables for other measurements
-            if (MenuManage.isRecordBaseLineDone == true)
-            {
-                //EMG baseline recording for my thesis we do not need
-                //thoresholdEMG = RMSDataList.Average() + 0.01;
-                //RMSDataList.Clear();
-
-                //Send
-                eventManager.baseLineEDA = EDADataCalc;
-                eventManager.baseLineECG = ECGDataCalc;
-                //Reset
-                EDADataCalc.Clear();
-                ECGDataCalc.Clear();
-
-                EMGData = "";
-                ECGData = "";
-                ECGHR = "";
-                EDAData = "";
-                MenuManage.isRecordBaseLineDone = false;
-            }
+            
             // Update flash image when EMG or EDA change higher than the baseline
             if (isFlashing)
             {
@@ -240,22 +225,17 @@ namespace Assets.Scripts
                 // Connect to device
                 ExecuteEvents.Execute(ConnectButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3) || MenuManage.activeSensor == true)
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 // Start recording
                 ExecuteEvents.Execute(StartButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
-                MenuManage.activeSensor = false;
             }
-            if (Input.GetKeyDown(KeyCode.Alpha4) || MenuManage.stopSensor == true)
+            if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 // Stop recording
                 ExecuteEvents.Execute(StopButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
-                MenuManage.stopSensor = false;
             }
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
             try
             {
@@ -274,10 +254,8 @@ namespace Assets.Scripts
 
                 if (Input.GetKeyDown(KeyCode.Alpha0) && recordTimer == 0.0f)
                 {
-                    // Start recording
-                    waitForPlotTimer.Enabled = true;
-
-
+                        // Start recording
+                        waitForPlotTimer.Enabled = true;
                 }
                 if (waitForPlotTimer.Enabled)
                 { 
@@ -297,18 +275,53 @@ namespace Assets.Scripts
                     recordTimer += Time.deltaTime;
                     if (recordTimer >= recordTime)
                     {
+
+                        // Update EMG baseline after first 30s record and reset all variable
+                        // Save baseline Stats and reset all variables for other measurements
+                        if (isFirstRecording)
+                        {
+                            //EMG baseline recording for my thesis we do not need
+                            //thoresholdEMG = RMSDataList.Average() + 0.01;
+                            //RMSDataList.Clear();
+                            Debug.Log("Taking Baseline measurements");
+                            //Send
+                            eventManager.baseLineEDA = new List<double>(EDADataCalc);
+                            eventManager.baseLineECG = new List<double>(ECGDataCalc);
+                            eventManager.baseHeartRate = heartRate;
+                            //Reset
+                            EDADataCalc.Clear();
+                            ECGDataCalc.Clear();
+                            ECGDataHRCalc.Clear();
+
+                            EMGData = "";
+                            ECGData = "";
+                            ECGHR = "";
+                            EDAData = "";
+                            isFirstRecording = false;
+                        }
+                        else
+                        {
+                            Debug.Log("Taking Adaptive measurements");
+                            waitForPlotTimer.Enabled = false;
+                            recordTimer = 0.0f;
+                            //Calculate the heart rate once we have all the data
+                            CalculateHeartRate(ECGDataHRCalc);
+                            //Send and Reset Variables
+                            //Send
+                            eventManager.currentEDA = new List<double>(EDADataCalc);
+                            eventManager.currentECG = new List<double>(ECGDataCalc);
+                            eventManager.heartRate = heartRate;
+                            eventManager.CalculateDataAverage();
+                            
+                            //Reset
+                            EDADataCalc.Clear();
+                            ECGDataCalc.Clear();
+                            ECGDataHRCalc.Clear();
+                        }
+
+                        // Stop recording
                         waitForPlotTimer.Enabled = false;
                         recordTimer = 0.0f;
-                        //Calculate the heart rate once we have all the data
-                        CalculateHeartRate(ECGDataHRCalc);
-                        //Send and Reset Variables
-                        //Send
-                        eventManager.currentEDA = EDADataCalc;
-                        eventManager.currentECG = ECGDataCalc;
-                        //Reset
-                        EDADataCalc.Clear();
-                        ECGDataCalc.Clear();
-                        ECGDataHRCalc.Clear();
                     }
                     
                 }
@@ -1477,7 +1490,7 @@ namespace Assets.Scripts
             int counter = 0; // Counter how many peaks were found
             float p1 = 0.0f; //Time of the first peak
             float p2 = 0.0f; //Time of the second peak
-            int HR = 0;
+            
             float tempHR = 0.0f;
             List <float> peaks = new List<float> { };
 
@@ -1490,13 +1503,13 @@ namespace Assets.Scripts
                 {
                     p1 = recordTime / ECGDataHRCalc.Count * i; //RecordTime(s) / ECGDataHRCalc.Count * i sample rate 100hz = 1/100
                     counter++;
-                    Debug.Log("P1 " +p1);
+
                 }
                 else if (ECGDataHRCalc[i - 1] > L && ECGDataHRCalc[i] < L && counter == 1)
                 {
                     p2 = recordTime / ECGDataHRCalc.Count * i; //RecordTime(s) / ECGDataHRCalc.Count * i
                     counter++;
-                    Debug.Log("P2 " + p2);
+
                 }
                 //A way to break the for loop
                 if (counter == 2)
@@ -1515,10 +1528,10 @@ namespace Assets.Scripts
             }
 
             tempHR = peaks[peaks.Count-1] - peaks[peaks.Count-2];
-            HR = Mathf.RoundToInt((1.0f / tempHR) * 60.0f);
+            heartRate = Mathf.RoundToInt((1.0f / tempHR) * 60.0f);
+            
 
-
-            HRText.text = "Heart Rate: " + HR;
+            HRText.text = "Heart Rate: " + heartRate;
         }
         ///////////////////////////////////////////////////////////////////////////////////
 

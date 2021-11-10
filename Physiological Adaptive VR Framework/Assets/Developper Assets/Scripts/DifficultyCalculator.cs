@@ -16,17 +16,18 @@ public class DifficultyCalculator : MonoBehaviour
 
     public Assets.Scripts.PluxUnityInterface Bitalino;
     public List<int> MultiThreadSubList = null;
-    
+
     // This array will be set in the inspector. It will determine what the rresearcher considers a significant change in the metric
     // ie. HR + 5bpm is significantly higher
-    public float[] significantChange; 
+    public float sigDiffEDA = 0.0f;
+    public float sigDiffECG = 0.0f;
+    public int sigDiffHR = 5;
 
 
 
     //--- Private Variables ---
     private int activeChannels = 0;
     public List<List<int>> readings;
-    private StateMachine stateMachine;
     private List<float> baselineAverage;
     //Framework
     public List<float> weightPerChannel = null;
@@ -37,113 +38,89 @@ public class DifficultyCalculator : MonoBehaviour
     //--- Data Sets ---
     [HideInInspector]
     public List<double> baseLineEMG = new List<double>() { }; // For completion
-    [HideInInspector]
+    //[HideInInspector]
     public List<double> baseLineEDA = new List<double>() { };
-    [HideInInspector]
+    //[HideInInspector]
     public List<double> baseLineECG = new List<double>() { };
+
+    public int baseHeartRate = 0;
+    private double baseAverageEMG = 0.0;
+    private double baseAverageEDA = 0.0;
+    private double baseAverageECG = 0.0;
+
 
     [HideInInspector]
     public List<double> currentEMG = new List<double>() { }; // For completion
-    [HideInInspector]
+   [HideInInspector]
     public List<double> currentEDA= new List<double>() { };
     [HideInInspector]
     public List<double> currentECG = new List<double>() { };
 
-    private float averageEMG = 0.0f;
-    private float averageEDA = 0.0f;
-    private float averageECG = 0.0f;
+    public int heartRate = 0;
+    private double averageEMG = 0.0;
+    private double averageEDA = 0.0;
+    private double averageECG = 0.0;
 
 
-
-
-
-    void Awake()
+    public void CalculateBaseDataAverage()
     {
-        Bitalino = FindObjectOfType<Assets.Scripts.PluxUnityInterface>();
-        stateMachine = FindObjectOfType<StateMachine>();
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Change this into a different function that will be called at certain points
-        activeChannels = Bitalino.ActiveChannels.Count;
-
-        if(activeChannels > 0)
-        {
-
-               //readings = Bitalino.MultiThreadSubListPerChannel2;
-               //MultiThreadSubList = readings[0];
-            //Testing
-            //MultiThreadSubList = readings[0];
-        }
-        //CalculateAdaptScore();
-    }
-
-
-
-    private void CalculateDataAverage()
-    {
-        averageEMG = 0.0f;
-        averageEDA = 0.0f;
-        averageECG = 0.0f;
+        //averageEMG = 0.0;
+        baseAverageEDA = 0.0;
+        baseAverageECG = 0.0;
 
         //Keep them in seperate loops incase the legnth of the list are different so it wont cause any errors.
-        for (int r = 0; r < currentEMG.Count; r++)
-        {
-            averageEMG += r;
-        }
-        for (int r = 0; r < currentEDA.Count; r++)
-        {
-            averageEDA += r;
-        }
-        for (int r = 0; r < currentECG.Count; r++)
-        {
-            averageECG += r;
-        }
-
-        averageEMG /= currentEMG.Count;
-        averageEDA /= currentEDA.Count;
-        averageECG /= currentECG.Count;
-    }
-
-
-    private void CalculateAdaptScore()
-    {
-        //Most if you want one specific channel but this will get you all the channels
-        //for(int x=0; x< activeChannels; x++)
+        //for (int r = 0; r < currentEMG.Count; r++)
         //{
-        //    CalculateAveragePerChannel(x);
+        //    averageEMG += r;
         //}
-
-        int adaptScore = 0;
-
-        CalculateAdaptScore();
-
-        for(int x = 0; x < averagePerChannel.Count; x++)
+        for (int x = 0; x < baseLineEDA.Count; x++)
         {
-            if (averagePerChannel[x] < averagePerChannelLast[x])
-            {
-                adaptScore++;
-            }
-            else if (averagePerChannel[x] == averagePerChannelLast[x])
-            {
-                //Doesnt change the score
-            }
-
-            else if(averagePerChannel[x] > averagePerChannelLast[x])
-            {
-                adaptScore--;
-            }
-
-            averagePerChannelLast = averagePerChannel;
-
+            baseAverageEDA += baseLineEDA[x];
+        }
+        for (int y = 0; y < baseLineECG.Count; y++)
+        {
+            baseAverageECG += baseLineECG[y];
         }
 
-        AdaptDifficulty(adaptScore);
 
+        //averageEMG /= currentEMG.Count;
+        baseAverageEDA = baseAverageEDA / (double)baseLineEDA.Count;
+        baseAverageECG = baseAverageECG / (double)baseLineECG.Count;
     }
+
+    public void CalculateDataAverage()
+    {
+
+        //averageEMG = 0.0;
+        averageEDA = 0.0;
+        averageECG = 0.0;
+
+        //Keep them in seperate loops incase the legnth of the list are different so it wont cause any errors.
+        //for (int r = 0; r < currentEMG.Count; r++)
+        //{
+        //    averageEMG += r;
+        //}
+        for (int x = 0; x < currentEDA.Count; x++)
+        {
+            averageEDA += currentEDA[x];
+        }
+        for (int y = 0; y < currentECG.Count; y++)
+        {
+            averageECG += currentECG[y];
+        }
+
+
+        //averageEMG /= currentEMG.Count;
+        averageEDA = averageEDA / (double)currentEDA.Count;
+        averageECG = averageECG / (double)currentECG.Count;
+
+
+        CalculateAdaptScoreTrueTable();
+    }
+
+
+
         
     
     
@@ -159,7 +136,7 @@ public class DifficultyCalculator : MonoBehaviour
         //https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8482411/pdf/nihms-1741060.pdf help1
 
         //Call the statemachines adapt function
-        stateMachine.AdaptSimulation(physioScoreCurrrent);
+        this.GetComponent<StateMachine>().AdaptSimulation(physioScoreCurrrent);
 
     }
 
@@ -170,30 +147,58 @@ public class DifficultyCalculator : MonoBehaviour
 
         int adaptScore = 0;
 
-        CalculateAdaptScore();
-
 
         // If the average of a measurement is higher than the baseline of the same measurement the score will get higher 
         // visa versa, if avearage is lower than baseline score will be lower
         // If the score is lower, it means that the measurements were lower than the baseline,  therefore the difficulty needs to get harderr
         // If the score is higher, it means the measurmenets werrer higher than the baseline, therefore diffculty needs to get easier
         
-        //Change it so that is baseline + significant Change in metric (i.e hr baseline+5bpm)
-        for (int x = 0; x < averagePerChannel.Count; x++)
-        {
-            if (averagePerChannel[x] < baselineAverage[x] + significantChange[x])
-            {
-                adaptScore--;
-            }
-            else if (averagePerChannel[x] >= baselineAverage[x] + significantChange[x])
-            {
-                //Doesnt change the score
-            }
+       
+        //EDA
 
-            else if (averagePerChannel[x] > baselineAverage[x] + significantChange[x] * 2)
-            {
-                adaptScore++;
-            }
+        if (averageEDA < baseAverageEDA + sigDiffEDA)
+        {
+            adaptScore--;
+        }
+        else if (averageEDA >= baseAverageEDA + sigDiffEDA && averageEDA <= baseAverageEDA + (sigDiffEDA*2))
+        {
+            //Doesnt change the score
+        }
+
+        else if (averageEDA > baseAverageEDA + (sigDiffEDA * 2))
+        {
+            adaptScore++;
+        }
+
+        //ECG
+        if (averageECG < baseAverageECG + sigDiffECG)
+        {
+            adaptScore--;
+        }
+        else if (averageECG >= baseAverageECG + sigDiffECG && averageECG <= baseAverageECG + (sigDiffECG * 2))
+        {
+            //Doesnt change the score
+        }
+
+        else if (averageECG > baseAverageECG + (sigDiffECG * 2))
+        {
+            adaptScore++;
+        }
+
+
+        //HR
+        if (heartRate < baseHeartRate + sigDiffHR)
+        {
+            adaptScore--;
+        }
+        else if (heartRate >= baseHeartRate + sigDiffHR && heartRate <= baseHeartRate + (sigDiffHR * 2))
+        {
+            //Doesnt change the score
+        }
+
+        else if (heartRate > baseHeartRate + (sigDiffHR * 2))
+        {
+            adaptScore++;
         }
 
         AdaptDifficulty(adaptScore);
