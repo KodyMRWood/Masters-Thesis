@@ -131,6 +131,8 @@ namespace Assets.Scripts
         //Create a timer that controls the update of real-time plot.
         System.Timers.Timer waitForPlotTimer = new System.Timers.Timer();
         //////////////////////////////////////////////////////////////////////////////////
+
+
         ///////////////////////////////////Edited by Kody Wood/////////////////////////////////////////////
         //Variables that will hold the data from the channel we are looking for.
         //Second graph variables
@@ -148,8 +150,6 @@ namespace Assets.Scripts
         List<float> ECGDataHRCalc = new List<float>() { }; //This is to calculate the HR, we need to use float to access the Mathf.Max function
         int heartRate = 0;
         public DifficultyCalculator eventManager;
-
-        bool isFirstRecording = true;
         /////////////////////////////////////////////////////////////////////////////////////////
 
         // Awake is called when the script instance is being loaded.
@@ -239,9 +239,6 @@ namespace Assets.Scripts
 
             try
             {
-                ////Use this to control the timer to get the recordings.
-                //waitForPlotTimer.Enabled = false;
-
 
                 ////////////////////////////////////////////////// Edit by Lillian Fan///////////////////////////////////////////////////////////////////////
                 ////////////////////////////////////////////////Record EMG,ECG and EDA Data//////////////////////////////////////////////////////////////////
@@ -257,6 +254,13 @@ namespace Assets.Scripts
                         // Start recording
                         waitForPlotTimer.Enabled = true;
                 }
+
+                if ((eventManager.GetComponent<EventManager>().recordBaseline || eventManager.GetComponent<EventManager>().recordMetrics) && recordTimer == 0.0f)
+                {
+                    // Start recording
+                    waitForPlotTimer.Enabled = true;
+                }
+
                 if (waitForPlotTimer.Enabled)
                 { 
                     //ECG data record and reaction
@@ -278,7 +282,7 @@ namespace Assets.Scripts
 
                         // Update EMG baseline after first 30s record and reset all variable
                         // Save baseline Stats and reset all variables for other measurements
-                        if (isFirstRecording)
+                        if (eventManager.GetComponent<EventManager>().isFirstRecording)
                         {
                             //EMG baseline recording for my thesis we do not need
                             //thoresholdEMG = RMSDataList.Average() + 0.01;
@@ -297,7 +301,7 @@ namespace Assets.Scripts
                             ECGData = "";
                             ECGHR = "";
                             EDAData = "";
-                            isFirstRecording = false;
+                            eventManager.GetComponent<EventManager>().isFirstRecording = false;
                         }
                         else
                         {
@@ -518,6 +522,7 @@ namespace Assets.Scripts
                     ConnectInfoPanel.SetActive(false);
 
                 }
+                eventManager.GetComponent<EventManager>().isStarted = true;
             }
             catch (Exception e)
             {
@@ -691,6 +696,9 @@ namespace Assets.Scripts
                     {
                         BatteryLevel.text = "N.A.";
                     }
+
+                    //Bool to check if it is connect, this will be checked by the event manager to change task from Freeroam to baseline recording
+                    eventManager.GetComponent<EventManager>().isConnected = true;
                 }
                 else if (ConnectText.text == "Disconnect")
                 {
@@ -755,6 +763,8 @@ namespace Assets.Scripts
 
                     // Reboot of global variables.
                     RebootVariables();
+
+                    eventManager.GetComponent<EventManager>().isConnected = false;
                 }
             }
             catch (Exception e)

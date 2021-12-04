@@ -15,7 +15,6 @@ public class DifficultyCalculator : MonoBehaviour
     //--- Public Variables ---
 
     public Assets.Scripts.PluxUnityInterface Bitalino;
-    public List<int> MultiThreadSubList = null;
 
     // This array will be set in the inspector. It will determine what the rresearcher considers a significant change in the metric
     // ie. HR + 5bpm is significantly higher
@@ -26,36 +25,30 @@ public class DifficultyCalculator : MonoBehaviour
 
 
     //--- Private Variables ---
-    private int activeChannels = 0;
-    public List<List<int>> readings;
-    private List<float> baselineAverage;
-    //Framework
-    public List<float> weightPerChannel = null;
-    List<float> averagePerChannel = null;
-    List<float> averagePerChannelLast = null;
 
 
     //--- Data Sets ---
+    //Data from baseeline recording
     [HideInInspector]
     public List<double> baseLineEMG = new List<double>() { }; // For completion
-    //[HideInInspector]
+    [HideInInspector]
     public List<double> baseLineEDA = new List<double>() { };
-    //[HideInInspector]
+    [HideInInspector]
     public List<double> baseLineECG = new List<double>() { };
-
+    [HideInInspector]
     public int baseHeartRate = 0;
     private double baseAverageEMG = 0.0;
     private double baseAverageEDA = 0.0;
     private double baseAverageECG = 0.0;
 
-
+    //Data from most recent rcording
     [HideInInspector]
     public List<double> currentEMG = new List<double>() { }; // For completion
-   [HideInInspector]
+    [HideInInspector]
     public List<double> currentEDA= new List<double>() { };
     [HideInInspector]
     public List<double> currentECG = new List<double>() { };
-
+    [HideInInspector]
     public int heartRate = 0;
     private double averageEMG = 0.0;
     private double averageEDA = 0.0;
@@ -65,15 +58,9 @@ public class DifficultyCalculator : MonoBehaviour
     public void CalculateBaseDataAverage()
     {
 
-        //averageEMG = 0.0;
         baseAverageEDA = 0.0;
         baseAverageECG = 0.0;
 
-        //Keep them in seperate loops incase the legnth of the list are different so it wont cause any errors.
-        //for (int r = 0; r < currentEMG.Count; r++)
-        //{
-        //    averageEMG += r;
-        //}
         for (int x = 0; x < baseLineEDA.Count; x++)
         {
             baseAverageEDA += baseLineEDA[x];
@@ -83,8 +70,6 @@ public class DifficultyCalculator : MonoBehaviour
             baseAverageECG += baseLineECG[y];
         }
 
-
-        //averageEMG /= currentEMG.Count;
         baseAverageEDA = baseAverageEDA / (double)baseLineEDA.Count;
         baseAverageECG = baseAverageECG / (double)baseLineECG.Count;
     }
@@ -144,7 +129,7 @@ public class DifficultyCalculator : MonoBehaviour
 
     private void CalculateAdaptScoreTrueTable()
     {
-
+        //Score that will detemine how the system will adapt
         int adaptScore = 0;
 
 

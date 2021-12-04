@@ -20,7 +20,7 @@ public class ScintillatorScript : MonoBehaviour
     private bool hasAttached = false;
 
     private Source attachedSource;
-    private TextMeshPro textMesh;
+    public TextMeshPro textMesh;
 
 
     private bool send = false; //Are you silly bud? I'm still gonna send it

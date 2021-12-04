@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 6672601071832702019}
   - component: {fileID: 6672601071832702017}
   - component: {fileID: 6672601071832702018}
-  - component: {fileID: 6672601071832702022}
-  - component: {fileID: 6672601071832702023}
   - component: {fileID: 1039627783095178274}
   m_Layer: 0
   m_Name: Event Manager
@@ -126,42 +124,6 @@ MonoBehaviour:
   currentTask: 0
   sourcesFound: 0
   isFirstRun: 1
---- !u!114 &6672601071832702022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6672601071832702016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6bf5863be640c741b37ec10a35d93a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trainingTimer: 0
-  startTraining: 0
---- !u!114 &6672601071832702023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6672601071832702016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252514b6e1cbead4294f5dfdbe8f0a28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  readyForCollecting: {fileID: 0}
-  collectingIntro: {fileID: 0}
-  collectingTime: {fileID: 0}
-  dataToMenu: {fileID: 0}
-  baseLineRecordTime: 30
-  countCollectTime: 0
-  menu: {fileID: 0}
-  gamePlay: {fileID: 0}
-  collection: {fileID: 0}
-  developers: {fileID: 0}
 --- !u!114 &1039627783095178274
 MonoBehaviour:
   m_ObjectHideFlags: 0
