@@ -6,18 +6,21 @@ public class SourceTrigger : MonoBehaviour
 {
 
     public float timeTriggering = 0.0f;
-    public bool doneDetecting = false;
+    
 
-    // Start is called before the first frame update
-    void Start()
+    //--- Properties ---
+    private bool isRealSource = false;
+    public bool IsRealSource
     {
-        
+        get => isRealSource;
+        set => isRealSource = value;
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool doneDetecting = false;
+    public bool DoneDetecting
     {
-        
+        get => doneDetecting;
+        set => doneDetecting = value;
     }
 
     private void OnTriggerStay(Collider other)
@@ -37,7 +40,6 @@ public class SourceTrigger : MonoBehaviour
         if (other.gameObject.tag == "Geiger")
         {
             timeTriggering = 0.0f;
-
         }
-    }
+    }   
 }

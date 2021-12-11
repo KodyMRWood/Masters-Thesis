@@ -20,7 +20,7 @@ public class Source : MonoBehaviour {
     private double startTime;
 
     private BoxCollider boxColldier;
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
 
     //Used to contain information
     void Start() {
@@ -31,7 +31,7 @@ public class Source : MonoBehaviour {
 
         boxColldier = GetComponent<BoxCollider>();
 
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
 
     }
 
@@ -289,14 +289,14 @@ public class Source : MonoBehaviour {
     public void freeze() {
 
         boxColldier.enabled = false;
-        rigidbody.useGravity = false;
+        rb.useGravity = false;
 
     }
 
     public void unfreeze() {
 
         boxColldier.enabled = true;
-        rigidbody.useGravity = true;
+        rb.useGravity = true;
 
     }
 

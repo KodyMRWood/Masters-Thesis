@@ -8,12 +8,13 @@ Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiol
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
-Waiting on threads to park on joinable thread list timed out.
-s version (prod = 1).1.66.0(build = 0) feature version = 0s Name: ServiceTrexManagerImplementation
-      Interface Id: 0xae0b8a9331378a85
-    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.66.0(build = 0) feature version = 0. Client runs version (prod = 1).1.66.0(build = 0) feature version = 0ime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.66.0(build = 0) feature version = 0. Client runs version (prod = 1).1.66.0(build = 0) feature version = 0Waiting on threads to park on joinable thread list timed out.
-logical Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Waiting on threads to park on joinable thread list timed out.
+0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll

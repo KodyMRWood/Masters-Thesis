@@ -279,7 +279,7 @@ namespace Assets.Scripts
                     recordTimer += Time.deltaTime;
                     if (recordTimer >= recordTime)
                     {
-
+                        
                         // Update EMG baseline after first 30s record and reset all variable
                         // Save baseline Stats and reset all variables for other measurements
                         if (eventManager.GetComponent<EventManager>().isFirstRecording)
@@ -288,7 +288,8 @@ namespace Assets.Scripts
                             //thoresholdEMG = RMSDataList.Average() + 0.01;
                             //RMSDataList.Clear();
                             Debug.Log("Taking Baseline measurements");
-                            //Send
+
+                            //Send baseline measurements to store
                             eventManager.baseLineEDA = new List<double>(EDADataCalc);
                             eventManager.baseLineECG = new List<double>(ECGDataCalc);
                             eventManager.baseHeartRate = heartRate;
@@ -302,6 +303,7 @@ namespace Assets.Scripts
                             ECGHR = "";
                             EDAData = "";
                             eventManager.GetComponent<EventManager>().isFirstRecording = false;
+                            eventManager.GetComponent<EventManager>().DoneBaseline = false;
                         }
                         else
                         {
@@ -522,7 +524,7 @@ namespace Assets.Scripts
                     ConnectInfoPanel.SetActive(false);
 
                 }
-                eventManager.GetComponent<EventManager>().isStarted = true;
+                
             }
             catch (Exception e)
             {
@@ -878,6 +880,7 @@ namespace Assets.Scripts
                         ChangeChannel.interactable = true;
                     }
 
+                    eventManager.GetComponent<EventManager>().isStarted = true;
                     // Disable About Button to avoid entering a new scene during the acquisition.
                     AboutButton.interactable = false;
                 }

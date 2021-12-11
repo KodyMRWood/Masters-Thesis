@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Thesis.HUD;
 
 public class EventManager : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class EventManager : MonoBehaviour
     public bool recordMetrics = false;
     public bool isFirstRecording = true;
 
+    //Properties
+    private bool doneBaseline = false;
+    public bool DoneBaseline { get => doneBaseline; set => doneBaseline = value; }
+
+
+
     //Radioactive Variables
     public bool isFirstRun = true;
     public GameObject sourceSet1;
@@ -35,6 +42,7 @@ public class EventManager : MonoBehaviour
     public Light[] DirectionalLight;
     private float dimRate = 1.0f;
     //-------- Private variables--------
+
 
 
 
@@ -103,6 +111,10 @@ public class EventManager : MonoBehaviour
                             }
                         }
                         //When baseline is done recording change the task
+                        if(DoneBaseline)
+                        {
+                            currentTask++;
+                        }
 
                     }
 
@@ -120,7 +132,7 @@ public class EventManager : MonoBehaviour
 
                     //Check to see if all the required tasks are complete. If they, switch to the next task
                     //The tasks that need to be completed is have the geiger counter picked up and the testing of the source. The testing will be holding the gieger close to the source for 10 seconds or so
-                    if(geiger.GetComponent<GeigerController>().pickedUp && tutorialSource.GetComponent<SourceTrigger>().doneDetecting)
+                    if(geiger.GetComponent<GeigerController>().pickedUp && tutorialSource.GetComponent<SourceTrigger>().DoneDetecting)
                     {
                         currentTask++;
                     }
@@ -133,6 +145,7 @@ public class EventManager : MonoBehaviour
                     //That way it doesnt do any unnecessary computations
                     if(lastTask != Task.TASK)
                     { 
+                        HUDController.manager.SetHUDText("Help");
                         //Activate all sources
                         if(isFirstRun)
                         {
@@ -140,6 +153,7 @@ public class EventManager : MonoBehaviour
                             for (int x = 0; x < sourceSet1.transform.childCount; x++)
                             {
                                 sources.Add(sourceSet1.transform.GetChild(x).gameObject);
+                                sources[x].SetActive(true); 
                             }
 
                             //Random Source as "Real" Source (NOT USING THIS FOR CONSISTENT DATA)
@@ -148,7 +162,7 @@ public class EventManager : MonoBehaviour
 
 
                             //Make the 3rd source the "Real" source
-                            sources[2].SetActive(true);
+                            sources[2].GetComponent<SourceTrigger>().IsRealSource = true;
                         }
                         else if (!isFirstRun)
                         {
@@ -156,6 +170,7 @@ public class EventManager : MonoBehaviour
                             for (int x = 0; x < sourceSet2.transform.childCount; x++)
                             {
                                 sources.Add(sourceSet2.transform.GetChild(x).gameObject);
+                                sources[x].SetActive(true);
                             }
 
                             //Random Source as "Real" Source (NOT USING THIS FOR CONSISTENT DATA)
@@ -163,7 +178,7 @@ public class EventManager : MonoBehaviour
                             //sources[index].SetActive(true);
 
                             //Make the 3rd source the "Real" source
-                            sources[2].SetActive(true);
+                            sources[2].GetComponent<SourceTrigger>().IsRealSource = true;
                         }
                         lastTask = Task.TASK;
                     }
@@ -181,7 +196,7 @@ public class EventManager : MonoBehaviour
 
                     }
                     
-                    if (sources[2].GetComponent<SourceTrigger>().doneDetecting)
+                    if (sources[2].GetComponent<SourceTrigger>().DoneDetecting)
                     {
                         //They have found the right source
                         currentTask++;
@@ -191,6 +206,7 @@ public class EventManager : MonoBehaviour
                 }
             case Task.END:
                 {
+
                     //Put up some sort of UI to tell them that they have completed the simulation and they can remove them headset to complete the survey
                     break;
 
