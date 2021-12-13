@@ -129,10 +129,18 @@ public class EventManager : MonoBehaviour
                         
                             lastTask = Task.TUTORIAL;
                     }
-
+                    
                     //Check to see if all the required tasks are complete. If they, switch to the next task
-                    //The tasks that need to be completed is have the geiger counter picked up and the testing of the source. The testing will be holding the gieger close to the source for 10 seconds or so
-                    if(geiger.GetComponent<GeigerController>().pickedUp && tutorialSource.GetComponent<SourceTrigger>().DoneDetecting)
+                    //The tasks that need to be completed is have the geiger counter picked up and the testing of the source. The testing will be holding the gieger close to the source for 10 seconds or so\
+                    if (geiger.GetComponent<GeigerController>().pickedUp){
+
+                        HUDController.manager.SetHUDText("Scan the radioactive source and hold the Geiger close to it for 5 seconds");
+                    }
+                    else
+                    {
+                        HUDController.manager.SetHUDText("Find the Geiger Counter");
+                    }
+                    if (geiger.GetComponent<GeigerController>().pickedUp && tutorialSource.GetComponent<SourceTrigger>().DoneDetecting)
                     {
                         currentTask++;
                     }
@@ -145,7 +153,7 @@ public class EventManager : MonoBehaviour
                     //That way it doesnt do any unnecessary computations
                     if(lastTask != Task.TASK)
                     { 
-                        HUDController.manager.SetHUDText("Help");
+                        HUDController.manager.SetHUDText("There is a radioactive source in the lab. Find and scan it. *Careful* there are fakes.");
                         //Activate all sources
                         if(isFirstRun)
                         {
