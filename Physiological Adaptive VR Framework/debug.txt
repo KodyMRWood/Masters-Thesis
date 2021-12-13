@@ -1,4 +1,5 @@
-Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Waiting on threads to park on joinable thread list timed out.
+rs-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Waiting on threads to park on joinable thread list timed out.
 rs-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
