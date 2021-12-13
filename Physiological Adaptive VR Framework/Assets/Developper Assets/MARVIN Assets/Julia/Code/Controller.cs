@@ -173,7 +173,10 @@ public class Controller : MonoBehaviour {
     void OnApplicationQuit() {
 
         stopThread = true;
-        readThread.Abort();
+        if(enableNetworking)
+        {
+            readThread.Abort();
+        }
 
     }
 

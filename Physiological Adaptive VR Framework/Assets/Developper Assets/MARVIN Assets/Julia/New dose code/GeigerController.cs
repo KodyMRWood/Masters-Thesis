@@ -6,7 +6,7 @@ using UnityEngine;
 public class GeigerController : DoseBody {
 
     public bool pickedUp = false;
-    private bool active = false;
+    public bool active = false;
     private Transform toolTransform;
     //private Interactable interactable;
     private Rigidbody toolBody;
@@ -35,6 +35,11 @@ public class GeigerController : DoseBody {
 
     int mode = 1;
     int scale = 2;
+
+    private GameObject rightHand;
+    private GameObject leftHand;
+
+    bool triggerDown = false;
 
     public override void secondaryStart() {
 
@@ -113,18 +118,37 @@ public class GeigerController : DoseBody {
 
     // Update is called once per frame
     void Update() {
+       
+        if (this.GetComponent<OVRGrabbable>().isGrabbed)
+        {
+            pickedUp = true;
+            active = true;
+            //Play active sound, change color, turn on text mesh
+            meshRendererStatusSphere.material.SetColor("_Color", Color.green);
+            collider.enabled = false; //Disabling the colliders since most people will put the geiger counter close to the source, and it'll launch it in the air
+
+        }
+        else
+        {
+            pickedUp = false;
+            active = false;
+            meshRendererStatusSphere.material.SetColor("_Color", Color.black);
+            collider.enabled = true;
+
+        }
 
         if ( pickedUp ) {
-            
-            toolTransform.position = handTransform.position;
-            toolTransform.rotation = handTransform.rotation * Quaternion.Euler( 0 , -90 , 0 );
+
+
+            toolTransform.position = this.GetComponent<OVRGrabbable>().grabbedBy.transform.position;
+            toolTransform.rotation = this.GetComponent<OVRGrabbable>().grabbedBy.transform.rotation * Quaternion.Euler(0, -90, 25);
             //Turn Canvas on an off
             geigerUI.enabled = false;
             
         }
         else
         {
-            geigerUI.enabled = true;
+            //geigerUI.enabled = true;
         }
         
         if ( active ) {
@@ -162,72 +186,54 @@ public class GeigerController : DoseBody {
 
     private void checkInputs() {
 
-        if ( pickedUp ) {
 
-            //float inputTrigger = SteamVR_Actions.default_ControllerTrigger.GetAxis(SteamVR_Input_Sources.Any);
 
-            bool triggerDown = true;
+        //Change Mode
+        if (this.GetComponent<OVRGrabbable>().isGrabbed && OVRInput.GetDown(OVRInput.Button.One, this.GetComponent<OVRGrabbable>().grabbedBy.GetController()))
+        {
+            audioSourceEffects.Play();
 
-            if ( triggerDown ) {
+            //Change modes
+            if ((mode + 1) >= modes.Length)
+            {
 
-                totalTime += Time.deltaTime;
+                mode = 0;
+
+            }
+            else
+            {
+
+                mode++;
 
             }
 
-            if ( !triggerDown ) {
-
-                if ( totalTime != 0 ) {
-
-                    audioSourceEffects.Play();
-
-                    if ( totalTime < 1f ) {
-
-                        //Change modes
-                        if ( ( mode + 1 ) >= modes.Length ) {
-
-                            mode = 0;
-
-                        }
-                        else {
-
-                            mode++;
-
-                        }
-
-                    }
-                    else { //Long click
-
-                        //Change scale
-                        if ( ( scale + 1 ) >= scales.Length ) {
-
-                            scale = 0;
-
-                        }
-                        else {
-
-                            scale++;
-
-                        }
-
-                    }
-
-                        
-                }
-            
-                totalTime = 0f;
-
-            }
-            
         }
+        //Change Scale
+        if (this.GetComponent<OVRGrabbable>().isGrabbed && OVRInput.GetDown(OVRInput.Button.Two, this.GetComponent<OVRGrabbable>().grabbedBy.GetController()))
+        {
+            //Change scale
+            if ((scale + 1) >= scales.Length)
+            {
 
+                scale = 0;
+
+            }
+            else
+            {
+
+                scale++;
+
+            }
+
+        }
     }
 
     private void updateActive() {
 
-        if ( active ) {
+        if ( this.GetComponent<OVRGrabbable>().isGrabbed) {
 
-            GameObject rightHand = GameObject.Find( "RightHand" );
-            GameObject leftHand = GameObject.Find( "LeftHand" );
+            rightHand = GameObject.Find( "RightHandAnchor" );
+            leftHand  = GameObject.Find("LeftHandAnchor");
             
 
             if ( ( rightHand.GetComponent<Transform>().position - toolTransform.position ).magnitude < ( leftHand.GetComponent<Transform>().position - toolTransform.position ).magnitude ) {
@@ -289,6 +295,8 @@ public class GeigerController : DoseBody {
 
     }
 
+
+
     void SendMessage( string message ) {
 
         if ( message == "Pickup" ) {
@@ -322,4 +330,5 @@ public class GeigerController : DoseBody {
         return doseReceptors;
 
     }
+
 }

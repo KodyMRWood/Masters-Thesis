@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
-
 //using Boo.Lang.Runtime;
 
 public class PluxDeviceManager
@@ -38,9 +36,9 @@ public class PluxDeviceManager
     [DllImport("plux_unity_interface")]
     private static extern int GetBattery();
     [DllImport("plux_unity_interface")]
-    private static extern void GetDetectableDevices(string domain);
+    private static extern System.IntPtr GetDetectableDevices(string domain);
     [DllImport("plux_unity_interface")]
-    private static extern void GetAllDetectableDevices();
+    private static extern System.IntPtr GetAllDetectableDevices();
     [DllImport("plux_unity_interface")]
     private static extern System.IntPtr GetDeviceType();
     [DllImport("plux_unity_interface")]
@@ -49,22 +47,15 @@ public class PluxDeviceManager
     // Delegates (needed for callback purposes).
     public delegate bool FPtr(int nSeq, int[] dataIn, int dataInSize);
     public delegate bool FPtrUnity(int exceptionCode, string exceptionDescription, int nSeq, IntPtr dataIn, int dataInSize);
-    public delegate void ScanResults(List<string> listDevices);
-    public delegate void ConnectionDone();
     //public delegate bool FPtrExceptions(int exceptionCode, string exceptionDescription);
 
     // [Generic Variables]
-    private Thread ScanningThread;
-    private Thread ConnectionThread;
-    private Thread AcquisitionThread;
-    private Thread MainThread;
-    private ScanResults ScanResultsCallback;
-    private ConnectionDone ConnectionDoneCallback;
-    private static Lazy<List<String>> PluxDevsFound = null;
-    private bool DeviceConnected = false;
-    private int SamplingRate;
-    private string ActiveChannelsStr = "";
-    private bool AcquisitionStopped = true;
+    public Thread AcquisitionThread;
+    public Thread MainThread;
+    public bool DeviceConnected = false;
+    public int SamplingRate;
+    public string ActiveChannelsStr = "";
+    public bool AcquisitionStopped = true;
     private static CallbackManager callbackPointer;
     //private BufferAcqSamples BufferedSamples = new BufferAcqSamples();
     private static Lazy<BufferAcqSamples> LazyObject = null;
@@ -73,30 +64,14 @@ public class PluxDeviceManager
     private int currThreadNumber = 0;
 
     // Contructor.
-    // scanResultsCallback -> Callback function that will be invoked once the Bluetooth scan for PLUX devices ends.
-    // connectionDoneCallback -> Callback function that will be invoked once a connection with a PLUX device is established.
-    public PluxDeviceManager(ScanResults scanResultsCallback, ConnectionDone connectionDoneCallback)
+    public PluxDeviceManager()
     {
         LazyObject = new Lazy<BufferAcqSamples>(InitBufferedSamplesObject);
-        PluxDevsFound = new Lazy<List<String>>(InitiListDevFound);
 
         // exceptionPointer -> Pointer to the callback function that will be used to send/communicate information about exceptions generated inside this .dll
         //                     The exception code and description will be sent to Unity where an appropriate action can take place.
         FPtrUnity dllCommunicationHandler = new FPtrUnity(DllCommunicationHandler);
         SetCommunicationHandler(dllCommunicationHandler);
-
-        // Scan callback.
-        this.ScanResultsCallback = new ScanResults(scanResultsCallback);
-
-        // On connection successful callback.
-        this.ConnectionDoneCallback = new ConnectionDone(connectionDoneCallback);
-
-        // Initialise helper object that manages threads creating during the scanning and connection processes.
-        var unitDispatcher = UnityThreadHelper.Dispatcher;
-
-        // Specification of the callback function (defined on this/the user Unity script) which will receive the acquired data
-        // samples as inputs.
-        SetCallbackHandler(CallbackHandler);
     }
 
     // [Redefinition of the imported methods ensuring that they are acessible on other scripts]
@@ -112,26 +87,13 @@ public class PluxDeviceManager
     // macAddress -> Device unique identifier, i.e., mac-address.
     public void PluxDev(string macAddress)
     {
-        Console.WriteLine("Scanning Thread State: " + ScanningThread.ThreadState);
         Console.WriteLine("Selected Device being received: " + macAddress);
-        
-        // Creation of new thread to manage the connection stage.
-        ConnectionThread = new Thread(() => ConnectToPluxDev(macAddress)); ;
-        ConnectionThread.Name = "CONNECTION_" + currThreadNumber;
-        currThreadNumber++;
-        ConnectionThread.Start();
-        Debug.Log("Connection Thread Started with Success !");
-    }
-
-    // Auxiliary method intended to establish a Bluetooth connection between the computer and PLUX device.
-    // macAddress -> Device unique identifier, i.e., mac-address.
-    private void ConnectToPluxDev(string macAddress)
-    {
         PluxDevUnity(macAddress);
         DeviceConnected = true;
 
-        // Send data (list of devices found) to the MAIN THREAD.
-        UnityThreadHelper.Dispatcher.Dispatch(() => ConnectionDoneCallback());
+        // Specification of the callback function (defined on this/the user Unity script) which will receive the acquired data
+        // samples as inputs.
+        SetCallbackHandler(CallbackHandler);
     }
 
     public void DisconnectPluxDev()
@@ -247,7 +209,7 @@ public class PluxDeviceManager
 
         // Start of acquisition.
         StartAcquisitionMuscleBan(samplingRate, ActiveChannelsStr, resolution, freqDivisor);
-        
+
         // Start Communication Loop.
         StartLoopUnity();
 
@@ -259,11 +221,10 @@ public class PluxDeviceManager
     private void StartLoopUnity()
     {
         // Storage of a reference to the main thread.
-
         if (MainThread == null)
         {
             MainThread = Thread.CurrentThread;
-            MainThread.Name = "MAIN";
+            //MainThread.Name = "MAIN";
         }
 
         // Creation of new thread to manage the communication loop.
@@ -362,7 +323,7 @@ public class PluxDeviceManager
                         int[] dataArray = new int[dataInSize];
                         Marshal.Copy(data, dataArray, 0, dataInSize);
 
-                        callbackPointer.GetCallbackRef()(nSeq , dataArray, dataInSize);
+                        callbackPointer.GetCallbackRef()(nSeq, dataArray, dataInSize);
                     }
                     catch (OutOfMemoryException exception)
                     {
@@ -373,13 +334,6 @@ public class PluxDeviceManager
                             Debug.Log("Executing preventive approaches to deal with a potential OutOfMemoryException:\n" + exception.StackTrace);
                         }
                     }
-                }
-                else if (exceptionCode == 777) // Receiving devices found during scan.
-                {
-                    // Store list of found devices in a global variable shared between threads.
-                    Debug.Log("Receiving Device: " + exceptionDescription);
-                    List<String> devicesFound = PluxDevsFound.Value;
-                    devicesFound.Add(exceptionDescription);
                 }
                 else
                 {
@@ -434,7 +388,7 @@ public class PluxDeviceManager
     // Method dedicated to stop the real-time acquisition.
     // forceStop -> An identifier that specify when the stop command was voluntarily sent by the user (>=0) or forced  by an event or exception (-1, -2...).
     // RETURN (bool): A flag identifying when the acquisition was stopped in a forced way (true) or triggered by the user (false).
-    public bool StopAcquisitionUnity(int forceStop=0)
+    public bool StopAcquisitionUnity(int forceStop = 0)
     {
         // Returned variable.
         bool forceFlag = false;
@@ -500,47 +454,35 @@ public class PluxDeviceManager
     // Class method intended to find the list of detectable devices through Bluetooth communication.
     // domains -> Array of strings that defines which domains will be used while searching for PLUX devices 
     //            [Valid Options: "BTH" -> classic Bluetooth; "BLE" -> Bluetooth Low Energy; "USB" -> Through USB connection cable]
-    public void GetDetectableDevicesUnity(List<string> domains)
+    public List<string> GetDetectableDevicesUnity(List<string> domains)
     {
-        // Creation of new thread to manage the scanning stage.
-        ScanningThread = new Thread(() => ScanPluxDevs(domains)); ;
-        ScanningThread.Name = "SCANNING_" + currThreadNumber;
-        currThreadNumber++;
-        ScanningThread.Start();
-        Debug.Log("Scanning Thread Started with Success !");
-    }
+        // Specification of the callback function (defined on this/the user Unity script) which will receive the acquired data
+        // samples as inputs.
+        //SetExceptionHandler(ExceptionHandler);
 
-    // Auxiliary function that manages the scanning process.
-    // domains -> Array of strings that defines which domains will be used while searching for PLUX devices 
-    //            [Valid Options: "BTH" -> classic Bluetooth; "BLE" -> Bluetooth Low Energy; "USB" -> Through USB connection cable]
-    private void ScanPluxDevs(List<string> domains)
-    {
-        try
+
+        // Search for BLE and BTH devices.
+        List<string> listDevices = new List<string>();
+        for (int domainNbr = 0; domainNbr < domains.Count; domainNbr++)
         {
-            // Search for BLE and BTH devices.
-            List<string> listDevices = new List<string>();
-            List<String> devicesFound = PluxDevsFound.Value;
+            // List of available Devices.
+            System.IntPtr listDevicesByDomain = GetDetectableDevices(domains[domainNbr]);
+            List<System.IntPtr> listDevicesByType = new List<IntPtr>() { listDevicesByDomain };
 
-            // Clear previous content of the device list.
-            devicesFound.Clear();
-            for (int domainNbr = 0; domainNbr < domains.Count; domainNbr++)
+            for (int k = 0; k < listDevicesByType.Count; k++)
             {
-                // List of available Devices.
-                GetDetectableDevices(domains[domainNbr]);
-            }
+                // Convert listDevices (in a String format) to an array.
+                string[] tempListDevices = Marshal.PtrToStringAnsi(listDevicesByType[k]).Split('&');
 
-            // Send data (list of devices found) to the MAIN THREAD.
-            UnityThreadHelper.Dispatcher.Dispatch(() => ScanResultsCallback(devicesFound));
-        }
-        catch (ExecutionEngineException exc)
-        {
-            Debug.Log("Exception found while scanning: \n" + exc.Message + "\n" + exc.StackTrace);
-            BufferAcqSamples bufferedSamples = LazyObject.Value;
-            lock (bufferedSamples)
-            {
-                bufferedSamples.actUncaughtException();
+                // Add elements to the returnable list.
+                for (int i = 0; i < tempListDevices.Length - 1; i++)
+                {
+                    listDevices.Add(tempListDevices[i]);
+                }
             }
         }
+
+        return listDevices;
     }
 
     // Definition of the callback function responsible for managing the acquired data (which is defined on users Unity script).
@@ -620,7 +562,7 @@ public class PluxDeviceManager
         // nSeq -> Sequence number that univocally identifies the package.
         // newPackage -> Package of data to be added to the memory data structure of this object.
         public void addSamples(int nSeq, int[] newPackage)
-        {  
+        {
             // Check if the new package of data is the valid one, i.e., if it is the one immediately after the last received package.
             if (nSeq <= lastNSeq || nSeq > lastNSeq + 1)
             {
@@ -630,7 +572,7 @@ public class PluxDeviceManager
             {
                 lastNSeq = nSeq;
             }
-            
+
             // Reboot buffer if the controlling flag is true.
             if (rebootOnNextPackage)
             {
@@ -680,7 +622,7 @@ public class PluxDeviceManager
         {
             comCounter--;
         }
-           
+
         // Method used to reboot the object memory.
         public void reboot()
         {
@@ -762,11 +704,5 @@ public class PluxDeviceManager
     {
         BufferAcqSamples lazyComponent = new BufferAcqSamples();
         return lazyComponent;
-    }
-
-    static List<String> InitiListDevFound()
-    {
-        List<String> devFound = new List<string>();
-        return devFound;
     }
 }

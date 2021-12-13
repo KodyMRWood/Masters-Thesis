@@ -27,7 +27,7 @@ public class StateMachine : MonoBehaviour
 
     public void AdaptSimulation (float stateScore)
     {
-        if (stateScore <= -1)
+        if (stateScore <= -1 && difficulty != Difficulty.HARD)
         {
             //If the score is negative than the majority of the physiological metrics decreased, thus the simulation must become more difficult 
             difficulty++;
@@ -36,10 +36,12 @@ public class StateMachine : MonoBehaviour
         {
             //Difficulty stays the same. Only here for completion
         }
-        else if (stateScore >= 1)
+        else if (stateScore >= 1 && difficulty != Difficulty.EASY)
         {
             //If the score is negative than the majority of the physiological metrics decreased, thus the simulation must become easier 
             difficulty--;
         }
+
+        Debug.Log(difficulty + " " + stateScore);
     }
 }

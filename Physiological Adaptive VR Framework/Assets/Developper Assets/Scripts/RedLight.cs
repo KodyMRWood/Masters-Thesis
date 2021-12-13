@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RedLight : MonoBehaviour
 {
+    public EventManager eventManager;
     public Light pointLight;
     public Light spotLight1;
     public Light spotLight2;
@@ -21,40 +22,50 @@ public class RedLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Rotate(this.transform.up * (spinRate * Time.deltaTime));
 
-        if (isFlashing)
+        if (eventManager.currentTask == EventManager.Task.TASK)
         {
-            if (isOn)
+            if (isFlashing)
             {
-                spotLight1.intensity -= flashRate * Time.deltaTime;
-                spotLight2.intensity -= flashRate * Time.deltaTime;
-                pointLight.intensity -= flashRate * Time.deltaTime;
-                if (pointLight.intensity <= 0.0f)
+                if (isOn)
                 {
-                    isOn = false;
-                }
+                    spotLight1.intensity -= flashRate * Time.deltaTime;
+                    spotLight2.intensity -= flashRate * Time.deltaTime;
+                    pointLight.intensity -= flashRate * Time.deltaTime;
+                    if (pointLight.intensity <= 0.1f)
+                    {
+                        isOn = false;
+                    }
 
+                }
+                else
+                {
+                    spotLight1.intensity += flashRate * Time.deltaTime;
+                    spotLight2.intensity += flashRate * Time.deltaTime;
+                    pointLight.intensity += flashRate * Time.deltaTime;
+                    if (pointLight.intensity >= 1.0f)
+                    {
+                        isOn = true;
+                    }
+                }
             }
             else
             {
-                spotLight1.intensity += flashRate * Time.deltaTime;
-                spotLight2.intensity += flashRate * Time.deltaTime;
-                pointLight.intensity += flashRate * Time.deltaTime;
-                if (pointLight.intensity >= 1.0f)
+                if (pointLight.intensity <= 1.0f)
                 {
-                    isOn = true;
+                    spotLight1.intensity += flashRate * Time.deltaTime;
+                    spotLight2.intensity += flashRate * Time.deltaTime;
+                    pointLight.intensity += flashRate * Time.deltaTime;
                 }
             }
+            //Make the red light rotate
+            this.transform.Rotate(0, (spinRate * Time.deltaTime), 0, Space.Self);
         }
         else
         {
-            if (pointLight.intensity <= 1.0f)
-            {
-                spotLight1.intensity += flashRate * Time.deltaTime;
-                spotLight2.intensity += flashRate * Time.deltaTime;
-                pointLight.intensity += flashRate * Time.deltaTime;
-            }
+            spotLight1.intensity =0.0f;
+            spotLight2.intensity =0.0f;
+            pointLight.intensity = 0.0f;
         }
     }
 

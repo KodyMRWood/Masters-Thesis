@@ -130,7 +130,7 @@ namespace VRUsability
         {
             StartTracking(); // Begin logging data
             Debug.Log("Dose: " + dose.gameObject.GetComponent<Controller>().totalPlayerDosage);
-            Debug.Log("Time: " + timer.gameObject.GetComponent<Event_Mananger_Script>().trainingTimer);
+            //Debug.Log("Time: " + timer.gameObject.GetComponent<Event_Mananger_Script>().trainingTimer);
             TutorialFunction(0); // Reset the tutorial
         }
 
@@ -342,7 +342,7 @@ namespace VRUsability
                         {
                             "Dose time,Accumulated Dose, Time Taken",
                             string.Format("Amount of total dose user obtained while searching for the source (severts),{0}", dose.GetComponent<Controller>().totalPlayerDosage.ToString("F6")),
-                            string.Format("The time it took the user to complete the training (Secs),{0}",timer.GetComponent<Event_Mananger_Script>().trainingTimer.ToString("F3")),
+                            "Timer Commented Out"//string.Format("The time it took the user to complete the training (Secs),{0}",timer.GetComponent<Event_Mananger_Script>().trainingTimer.ToString("F3")),
                         }
                     );
                     
