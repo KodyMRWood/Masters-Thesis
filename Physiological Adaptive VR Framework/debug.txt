@@ -1,7 +1,4 @@
-Waiting on threads to park on joinable thread list timed out.
-rs-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
-Waiting on threads to park on joinable thread list timed out.
-rs-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 [OVRPlugin][INFO] Initializing system...[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
   Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
@@ -19,6 +16,8 @@ Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiol
     Class Id: 0xb00b00067332ab1, class Name: OVRExtensionAddition
       Interface Id: 0xb00b00053345520
     Class Id: 0x2a70ed34760b552e, class Name: ServiceTrexManagerImplementation
+      Interface Id: 0xae0b8a9331378a85
+    Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dlln
       Interface Id: 0xae0b8a9331378a85
     Class Id: 0xaf0a819a96974952, class[OVRPlugin][INFO] LibOVR module is located at D:\Oculus\Support\oculus-runtime\LibOVRRT64_1.dll[OVRPlugin][INFO] Connected to the server running version (prod = 1).1.67.0(build = 0) feature version = 0. Client runs version (prod = 1).1.67.0(build = 0) feature version = 0ageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll

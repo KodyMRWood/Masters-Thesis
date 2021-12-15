@@ -29,6 +29,10 @@ public class EventManager : MonoBehaviour
     private bool doneBaseline = false;
     public bool DoneBaseline { get => doneBaseline; set => doneBaseline = value; }
 
+    //Counter for all the source that have been found
+    private int sourcesScanned = 0;
+    public int SourcesScanned { get => sourcesScanned; set => sourcesScanned = value; }
+
 
 
     //Radioactive Variables
@@ -41,10 +45,9 @@ public class EventManager : MonoBehaviour
     //Lights Variable
     public Light[] DirectionalLight;
     private float dimRate = 1.0f;
+
+
     //-------- Private variables--------
-
-
-
 
     //Variable to know if the task just switched
     private Task lastTask = Task.FREEROAM;
@@ -134,11 +137,11 @@ public class EventManager : MonoBehaviour
                     //The tasks that need to be completed is have the geiger counter picked up and the testing of the source. The testing will be holding the gieger close to the source for 10 seconds or so\
                     if (geiger.GetComponent<GeigerController>().pickedUp){
 
-                        HUDController.manager.SetHUDText("Scan the radioactive source and hold the Geiger close to it for 5 seconds");
+                        HUDController.hudText.SetHUDText("Scan the radioactive source and hold the Geiger close to it for 5 seconds");
                     }
                     else
                     {
-                        HUDController.manager.SetHUDText("Find the Geiger Counter");
+                        HUDController.hudText.SetHUDText("Find the Geiger Counter");
                     }
                     if (geiger.GetComponent<GeigerController>().pickedUp && tutorialSource.GetComponent<SourceTrigger>().DoneDetecting)
                     {
@@ -153,7 +156,7 @@ public class EventManager : MonoBehaviour
                     //That way it doesnt do any unnecessary computations
                     if(lastTask != Task.TASK)
                     { 
-                        HUDController.manager.SetHUDText("There is a radioactive source in the lab. Find and scan it. *Careful* there are fakes.");
+                        //HUDController.hudText.SetHUDText("There is a radioactive source in the lab. Find and scan it. *Careful* there are fakes.");
                         //Activate all sources
                         if(isFirstRun)
                         {
@@ -191,6 +194,7 @@ public class EventManager : MonoBehaviour
                         lastTask = Task.TASK;
                     }
 
+
                     if(this.GetComponent<StateMachine>().difficulty == StateMachine.Difficulty.EASY)
                     {
 
@@ -203,19 +207,32 @@ public class EventManager : MonoBehaviour
                     {
 
                     }
-                    
-                    if (sources[2].GetComponent<SourceTrigger>().DoneDetecting)
+
+                    //Only if looking for a specific source
+                    //if (sources[2].GetComponent<SourceTrigger>().DoneDetecting)
+                    //{
+                    //    //They have found the right source
+                    //    currentTask++;
+                    //}
+                    //
+
+                    if (SourcesScanned == 5)
                     {
-                        //They have found the right source
+                        //They have all source
                         currentTask++;
                     }
 
+                    HUDController.hudText.SetHUDText("Please find all the sources.");
+                    HUDController.hudText.SetCounterText("Sources Found: " + SourcesScanned + "/5");
+
                     break;
                 }
+
+
             case Task.END:
                 {
-
                     //Put up some sort of UI to tell them that they have completed the simulation and they can remove them headset to complete the survey
+                    HUDController.hudText.SetHUDText("Congratulations, you have found all the source. Please pick which on your think is the real one.");
                     break;
 
                 }

@@ -8,25 +8,38 @@ namespace Thesis.HUD
     public class HUDController : MonoBehaviour
     {
         //Singleton?
-        public static HUDController manager;//**
+        public static HUDController hudText;//**
+        //public static HUDController counterText;
 
         //Properties
-        public TextMeshProUGUI text;
+        [SerializeField]private TextMeshProUGUI text;
         public TextMeshProUGUI Text
         {
             get => text;
             set => text = value;
         }
 
+        [SerializeField] private TextMeshProUGUI counter;
+        public TextMeshProUGUI Counter
+        {
+            get => counter;
+            set => counter = value;
+        }
+
         private void Awake()
         {
-            manager = this;//**
-            text = this.GetComponentInChildren<TextMeshProUGUI>();
+            hudText = this;//**
+            //text = this.GetComponentInChildren<TextMeshProUGUI>();
         }
 
         public void SetHUDText (string newText)
         {
             Text.text = newText; 
+        }
+
+        public void SetCounterText(string newText)
+        {
+            Counter.text = newText;
         }
     }
 }
