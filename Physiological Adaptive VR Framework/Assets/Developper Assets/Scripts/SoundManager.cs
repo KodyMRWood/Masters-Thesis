@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     private static SoundManager _instance;
     public static SoundManager Instance { get { return _instance; } }
 
+    private static AudioSource source;
 
     //---Private Variables---
     DifficultyCalculator Calculator;
@@ -28,7 +29,7 @@ public class SoundManager : MonoBehaviour
         //Determine if it is a the only one in the scene. 
         //If it is not the only one in the scene when loading from another scene. Destroy the non persisting instance of object
 
-        if (_instance == null)
+        if (_instance != null)
         {
             Destroy(gameObject);
         }
@@ -37,12 +38,15 @@ public class SoundManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
+
+        source = this.GetComponentInChildren<AudioSource>();
+
+}
 
     // Update is called once per frame
     void Update()
     {
-
+        ChangeSound();
     }
 
     private void ChangeSound()
@@ -53,16 +57,24 @@ public class SoundManager : MonoBehaviour
                 //This will be easy,
                 //Helpful audio: Loud
                 //Not Helpful: Off
+
+                source.volume = 0.05f;
+                source.pitch = 0.5f;
+
                 break;
             case Difficulty.MEDIUM:
                 //This will be medium,
                 //Helpful audio: Middle, LessFrequent
                 //Not Helpful: Middle, Slower Pace
+                source.volume = 0.1f;
+                source.pitch = 0.65f;
                 break;
             case Difficulty.HARD:
                 //This will be Hard,
                 //Helpful audio: Off
                 //Not Helpful: Loud, Faster
+                source.volume = 0.15f;
+                source.pitch = 0.8f;
                 break;
             default:
                 break;

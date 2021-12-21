@@ -130,7 +130,7 @@ public class EventManager : MonoBehaviour
                     {
                         //Start tutorial
                         
-                            lastTask = Task.TUTORIAL;
+                        lastTask = Task.TUTORIAL;
                     }
                     
                     //Check to see if all the required tasks are complete. If they, switch to the next task

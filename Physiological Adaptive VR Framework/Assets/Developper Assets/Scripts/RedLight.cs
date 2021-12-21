@@ -5,6 +5,7 @@ using UnityEngine;
 public class RedLight : MonoBehaviour
 {
     public EventManager eventManager;
+    public StateMachine stateMachine;
     public Light pointLight;
     public Light spotLight1;
     public Light spotLight2;
@@ -67,10 +68,26 @@ public class RedLight : MonoBehaviour
             spotLight2.intensity =0.0f;
             pointLight.intensity = 0.0f;
         }
+
+        Adapt();
     }
 
     public void Adapt ()
     {
-
+        if (stateMachine.difficulty == StateMachine.Difficulty.EASY )
+        {
+            flashRate = 0.25f;
+            spinRate = 20.0f;
+        }
+        else if (stateMachine.difficulty == StateMachine.Difficulty.MEDIUM)
+        {
+            flashRate = 0.5f;
+            spinRate = 50.0f;
+        }
+        else if (stateMachine.difficulty == StateMachine.Difficulty.HARD)
+        {
+            flashRate = 2.0f;
+            spinRate = 100.0f;
+        }
     }
 }
