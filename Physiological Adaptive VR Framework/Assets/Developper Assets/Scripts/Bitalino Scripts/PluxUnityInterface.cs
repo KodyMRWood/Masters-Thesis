@@ -303,7 +303,7 @@ namespace Assets.Scripts
                             ECGHR = "";
                             EDAData = "";
                             eventManager.GetComponent<EventManager>().isFirstRecording = false;
-                            eventManager.GetComponent<EventManager>().DoneBaseline = false;
+                            eventManager.GetComponent<EventManager>().DoneBaseline = true;
                         }
                         else
                         {
@@ -323,6 +323,7 @@ namespace Assets.Scripts
                             EDADataCalc.Clear();
                             ECGDataCalc.Clear();
                             ECGDataHRCalc.Clear();
+                            eventManager.GetComponent<EventManager>().recordMetrics = false;
                         }
 
                         // Stop recording

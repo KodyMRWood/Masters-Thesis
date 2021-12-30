@@ -125,7 +125,7 @@ public class GeigerController : DoseBody {
             active = true;
             //Play active sound, change color, turn on text mesh
             meshRendererStatusSphere.material.SetColor("_Color", Color.green);
-            collider.enabled = false; //Disabling the colliders since most people will put the geiger counter close to the source, and it'll launch it in the air
+            //collider.enabled = false; //Disabling the colliders since most people will put the geiger counter close to the source, and it'll launch it in the air
 
         }
         else
@@ -133,7 +133,7 @@ public class GeigerController : DoseBody {
             pickedUp = false;
             active = false;
             meshRendererStatusSphere.material.SetColor("_Color", Color.black);
-            collider.enabled = true;
+            //collider.enabled = true;
 
         }
 

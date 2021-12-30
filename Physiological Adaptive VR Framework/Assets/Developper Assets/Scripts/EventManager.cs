@@ -99,12 +99,14 @@ public class EventManager : MonoBehaviour
                     {
                         //Make Baseline start
                         //Make it so that the the player is in a place where they cant do anything that might affect the 
+                        recordBaseline = true;
                         lastTask = Task.BASELINE;
                     }
 
 
                     if (isStarted)
                     {
+                        HUDController.hudText.SetHUDText("Please stay as still as possible and relax");
                         //recordBaseline = true;
                         if(DirectionalLight[0].intensity >= 0.0f)
                         {
@@ -129,10 +131,16 @@ public class EventManager : MonoBehaviour
                     if (lastTask != Task.TUTORIAL)
                     {
                         //Start tutorial
-                        
+                        recordBaseline = false;
                         lastTask = Task.TUTORIAL;
                     }
-                    
+                    if (DirectionalLight[0].intensity <= 1.0f)
+                    {
+                        for (int l = 0; l < DirectionalLight.Length - 1; l++)
+                        {
+                            DirectionalLight[l].intensity += dimRate * Time.deltaTime;
+                        }
+                    }
                     //Check to see if all the required tasks are complete. If they, switch to the next task
                     //The tasks that need to be completed is have the geiger counter picked up and the testing of the source. The testing will be holding the gieger close to the source for 10 seconds or so\
                     if (geiger.GetComponent<GeigerController>().pickedUp){
@@ -173,7 +181,7 @@ public class EventManager : MonoBehaviour
 
 
                             //Make the 3rd source the "Real" source
-                            sources[2].GetComponent<SourceTrigger>().IsRealSource = true;
+                            //sources[2].GetComponent<SourceTrigger>().IsRealSource = true;
                         }
                         else if (!isFirstRun)
                         {
@@ -189,7 +197,7 @@ public class EventManager : MonoBehaviour
                             //sources[index].SetActive(true);
 
                             //Make the 3rd source the "Real" source
-                            sources[2].GetComponent<SourceTrigger>().IsRealSource = true;
+                            //sources[2].GetComponent<SourceTrigger>().IsRealSource = true;
                         }
                         lastTask = Task.TASK;
                     }
@@ -221,6 +229,11 @@ public class EventManager : MonoBehaviour
                         //They have all source
                         currentTask++;
                     }
+                    
+                    if(recordMetrics)
+                    {
+                        StartCoroutine(TimerToNextRecording());
+                    }
 
                     HUDController.hudText.SetHUDText("Please find all the sources.");
                     HUDController.hudText.SetCounterText("Sources Found: " + SourcesScanned + "/5");
@@ -237,6 +250,13 @@ public class EventManager : MonoBehaviour
 
                 }
 
+        }
+
+        IEnumerator TimerToNextRecording()
+        {
+            //How often we sould sample the physiological metrics
+            yield return new WaitForSeconds(60.0f);
+            recordMetrics = true;
         }
     }
 
