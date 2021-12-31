@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoseController : MonoBehaviour {
 
-    //public GameObject eventManager;
+    public GameObject eventManager;
 
     public bool applyCorrectionCode = false;
     private Dictionary<string , Dictionary<float , float>> attenConstants = new Dictionary<string , Dictionary<float , float>>();
@@ -45,6 +45,7 @@ public class DoseController : MonoBehaviour {
         List<Source> sources = getSources();
         List<Shield> shields = getShields();
         List<DoseBody> doseBodies = getDoseBodies();
+        Debug.Log(doseBodies[0].name);
         
         foreach ( DoseBody body in doseBodies ) {
 
@@ -54,16 +55,16 @@ public class DoseController : MonoBehaviour {
             float countRate = rates[ 0 ];
             body.setCountRate(countRate);
             //If they are training dose will go up
-            //if (eventManager.gameObject.GetComponent<Event_Mananger_Script>().startTraining)
-            //{
-            //    float doseRate = rates[ 1 ];
-            //    body.setDoseRate(doseRate);
-            //}
-            ////Or it will stay at zero or the number after they have completed the training
-            //else if (!eventManager.gameObject.GetComponent<Event_Mananger_Script>().startTraining)
-            //{
-            //    body.setDoseRate(0.0f);
-            //}
+            if (eventManager.gameObject.GetComponent<EventManager>().currentTask == EventManager.Task.TASK)
+            {
+                float doseRate = rates[ 1 ];
+                body.setDoseRate(doseRate);
+            }
+            //Or it will stay at zero or the number after they have completed the training
+            else if (eventManager.gameObject.GetComponent<EventManager>().currentTask != EventManager.Task.TASK)
+            {
+                body.setDoseRate(0.0f);
+            }
 
 
         }

@@ -87,19 +87,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6672601071832702016}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa2a0e8cd8b47dc41a998e3fa8262f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Bitalino: {fileID: 0}
-  MultiThreadSubList: 
   sigDiffEDA: 0
   sigDiffECG: 0
   sigDiffHR: 0
-  weightPerChannel:
-  - 0.5
-  - 0.5
   baseLineEMG: []
   baseLineEDA: []
   baseLineECG: []
@@ -121,9 +117,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   task: 0
+  geiger: {fileID: 0}
   currentTask: 0
-  sourcesFound: 0
-  isFirstRun: 1
+  isConnected: 0
+  isStarted: 0
+  recordBaseline: 0
+  recordMetrics: 0
+  isFirstRecording: 1
+  isFirstRun: 0
+  sourceSet1: {fileID: 0}
+  sourceSet2: {fileID: 0}
+  sources: []
+  tutorialSource: {fileID: 0}
+  DirectionalLight:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1039627783095178274
 MonoBehaviour:
   m_ObjectHideFlags: 0

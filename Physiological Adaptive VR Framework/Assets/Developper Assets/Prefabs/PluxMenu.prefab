@@ -184,8 +184,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -352.4, y: -303.4}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 173.1, y: -299.6}
+  m_SizeDelta: {x: 165.91, y: 152.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6015889072981159386
 CanvasRenderer:
@@ -217,11 +217,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 46
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -6925,7 +6925,7 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0, b: 0, a: 0}
   HRText: {fileID: 6015889072981159385}
   UpdatePlotFlag2: 0
-  recordTime: 10000
+  recordTime: 30
   recordTimer: 0
   eventManager: {fileID: 0}
 --- !u!1 &6015889074256044891

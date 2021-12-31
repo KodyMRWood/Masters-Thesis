@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2399155098929055436}
   - component: {fileID: 2399155098929055439}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: TestUIEventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayTransform: {fileID: 0}
   m_Cursor: {fileID: 0}
-  joyPadClickButton: 1
+  joyPadClickButton: 8192
   gazeClickKey: 32
   performSphereCastForGazepointer: 1
   useRightStickScroll: 1

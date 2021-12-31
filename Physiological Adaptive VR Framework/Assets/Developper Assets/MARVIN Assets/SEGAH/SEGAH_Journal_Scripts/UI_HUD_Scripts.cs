@@ -37,7 +37,7 @@ public class UI_HUD_Scripts : MonoBehaviour
         //{
         //    Timer.text = "Timer: Training not started.";
         //}
-        //Dose.text = "Dose: " + this.gameObject.GetComponent<Controller>().totalPlayerDosage.ToString();
+        Dose.text = "Dose: " + this.gameObject.GetComponent<Controller>().totalPlayerDosage.ToString();
         //Objective.text = "Objective: " + eventManager.gameObject.GetComponent<Event_Mananger_Script>().objective;
     }
 }

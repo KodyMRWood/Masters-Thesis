@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3710908223886174581}
   - component: {fileID: 3710908223886174583}
   - component: {fileID: 3710908223886174582}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TextMeshHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3710908224039769109}
   - component: {fileID: 3710908224039769108}
   - component: {fileID: 3710908224039769131}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StatusSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 3710908224407056096}
   - component: {fileID: 3710908224408383174}
   - component: {fileID: 3710908224409349126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Material
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 3710908224407089861}
   - component: {fileID: 3710908224407089857}
   - component: {fileID: 959482391}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GeigerTool
   m_TagString: Geiger
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 3710908224407056102}
   - component: {fileID: 3710908224408383172}
   - component: {fileID: 3710908224409349124}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: giger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,6 +716,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3710908224407056100}
     m_Modifications:
+    - target: {fileID: 1833572271378951626, guid: 9cfdf1d5613cfc5449b002b869eb83ca, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1833572271498397764, guid: 9cfdf1d5613cfc5449b002b869eb83ca, type: 3}
       propertyPath: m_Name
       value: SeGAH_UI_Geiger
@@ -723,6 +727,10 @@ PrefabInstance:
     - target: {fileID: 1833572271498397764, guid: 9cfdf1d5613cfc5449b002b869eb83ca, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833572271498397764, guid: 9cfdf1d5613cfc5449b002b869eb83ca, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1833572271498397767, guid: 9cfdf1d5613cfc5449b002b869eb83ca, type: 3}
       propertyPath: m_LocalPosition.x

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Thesis.HUD;
+using UnityEngine.XR;
 
 public class EventManager : MonoBehaviour
 {
@@ -54,8 +55,10 @@ public class EventManager : MonoBehaviour
     //-------- Other variables--------
     // Start is called before the first frame update
     void Start()
-    { 
-
+    {
+       
+        //XRDevice.SetTrackingSpaceType(TrackingSpaceType.RoomScale);
+        
     }
 
     // Update is called once per frame
