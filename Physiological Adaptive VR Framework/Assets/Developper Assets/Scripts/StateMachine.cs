@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿///
+/// Responsible for changing the difficulty of the simulation. 
+///
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

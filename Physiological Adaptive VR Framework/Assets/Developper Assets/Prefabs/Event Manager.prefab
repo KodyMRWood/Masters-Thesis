@@ -118,13 +118,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   task: 0
   geiger: {fileID: 0}
-  currentTask: 0
+  currentTask: 2
   isConnected: 0
   isStarted: 0
   recordBaseline: 0
   recordMetrics: 0
   isFirstRecording: 1
-  isFirstRun: 0
+  isFirstRun: 1
   sourceSet1: {fileID: 0}
   sourceSet2: {fileID: 0}
   sources: []

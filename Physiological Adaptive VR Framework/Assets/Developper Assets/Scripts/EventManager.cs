@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Thesis.HUD;
+using Thesis.Sound;
 using UnityEngine.XR;
 
 public class EventManager : MonoBehaviour
@@ -52,12 +53,14 @@ public class EventManager : MonoBehaviour
 
     //Variable to know if the task just switched
     private Task lastTask = Task.FREEROAM;
+
+    private StateMachine.Difficulty m_difficulty = StateMachine.Difficulty.MEDIUM;
     //-------- Other variables--------
     // Start is called before the first frame update
     void Start()
     {
        
-        //XRDevice.SetTrackingSpaceType(TrackingSpaceType.RoomScale);
+       
         
     }
 
@@ -165,6 +168,7 @@ public class EventManager : MonoBehaviour
                     Debug.Log("TASK1");
                     //All initial variables that need to be set when first switching to the stage
                     //That way it doesnt do any unnecessary computations
+                    tutorialSource.gameObject.SetActive(false);
                     if(lastTask != Task.TASK)
                     { 
                         //HUDController.hudText.SetHUDText("There is a radioactive source in the lab. Find and scan it. *Careful* there are fakes.");
@@ -202,21 +206,48 @@ public class EventManager : MonoBehaviour
                             //Make the 3rd source the "Real" source
                             //sources[2].GetComponent<SourceTrigger>().IsRealSource = true;
                         }
+                        SoundManager.instance.PlaySound();
                         lastTask = Task.TASK;
                     }
 
-
-                    if(this.GetComponent<StateMachine>().difficulty == StateMachine.Difficulty.EASY)
+                    //Reset counter to count if all sources have been found
+                    SourcesScanned=0;
+                    for (int x = 0; x < sources.Count-1; x++)
                     {
-
+                        Debug.Log("Checking if Done triggering");
+                        if(sources[x].GetComponent<SourceTrigger>().DoneDetecting)
+                        {
+                            Debug.Log("triggering");
+                            SourcesScanned++;
+                        }
                     }
-                    else if(this.GetComponent<StateMachine>().difficulty == StateMachine.Difficulty.MEDIUM)
-                    {
 
+
+                    if (SourcesScanned == 5)
+                    {
+                        //They have all source
+                        currentTask++;
                     }
-                    else if (this.GetComponent<StateMachine>().difficulty == StateMachine.Difficulty.HARD)
+                    if (recordMetrics)
                     {
+                        StartCoroutine(TimerToNextRecording());
+                    }
 
+
+                    m_difficulty = this.GetComponent<StateMachine>().difficulty;
+
+
+                    if (m_difficulty == StateMachine.Difficulty.EASY)
+                    {
+                        SoundManager.instance.ChangeSound(m_difficulty);
+                    }
+                    else if(m_difficulty == StateMachine.Difficulty.MEDIUM)
+                    {
+                        SoundManager.instance.ChangeSound(m_difficulty);
+                    }
+                    else if (m_difficulty == StateMachine.Difficulty.HARD)
+                    {
+                        SoundManager.instance.ChangeSound(m_difficulty);
                     }
 
                     //Only if looking for a specific source
@@ -227,16 +258,7 @@ public class EventManager : MonoBehaviour
                     //}
                     //
 
-                    if (SourcesScanned == 5)
-                    {
-                        //They have all source
-                        currentTask++;
-                    }
                     
-                    if(recordMetrics)
-                    {
-                        StartCoroutine(TimerToNextRecording());
-                    }
 
                     HUDController.hudText.SetHUDText("Please find all the sources.");
                     HUDController.hudText.SetCounterText("Sources Found: " + SourcesScanned + "/5");

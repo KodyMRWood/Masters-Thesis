@@ -2,82 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+namespace Thesis.Sound
 {
-    //Instance held through scenes
-    private static SoundManager _instance;
-    public static SoundManager Instance { get { return _instance; } }
-
-    private static AudioSource source;
-
-    //---Private Variables---
-    DifficultyCalculator Calculator;
-
-    //Place holder variable
-    public enum Difficulty
+    public class SoundManager : MonoBehaviour
     {
-        EASY = 1,
-        MEDIUM = 2,
-        HARD = 3
-    };
-    public Difficulty diff;
+        //Instance held through scenes
+        public static SoundManager instance;
+        
+
+        private static AudioSource source;
+
+        //---Private Variables---
+        DifficultyCalculator Calculator;
+
+        //Place holder variable
+        //public enum Difficulty
+        //{
+        //    EASY = 1,
+        //    MEDIUM = 2,
+        //    HARD = 3
+        //};
+        //public Difficulty diff;
 
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        //Determine if it is a the only one in the scene. 
-        //If it is not the only one in the scene when loading from another scene. Destroy the non persisting instance of object
-
-        if (_instance != null)
+        // Start is called before the first frame update
+        void Awake()
         {
-            Destroy(gameObject);
+            //Determine if it is a the only one in the scene. 
+            //If it is not the only one in the scene when loading from another scene. Destroy the non persisting instance of object
+
+            if (instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+
+            source = this.GetComponentInChildren<AudioSource>();
+
         }
-        else
+
+        // Update is called once per frame
+        void Update()
         {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
+
         }
-
-        source = this.GetComponentInChildren<AudioSource>();
-
-}
-
-    // Update is called once per frame
-    void Update()
-    {
-        ChangeSound();
-    }
-
-    private void ChangeSound()
-    {
-        switch(diff)
+        public void PlaySound()
         {
-            case Difficulty.EASY:
-                //This will be easy,
-                //Helpful audio: Loud
-                //Not Helpful: Off
+            source.Play();
+        }
+        public void StopSound()
+        {
+            source.Stop();
+        }
+        public void ChangeSound( StateMachine.Difficulty diff )
+        {
+            switch (diff)
+            {
+                case StateMachine.Difficulty.EASY:
+                    //This will be easy,
+                    //Helpful audio: Loud
+                    //Not Helpful: Off
 
-                source.volume = 0.05f;
-                source.pitch = 0.5f;
+                    source.volume = 0.05f;
+                    source.pitch = 0.5f;
 
-                break;
-            case Difficulty.MEDIUM:
-                //This will be medium,
-                //Helpful audio: Middle, LessFrequent
-                //Not Helpful: Middle, Slower Pace
-                source.volume = 0.1f;
-                source.pitch = 0.65f;
-                break;
-            case Difficulty.HARD:
-                //This will be Hard,
-                //Helpful audio: Off
-                //Not Helpful: Loud, Faster
-                source.volume = 0.15f;
-                source.pitch = 0.8f;
-                break;
-            default:
-                break;
+                    break;
+                case StateMachine.Difficulty.MEDIUM:
+                    //This will be medium,
+                    //Helpful audio: Middle, LessFrequent
+                    //Not Helpful: Middle, Slower Pace
+                    source.volume = 0.1f;
+                    source.pitch = 0.65f;
+                    break;
+                case StateMachine.Difficulty.HARD:
+                    //This will be Hard,
+                    //Helpful audio: Off
+                    //Not Helpful: Loud, Faster
+                    source.volume = 0.15f;
+                    source.pitch = 0.8f;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

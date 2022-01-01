@@ -16,7 +16,7 @@ public class SourceTrigger : MonoBehaviour
         set => isRealSource = value;
     }
 
-    private bool doneDetecting = false;
+    [SerializeField]private bool doneDetecting = false;
     public bool DoneDetecting
     {
         get => doneDetecting;
