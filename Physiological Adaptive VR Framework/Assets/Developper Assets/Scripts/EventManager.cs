@@ -21,11 +21,14 @@ public class EventManager : MonoBehaviour
         END = 4,
     }
     public Task currentTask = Task.TUTORIAL;
-    public bool isConnected = false;
-    public bool isStarted = false;
+    [HideInInspector]public bool isConnected = false;
+    [HideInInspector]public bool isStarted = false;
     public bool recordBaseline = false;
     public bool recordMetrics = false;
     public bool isFirstRecording = true;
+    
+    private float timeTillRecord = 0.0f;
+    [SerializeField]private float timeToRecord = 60.0f;
 
     //Properties
     private bool doneBaseline = false;
@@ -83,7 +86,6 @@ public class EventManager : MonoBehaviour
         {
             case Task.FREEROAM:
                 {
-                    Debug.Log("Free roam");
                     if (lastTask != Task.FREEROAM)
                     {
                         //Does not have to do anything
@@ -99,13 +101,13 @@ public class EventManager : MonoBehaviour
                 }
             case Task.BASELINE:
                 {
-                    Debug.Log("Base line Recording");
 
                     if (lastTask != Task.BASELINE)
                     {
                         //Make Baseline start
                         //Make it so that the the player is in a place where they cant do anything that might affect the 
                         recordBaseline = true;
+                        isFirstRecording = true;
                         lastTask = Task.BASELINE;
                     }
 
@@ -113,7 +115,6 @@ public class EventManager : MonoBehaviour
                     if (isStarted)
                     {
                         HUDController.hudText.SetHUDText("Please stay as still as possible and relax");
-                        //recordBaseline = true;
                         if(DirectionalLight[0].intensity >= 0.0f)
                         {
                             for(int l = 0; l < DirectionalLight.Length-1; l++)
@@ -122,7 +123,7 @@ public class EventManager : MonoBehaviour
                             }
                         }
                         //When baseline is done recording change the task
-                        if(DoneBaseline)
+                        if(!recordBaseline)
                         {
                             currentTask++;
                         }
@@ -133,11 +134,9 @@ public class EventManager : MonoBehaviour
                 }
             case Task.TUTORIAL:
                 {
-                    Debug.Log("Tutorial");
                     if (lastTask != Task.TUTORIAL)
                     {
                         //Start tutorial
-                        recordBaseline = false;
                         lastTask = Task.TUTORIAL;
                     }
                     if (DirectionalLight[0].intensity <= 1.0f)
@@ -165,15 +164,15 @@ public class EventManager : MonoBehaviour
                 }
             case Task.TASK:
                 {
-                    Debug.Log("TASK1");
                     //All initial variables that need to be set when first switching to the stage
                     //That way it doesnt do any unnecessary computations
                     tutorialSource.gameObject.SetActive(false);
                     if(lastTask != Task.TASK)
-                    { 
+                    {
+                        isFirstRecording = false;
                         //HUDController.hudText.SetHUDText("There is a radioactive source in the lab. Find and scan it. *Careful* there are fakes.");
                         //Activate all sources
-                        if(isFirstRun)
+                        if (isFirstRun)
                         {
                             //Takes all the sources in the set and makes a list to use them easily
                             for (int x = 0; x < sourceSet1.transform.childCount; x++)
@@ -214,10 +213,8 @@ public class EventManager : MonoBehaviour
                     SourcesScanned=0;
                     for (int x = 0; x < sources.Count-1; x++)
                     {
-                        Debug.Log("Checking if Done triggering");
                         if(sources[x].GetComponent<SourceTrigger>().DoneDetecting)
                         {
-                            Debug.Log("triggering");
                             SourcesScanned++;
                         }
                     }
@@ -228,9 +225,15 @@ public class EventManager : MonoBehaviour
                         //They have all source
                         currentTask++;
                     }
-                    if (recordMetrics)
+                    if(timeTillRecord >= timeToRecord && !recordMetrics)
                     {
-                        StartCoroutine(TimerToNextRecording());
+                        Debug.Log("Proc recording");
+                        recordMetrics = true;
+                        timeTillRecord = 0.0f;
+                    }
+                    else if (!recordMetrics)
+                    {
+                        timeTillRecord += Time.deltaTime;
                     }
 
 
@@ -269,20 +272,15 @@ public class EventManager : MonoBehaviour
 
             case Task.END:
                 {
+                    SoundManager.instance.StopSound();
                     //Put up some sort of UI to tell them that they have completed the simulation and they can remove them headset to complete the survey
-                    HUDController.hudText.SetHUDText("Congratulations, you have found all the source. Please pick which on your think is the real one.");
+                    HUDController.hudText.SetHUDText("Congratulations, you have found all the source. Please take off the headset and answer the survey questions");
                     break;
 
                 }
 
         }
 
-        IEnumerator TimerToNextRecording()
-        {
-            //How often we sould sample the physiological metrics
-            yield return new WaitForSeconds(60.0f);
-            recordMetrics = true;
-        }
     }
 
 

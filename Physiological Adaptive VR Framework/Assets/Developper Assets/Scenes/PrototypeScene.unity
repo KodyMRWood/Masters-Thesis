@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11354009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663335916175006, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &11354014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11354009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!1001 &26213941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,6 +294,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 7d22befb952c070459bc8f06ba0a5f84, type: 3}
+--- !u!1 &86189670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837592386797, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &86189675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86189670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!4 &89382872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8556863995607780892, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
@@ -353,6 +389,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &100330205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8614158165214802538, guid: 07a2eef585eee9f44bcfe6303271f6ba, type: 3}
+  m_PrefabInstance: {fileID: 830257895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &100330208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100330205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
 --- !u!4 &104916042 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9096973480792066129, guid: 06191215bd42c9c4d8c4e3f2e85e3e95, type: 3}
@@ -436,6 +490,24 @@ PrefabInstance:
       objectReference: {fileID: 631089517}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec0f65ad944181749a4512fc211ad7c5, type: 3}
+--- !u!1 &170299534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863996418145256, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &170299539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170299534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
 --- !u!1001 &192636539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -515,6 +587,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
   m_PrefabInstance: {fileID: 1790459879}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &218143060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663337217668665, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &218143065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218143060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1001 &219752247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -612,6 +702,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+--- !u!1 &235450661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863994726494063, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &235450666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235450661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &238497130 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837192633486, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &238497135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238497130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &245686271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863995797815741, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &245686276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245686271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
 --- !u!1001 &245783201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -681,6 +825,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d39d1ebcb7d889f418563b1fe98df107, type: 3}
+--- !u!1 &286906344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837502918116, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &286906349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286906344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1001 &289138112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -764,6 +926,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &335184744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470838653514424, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &335184749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335184744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1001 &432549309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -831,6 +1011,60 @@ Light:
   m_CorrespondingSourceObject: {fileID: 10892978, guid: 9c0a6df65fcfba243abb2cf9260b869f, type: 3}
   m_PrefabInstance: {fileID: 432549309}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &433399271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863996532421993, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &433399276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433399271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &487486710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663337324445373, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &487486715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487486710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
+--- !u!1 &488305312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336249229240, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &488305317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488305312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!4 &497631243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1551557884937930466, guid: ec0f65ad944181749a4512fc211ad7c5, type: 3}
@@ -907,11 +1141,101 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
   m_PrefabInstance: {fileID: 870607047}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &585839545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336237958424, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &585839550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585839545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &588551685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837561963699, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &588551690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588551685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &590101391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 848457859947902352, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &590101396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590101391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (Ordinary)
+--- !u!1 &619410928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 848457861335712524, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &619410933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619410928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (Ordinary)
 --- !u!4 &629254697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
   m_PrefabInstance: {fileID: 26213941}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &630224817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663337073891262, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &630224822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630224817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!1 &631089515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,6 +1441,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &643019659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470838007921773, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &643019664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643019659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1001 &653602245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1184,6 +1526,42 @@ Light:
   m_CorrespondingSourceObject: {fileID: 10892978, guid: 9c0a6df65fcfba243abb2cf9260b869f, type: 3}
   m_PrefabInstance: {fileID: 653602245}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &657608953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863995769029052, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &657608958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657608953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &686904161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470838024410451, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &686904166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686904161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1001 &693067019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,6 +1623,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0df730ab4bb579458b0de84ed531668, type: 3}
+--- !u!1 &697307375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336415478717, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &697307380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697307375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1733,42 @@ Transform:
   m_Father: {fileID: 1294690809}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &712645775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336446810406, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &712645780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712645775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
+--- !u!1 &718031766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336262849755, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &718031771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718031766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!4 &729899255 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5597754506584425476, guid: 021d1e89f221bf947903fd250215c304, type: 3}
@@ -1385,6 +1817,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2a0e8cd8b47dc41a998e3fa8262f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &781643511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663335954226390, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &781643516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781643511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &800269426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663335619858694, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &800269431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800269426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
+--- !u!1 &802687631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336230576461, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &802687636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802687631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!1001 &830257895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1454,6 +1940,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a2eef585eee9f44bcfe6303271f6ba, type: 3}
+--- !u!1 &840380462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 848457860068211172, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &840380467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840380462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (Ordinary)
+--- !u!1 &842214164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837812556613, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &842214169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842214164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &854687430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663337153133262, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &854687435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854687430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!1001 &870607047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1463,15 +2003,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.6853
+      value: 11.743
       objectReference: {fileID: 0}
     - target: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.7638
+      value: 4.269
       objectReference: {fileID: 0}
     - target: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.7796
+      value: -4.288
       objectReference: {fileID: 0}
     - target: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1515,6 +2055,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
+--- !u!1 &876806956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663335636751360, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &876806961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876806956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
+--- !u!1 &887652587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470838320062542, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &887652592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887652587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1001 &887879845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1576,6 +2152,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
+--- !u!1 &888909880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 848457859971662320, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &888909885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888909880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (Ordinary)
+--- !u!1 &936131001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336076166244, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &936131006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936131001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!1001 &959482389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1651,6 +2263,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: b4415ab798c14bd4eadfda7474e42f3c, type: 3}
   m_PrefabInstance: {fileID: 63444284}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &975944029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4662223799280699737, guid: 07a2eef585eee9f44bcfe6303271f6ba, type: 3}
+  m_PrefabInstance: {fileID: 830257895}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &975944034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975944029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &987281997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336482659427, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &987282002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987281997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!4 &999060530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4556428098564487246, guid: db5456e353b36704a9d0ac5260dc8383, type: 3}
@@ -1800,6 +2448,96 @@ Light:
   m_CorrespondingSourceObject: {fileID: 10892978, guid: 9c0a6df65fcfba243abb2cf9260b869f, type: 3}
   m_PrefabInstance: {fileID: 1032785182}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1047054121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336330376028, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1047054126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047054121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1070740671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470838859185139, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1070740676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070740671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1071991035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470838283215774, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1071991040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071991035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1087109818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863995488748134, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1087109823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087109818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &1097488949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863996001924362, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1097488954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097488949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
 --- !u!1 &1102762658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,6 +2573,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1111326060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847608510599312062, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1111326065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111326060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &1132650405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863996589167493, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1132650410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132650405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
 --- !u!1001 &1145548031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1902,11 +2676,65 @@ Light:
   m_CorrespondingSourceObject: {fileID: 10892978, guid: 9c0a6df65fcfba243abb2cf9260b869f, type: 3}
   m_PrefabInstance: {fileID: 1145548031}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1160860766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837945085766, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1160860771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160860766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1161211098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863995839665265, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1161211103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161211098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
 --- !u!4 &1180977409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
   m_PrefabInstance: {fileID: 89718989}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1191656660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 848457859926268789, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1191656665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191656660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (Ordinary)
 --- !u!1001 &1200822480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2057,11 +2885,65 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+--- !u!1 &1217479912 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470838216902248, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1217479917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217479912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!4 &1232684104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4690663336092187882, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
   m_PrefabInstance: {fileID: 219752247}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1236638751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470838088904886, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1236638756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236638751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1286846935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663335539853337, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1286846940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286846935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!1 &1294690808
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,6 +2982,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1373217162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863995755108289, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1373217167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373217162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &1440609603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837708355529, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1440609608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440609603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1446435440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863996024210533, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1446435445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446435440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
 --- !u!1001 &1487170770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2222,6 +3158,78 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
+--- !u!1 &1510368635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336499096745, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1510368640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510368635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1532833104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863994575918674, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1532833109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532833104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &1540482863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863994993811518, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1540482868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540482863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &1555044991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837209046890, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1555044996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555044991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1001 &1556154699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2297,11 +3305,83 @@ Light:
   m_CorrespondingSourceObject: {fileID: 10892978, guid: 9c0a6df65fcfba243abb2cf9260b869f, type: 3}
   m_PrefabInstance: {fileID: 1556154699}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1564586523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663335756170114, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1564586528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564586523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!4 &1597011455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8614158164828729718, guid: 07a2eef585eee9f44bcfe6303271f6ba, type: 3}
   m_PrefabInstance: {fileID: 830257895}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1622600859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 848457860102717603, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1622600864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622600859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (Ordinary)
+--- !u!1 &1633396253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336775160449, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1633396258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633396253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1634949512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863994915972001, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1634949517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634949512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
 --- !u!4 &1635350675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5839467092167670857, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
@@ -2312,6 +3392,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7996841738456629175, guid: 1737bd1d85a3c414692f4ca261ed4bfe, type: 3}
   m_PrefabInstance: {fileID: 1864449366}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1695180970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 848457859782352044, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1695180975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695180970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (Ordinary)
+--- !u!1 &1701643508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470837984830678, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1701643513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701643508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
 --- !u!1001 &1729613663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2377,6 +3493,38 @@ PrefabInstance:
       objectReference: {fileID: 1888796038}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2d2d70f959e3994d99c907950ab59db, type: 3}
+--- !u!1 &1767776895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: b4415ab798c14bd4eadfda7474e42f3c, type: 3}
+  m_PrefabInstance: {fileID: 1787171024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1767776897
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767776895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b4415ab798c14bd4eadfda7474e42f3c, type: 3}
+--- !u!114 &1767776899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767776895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Polyethylene (Plastic)
 --- !u!1001 &1787171024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2841,6 +3989,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30530ad0e40d0a64ea26d753ee4996ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1894664985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4556428096638826140, guid: db5456e353b36704a9d0ac5260dc8383, type: 3}
+  m_PrefabInstance: {fileID: 1200822480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1894664988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894664985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &1939873915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336774063464, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1939873920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939873915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1951329849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336514837278, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1951329854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951329849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
+--- !u!1 &1965968645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663337329088333, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1965968650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965968645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &1978029681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 848457860787493088, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1978029686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978029681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (Ordinary)
 --- !u!1001 &1987443203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2903,6 +4141,96 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5839467092167670908, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
   m_PrefabInstance: {fileID: 1987443203}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1997121148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556863995017821080, guid: 29d3846112ccedb458eecc2629ab5df0, type: 3}
+  m_PrefabInstance: {fileID: 1217323863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1997121153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997121148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!1 &2005434782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663335270805712, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2005434787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005434782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
+--- !u!1 &2023823250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847470839166196753, guid: c1c8222b633fdbb489776c0f998d8204, type: 3}
+  m_PrefabInstance: {fileID: 1816259049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2023823255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023823250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Wood
+--- !u!1 &2031480403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663335277061200, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2031480408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031480403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
+--- !u!1 &2041515218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4690663336698158315, guid: b94dca69de9cb8a4e8d765034eabdad3, type: 3}
+  m_PrefabInstance: {fileID: 219752247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2041515223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041515218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Concrete (ERC Lab)
 --- !u!1001 &2053509967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3076,6 +4404,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2517246e14205c45891f0e7f7a5a481, type: 3}
+--- !u!1 &2137871303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 514299328185015137, guid: db5456e353b36704a9d0ac5260dc8383, type: 3}
+  m_PrefabInstance: {fileID: 1200822480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2137871305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137871303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Brick
+--- !u!114 &2137871308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137871303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfab21589c5d924381411c032543042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: 
 --- !u!1001 &181570174359365020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3247,7 +4606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6015889074469522192, guid: 720f33f1234d86d49afc1a717e2752cc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.924
+      value: -6.939
       objectReference: {fileID: 0}
     - target: {fileID: 6015889074469522192, guid: 720f33f1234d86d49afc1a717e2752cc, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3382,6 +4741,14 @@ PrefabInstance:
       propertyPath: DirectionalLight.Array.data[7]
       value: 
       objectReference: {fileID: 1032785184}
+    - target: {fileID: 6672601071832702018, guid: fc929d686760ded44bcbd0b94019307d, type: 3}
+      propertyPath: currentTask
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672601071832702018, guid: fc929d686760ded44bcbd0b94019307d, type: 3}
+      propertyPath: timeToRecord
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 6672601071832702024, guid: fc929d686760ded44bcbd0b94019307d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.22508621

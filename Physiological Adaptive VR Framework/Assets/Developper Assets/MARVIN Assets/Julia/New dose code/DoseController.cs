@@ -470,7 +470,8 @@ public class DoseController : MonoBehaviour {
     private void readCSV() {
 
         string fileData = System.IO.File.ReadAllText("Assets/Developper Assets/MARVIN Assets/Julia/Attenuation Coefficients - All.csv");
-        string[] lines = fileData.Split("\n".ToCharArray());
+    
+            string[] lines = fileData.Split("\n".ToCharArray());
 
         if ( lines.Length > 0 ) {
 
