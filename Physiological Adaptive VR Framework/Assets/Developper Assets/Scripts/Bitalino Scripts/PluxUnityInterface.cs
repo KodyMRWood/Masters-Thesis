@@ -283,7 +283,8 @@ namespace Assets.Scripts
                             //thoresholdEMG = RMSDataList.Average() + 0.01;
                             //RMSDataList.Clear();
                             Debug.Log("Baseline measurements");
-
+                            //Calculate the heart rate once we have all the data
+                            CalculateHeartRate(ECGDataHRCalc);
                             //Send baseline measurements to store
                             eventManager.baseLineEDA = new List<double>(EDADataCalc);
                             eventManager.baseLineECG = new List<double>(ECGDataCalc);
@@ -293,10 +294,6 @@ namespace Assets.Scripts
                             ECGDataCalc.Clear();
                             ECGDataHRCalc.Clear();
 
-                            //EMGData = "";
-                            //ECGData = "";
-                            //ECGHR = "";
-                            //EDAData = "";
                             eventManager.GetComponent<EventManager>().isFirstRecording = false;
                             eventManager.GetComponent<EventManager>().recordBaseline = false;
                             //eventManager.GetComponent<EventManager>().DoneBaseline = true;
@@ -333,87 +330,87 @@ namespace Assets.Scripts
                     UpdatePlotFlag2 = true;
                 }
 
-                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
-                //// Get packages of data that will be shown on the graphic
-                //int[] packageOfData = PluxDevManager.GetPackageOfData(2, ActiveChannels, UpdatePlotFlag);
-                ////int[] packageOfData = PluxDevManager.GetPackageOfData(VisualizationChannel, ActiveChannels, UpdatePlotFlag); //This will be for the graphic 
-                //
-                //// Check if there it was communicated an event/error code.
-                //if (packageOfData != null)
-                //{
-                //    if (packageOfData.Length != 0)
-                //    {
-                //        // Creation of the first graphical representation of the results.
-                //        if (MultiThreadList[2].Count >= 0)
-                //        {
-                //            if (FirstPlot == true)
-                //            {
-                //                // Update flag (after this step we won't enter again on this statement).
-                //                FirstPlot = false;
-                //
-                //                // Plot first set of data.
-                //                // Subsampling if sampling rate is bigger than 100 Hz.
-                //                List<int> subSamplingList = GetSubSampleList(new int[GraphWindSize], SamplingRate, GraphWindSize);
-                //                GraphZone.ShowGraph(subSamplingList, null, -1, (int _i) => "-" + (GraphWindSize - _i),
-                //                    (float _f) => Mathf.RoundToInt(_f / 1000) + "k");
-                //            }
-                //            // Update plot.
-                //            else if (FirstPlot == false)
-                //            {
-                //                // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
-                //                if (UpdatePlotFlag == true && packageOfData != null)
-                //                {
-                //                    
-                //                    MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
-                //                    GraphZone.UpdateValue(MultiThreadSubList);
-                //
-                //                    // Reboot flag.
-                //                    UpdatePlotFlag = false;
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
-                //
-                //
-                /////////////////////////////////////EDA Graph//////////////////////////////////////////////////
-                //int[] packageOfData2 = PluxDevManager.GetPackageOfData(3, ActiveChannels, UpdatePlotFlag2); //This will be for the graphic only
-                //if (packageOfData2 != null)
-                //{
-                //    if (packageOfData2.Length != 0)
-                //    {
-                //        // Creation of the first graphical representation of the results.
-                //        if (MultiThreadList[3].Count >= 0)
-                //        {
-                //            if (FirstPlot2 == true)
-                //            {
-                //                // Update flag (after this step we won't enter again on this statement).
-                //                FirstPlot2 = false;
-                //
-                //                // Plot first set of data.
-                //                // Subsampling if sampling rate is bigger than 100 Hz.
-                //                List<int> subSamplingList = GetSubSampleList(new int[GraphWindSize], SamplingRate, GraphWindSize);
-                //                GraphZone2.ShowGraph(subSamplingList, null, -1, (int _i) => "-" + (GraphWindSize - _i),
-                //                    (float _f) => Mathf.RoundToInt(_f / 1000) + "k");
-                //            }
-                //            // Update plot.
-                //            else if (FirstPlot2 == false)
-                //            {
-                //                // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
-                //                if (UpdatePlotFlag2 == true && packageOfData2 != null)
-                //                {
-                //                    //MultiThreadSubListPerChannel2.Add(GetSubSampleList(packageOfData2, SamplingRate, GraphWindSize));
-                //                    MultiThreadSubList = GetSubSampleList(packageOfData2, SamplingRate, GraphWindSize);
-                //                    GraphZone2.UpdateValue(MultiThreadSubList);
-                //
-                //                    // Reboot flag.
-                //                    UpdatePlotFlag2 = false;
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                
+                // Get packages of data that will be shown on the graphic
+                int[] packageOfData = PluxDevManager.GetPackageOfData(2, ActiveChannels, UpdatePlotFlag);
+                //int[] packageOfData = PluxDevManager.GetPackageOfData(VisualizationChannel, ActiveChannels, UpdatePlotFlag); //This will be for the graphic 
+                
+                // Check if there it was communicated an event/error code.
+                if (packageOfData != null)
+                {
+                    if (packageOfData.Length != 0)
+                    {
+                        // Creation of the first graphical representation of the results.
+                        if (MultiThreadList[2].Count >= 0)
+                        {
+                            if (FirstPlot == true)
+                            {
+                                // Update flag (after this step we won't enter again on this statement).
+                                FirstPlot = false;
+                
+                                // Plot first set of data.
+                                // Subsampling if sampling rate is bigger than 100 Hz.
+                                List<int> subSamplingList = GetSubSampleList(new int[GraphWindSize], SamplingRate, GraphWindSize);
+                                GraphZone.ShowGraph(subSamplingList, null, -1, (int _i) => "-" + (GraphWindSize - _i),
+                                    (float _f) => Mathf.RoundToInt(_f / 1000) + "k");
+                            }
+                            // Update plot.
+                            else if (FirstPlot == false)
+                            {
+                                // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
+                                if (UpdatePlotFlag == true && packageOfData != null)
+                                {
+                                    
+                                    MultiThreadSubList = GetSubSampleList(packageOfData, SamplingRate, GraphWindSize);
+                                    GraphZone.UpdateValue(MultiThreadSubList);
+                
+                                    // Reboot flag.
+                                    UpdatePlotFlag = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                
+                ///////////////////////////////////EDA Graph//////////////////////////////////////////////////
+                int[] packageOfData2 = PluxDevManager.GetPackageOfData(3, ActiveChannels, UpdatePlotFlag2); //This will be for the graphic only
+                if (packageOfData2 != null)
+                {
+                    if (packageOfData2.Length != 0)
+                    {
+                        // Creation of the first graphical representation of the results.
+                        if (MultiThreadList[3].Count >= 0)
+                        {
+                            if (FirstPlot2 == true)
+                            {
+                                // Update flag (after this step we won't enter again on this statement).
+                                FirstPlot2 = false;
+                
+                                // Plot first set of data.
+                                // Subsampling if sampling rate is bigger than 100 Hz.
+                                List<int> subSamplingList = GetSubSampleList(new int[GraphWindSize], SamplingRate, GraphWindSize);
+                                GraphZone2.ShowGraph(subSamplingList, null, -1, (int _i) => "-" + (GraphWindSize - _i),
+                                    (float _f) => Mathf.RoundToInt(_f / 1000) + "k");
+                            }
+                            // Update plot.
+                            else if (FirstPlot2 == false)
+                            {
+                                // This if clause sensures that the real-time plot will only be updated every 1 second (Memory Restrictions).
+                                if (UpdatePlotFlag2 == true && packageOfData2 != null)
+                                {
+                                    //MultiThreadSubListPerChannel2.Add(GetSubSampleList(packageOfData2, SamplingRate, GraphWindSize));
+                                    MultiThreadSubList = GetSubSampleList(packageOfData2, SamplingRate, GraphWindSize);
+                                    GraphZone2.UpdateValue(MultiThreadSubList);
+                
+                                    // Reboot flag.
+                                    UpdatePlotFlag2 = false;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             catch (ArgumentOutOfRangeException exception)
             {
