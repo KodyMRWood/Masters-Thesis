@@ -18,9 +18,9 @@ public class DifficultyCalculator : MonoBehaviour
 
     // This array will be set in the inspector. It will determine what the rresearcher considers a significant change in the metric
     // ie. HR + 5bpm is significantly higher
-    public float sigDiffEDA = 0.0f;
+    public float sigDiffEDA = 1.0f;
     public float sigDiffECG = 0.0f;
-    public int sigDiffHR = 5;
+    public int sigDiffHR = 6;
 
 
 
@@ -37,21 +37,28 @@ public class DifficultyCalculator : MonoBehaviour
     public List<double> baseLineECG = new List<double>() { };
     [HideInInspector]
     public int baseHeartRate = 0;
+
+
     private double baseAverageEMG = 0.0;
+    [SerializeField]
     private double baseAverageEDA = 0.0;
+    [SerializeField]
     private double baseAverageECG = 0.0;
 
     //Data from most recent rcording
     [HideInInspector]
     public List<double> currentEMG = new List<double>() { }; // For completion
     [HideInInspector]
-    public List<double> currentEDA= new List<double>() { };
+    public List<double> currentEDA = new List<double>() { };
     [HideInInspector]
     public List<double> currentECG = new List<double>() { };
     [HideInInspector]
     public int heartRate = 0;
+
     private double averageEMG = 0.0;
+    [SerializeField]
     private double averageEDA = 0.0;
+    [SerializeField]
     private double averageECG = 0.0;
 
 
@@ -106,9 +113,9 @@ public class DifficultyCalculator : MonoBehaviour
 
 
 
-        
-    
-    
+
+
+
     private void AdaptDifficulty(float physioScoreCurrrent)
     {
         //------Truth Table-------
@@ -137,15 +144,26 @@ public class DifficultyCalculator : MonoBehaviour
         // visa versa, if avearage is lower than baseline score will be lower
         // If the score is lower, it means that the measurements were lower than the baseline,  therefore the difficulty needs to get harderr
         // If the score is higher, it means the measurmenets werrer higher than the baseline, therefore diffculty needs to get easier
-        
-       
+
+
         //EDA
+        //Detecting Emotions through Electrodermal Activity in Learning Contexts: A Systematic Review
+        //Found EDA articles from this one ^
+
+        //Enhancing example-based learning: Teaching on video increases arousal and improves problem-solving performance
+        //https://www.proquest.com/docview/2021785630?parentSessionId=5wrTpdr8WN8y6z1MiBZcn78QC7h5BLQUPOQ%2BWDCgNPE%3D&pq-origsite=primo&accountid=14694
+        //No significant difference in EDA which was ~0.2
+
+
+        //The impact of watching educational video clips on analogue patients’ physiological arousal and information recall
+        //https://www-sciencedirect-com.uproxy.library.dc-uoit.ca/science/article/pii/S0738399115300598?via%3Dihub
+        //Significant Diffference in EDA was around ~1 in this article
 
         if (averageEDA < baseAverageEDA + sigDiffEDA)
         {
             adaptScore--;
         }
-        else if (averageEDA >= baseAverageEDA + sigDiffEDA && averageEDA <= baseAverageEDA + (sigDiffEDA*2))
+        else if (averageEDA >= baseAverageEDA + sigDiffEDA && averageEDA <= baseAverageEDA + (sigDiffEDA * 2))
         {
             //Doesnt change the score
         }
@@ -156,22 +174,26 @@ public class DifficultyCalculator : MonoBehaviour
         }
 
         //ECG
-        if (averageECG < baseAverageECG + sigDiffECG)
-        {
-            adaptScore--;
-        }
-        else if (averageECG >= baseAverageECG + sigDiffECG && averageECG <= baseAverageECG + (sigDiffECG * 2))
-        {
-            //Doesnt change the score
-        }
-
-        else if (averageECG > baseAverageECG + (sigDiffECG * 2))
-        {
-            adaptScore++;
-        }
+        //if (averageECG < baseAverageECG + sigDiffECG)
+        //{
+        //    adaptScore--;
+        //}
+        //else if (averageECG >= baseAverageECG + sigDiffECG && averageECG <= baseAverageECG + (sigDiffECG * 2))
+        //{
+        //    //Doesnt change the score
+        //}
+        //
+        //else if (averageECG > baseAverageECG + (sigDiffECG * 2))
+        //{
+        //    adaptScore++;
+        //}
 
 
         //HR
+        //Effects of virtual reality high heights exposure during beam-walking on physiological stress and cognitive loading – Shows 5 bpm to be significant from normal view to vr view
+        //A Psychophysiological Model of Firearms Training in Police Officers: A Vitual Reality Experiment for Biocybernetic Adaptation – Shows significant difference from base being roughly 7bpm
+        //The significant change in HR for those two were 5 and 7. We will default ours t o 6 bpm
+
         if (heartRate < baseHeartRate + sigDiffHR)
         {
             adaptScore--;

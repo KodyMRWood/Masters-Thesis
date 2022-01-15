@@ -289,6 +289,8 @@ namespace Assets.Scripts
                             eventManager.baseLineEDA = new List<double>(EDADataCalc);
                             eventManager.baseLineECG = new List<double>(ECGDataCalc);
                             eventManager.baseHeartRate = heartRate;
+                            eventManager.CalculateBaseDataAverage();
+
                             //Reset
                             EDADataCalc.Clear();
                             ECGDataCalc.Clear();
