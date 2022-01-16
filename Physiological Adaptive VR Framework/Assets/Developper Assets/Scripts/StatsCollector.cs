@@ -12,6 +12,9 @@ public class StatsCollector : MonoBehaviour
 
 
     //--- Private Variables ---
+    private List<float> timeToFindEachSource = new List<float>();
+    private List<int> orderSourcesFound = new List<int>();
+
 
     GameTimeScript timer;
     OutputResults printer;
@@ -37,13 +40,20 @@ public class StatsCollector : MonoBehaviour
     {
         isComplete = !isComplete;
         printer.OutputCSV("Time to complete: ",timer.timeOfCompletion);
-        for(int x = 0; x < timer.taskTimes.Length; x++)
+        for(int x = 0; x < timeToFindEachSource.Count; x++)
         {
-            Debug.Log("Printing...");
-            printer.OutputCSV("Task "+(x+1)+" time to complete: ",timer.taskTimes[x]);
+            //Debug.Log("Printing...");
+            //printer.OutputCSV("Task "+(x+1)+" time to complete: ",timer.taskTimes[x]);
+            printer.OutputCSV("Source:" + orderSourcesFound[x], timeToFindEachSource[x]);
         }
         printer.OutputClose();
         isWritten = true; 
+    }
+
+    public void RecordSourceFoundTime(float time, int index)
+    {
+        timeToFindEachSource.Add(time);
+        orderSourcesFound.Add(index);
     }
 
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Source_Searched_Found: MonoBehaviour
 {
-    public bool isFound = false;
-    public bool isDroppedOff = false;
+    [HideInInspector] public bool isFound = false;
+    [HideInInspector] public bool isDroppedOff = false;
     // Start is called before the first frame update
     void Start()
     {
