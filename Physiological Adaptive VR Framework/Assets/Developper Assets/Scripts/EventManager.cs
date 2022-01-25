@@ -58,6 +58,8 @@ public class EventManager : MonoBehaviour
     private Task lastTask = Task.FREEROAM;
 
     private StateMachine.Difficulty m_difficulty = StateMachine.Difficulty.MEDIUM;
+
+    private bool m_FinishedTwoRuns = false;
     //-------- Other variables--------
     // Start is called before the first frame update
     void Start()
@@ -222,12 +224,16 @@ public class EventManager : MonoBehaviour
 
                     if (SourcesScanned == 5)
                     {
+                        for (int x = 0; x < sources.Count; x++)
+                        {
+                            sources[x].SetActive(false);
+                        }
+                        sources.Clear();
                         //They have all source
                         currentTask++;
                     }
                     if(timeTillRecord >= timeToRecord && !recordMetrics)
                     {
-                        Debug.Log("Proc recording");
                         recordMetrics = true;
                         timeTillRecord = 0.0f;
                     }
@@ -275,13 +281,40 @@ public class EventManager : MonoBehaviour
                     SoundManager.instance.StopSound();
                     //Put up some sort of UI to tell them that they have completed the simulation and they can remove them headset to complete the survey
                     HUDController.hudText.SetHUDText("Congratulations, you have found all the source. Please take off the headset and answer the survey questions");
+                    if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger) || Input.GetKeyDown(KeyCode.R))
+                    {
+                        if(!m_FinishedTwoRuns)
+                        {
+                            ResetSimulation();
+                            m_FinishedTwoRuns = true;
+                        }
+                        else
+                        {
+                            //HUDController.hudText.SetHUDText("Congratulations, you have found all the source. Please take off the headset and answer the survey questions");
+                        }
+                    }
                     break;
 
                 }
 
         }
 
+       
     }
+    private void ResetSimulation()
+    {
+        //Reset everything
+        isFirstRun = !isFirstRun;
+        
+        tutorialSource.gameObject.SetActive(true);
+
+        recordMetrics = false;
+        timeTillRecord = 0.0f;
+
+        currentTask = Task.TUTORIAL;
+
+    }
+
 
 
 }
