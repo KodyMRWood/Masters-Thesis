@@ -1,4 +1,5 @@
-Symbol file LoadedFromMemory doesn't match image D:\Repos\Masters-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Waiting on threads to park on joinable thread list timed out.
+rs-Thesis\Physiological Adaptive VR Framework\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
 [OVRPlugin][INFO] Initializing system...[OVRPlugin][INFO] OVRInterface plugin library location: D:\Oculus\Support\oculus-runtime\client-plugins\x64[OVRPlugin][INFO] OVRInterface plugin libraries:
   Library: D:\Oculus\Support\oculus-runtime\client-plugins\x64\XR_EXT_hand_tracking.dll
     Class Id: 0x62582d091582647c, class Name: XrExtHandTrackingExtensionAddition
