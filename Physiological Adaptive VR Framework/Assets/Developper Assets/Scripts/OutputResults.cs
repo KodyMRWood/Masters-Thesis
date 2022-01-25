@@ -45,15 +45,14 @@ public class OutputResults : MonoBehaviour
 
 
 
-
     private string GetPath()
     {
 #if UNITY_EDITOR
         return Application.dataPath + "/CSV/" + "Results " + DateTime.Now.ToString("yyyy-mm-dd-hh-mm-ss") + ".csv";
 #elif UNITY_ANDROID
-        return Application.persistenDataPath + "Results" + DateTime.Now.ToString("yyyy-mm-dd-hh-mm-ss") + ".csv";
+        return Application.persistentDataPath + "Results" + DateTime.Now.ToString("yyyy-mm-dd-hh-mm-ss") + ".csv";
 #elif UNITY_IPHONE
-        return Application.persistenDataPath + "Results" + DateTime.Now.ToString("yyyy-mm-dd-hh-mm-ss") + ".csv";
+        return Application.persistentDataPath + "Results" + DateTime.Now.ToString("yyyy-mm-dd-hh-mm-ss") + ".csv";
 #else
         return Application.dataPath+"/"+ "Results" + DateTime.Now.ToString("yyyy-mm-dd-hh-mm-ss") + ".csv";
 #endif

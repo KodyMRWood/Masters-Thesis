@@ -437,11 +437,11 @@ namespace Assets.Scripts
         {
             //////////////////////////////// Edit by Lillian Fan//////////////////////////////
             // Out put the EMG and EDA data to the file
-            OutPutEMG();
+            //OutPutEMG();
             OutPutEDA();
             OutPutECG();
             // Clean up EMG and EDA's data
-            EMGData = "";
+            //EMGData = "";
             EDAData = "";
             ECGData = "";
             //////////////////////////////////////////////////////////////////////////////////
@@ -1332,6 +1332,7 @@ namespace Assets.Scripts
         private void RecordEMG(int[] packageOfDataEMG)
         {
             string recordType = " ";
+            string adaptiveType = " ";
             if (eventManager.GetComponent<EventManager>().isFirstRecording)
             {
                 recordType = "Baseline:";
@@ -1339,6 +1340,14 @@ namespace Assets.Scripts
             else if (eventManager.GetComponent<EventManager>().recordMetrics)
             {
                 recordType = "Adaptive:";
+                if (eventManager.GetComponent<EventManager>().isFirstRun)
+                {
+                    adaptiveType = "Adaptive";
+                }
+                else
+                {
+                    adaptiveType = "Non-Adaptive";
+                }
             }
 
             for (int i = 0; i < packageOfDataEMG.Length; i++)
@@ -1363,7 +1372,7 @@ namespace Assets.Scripts
                         RMSDataList.Add(RMS);
                     }
 
-                    EMGData += recordType + "," + DateTime.Now.ToString("hh-mm-ss")+ "," + String.Format("{0:0.0000}", tmp) + "," + String.Format("{0:0.0000}", RMS) + "\n";
+                    EMGData += recordType + "," + adaptiveType + "," + DateTime.Now.ToString("hh-mm-ss")+ "," + String.Format("{0:0.0000}", tmp) + "," + String.Format("{0:0.0000}", RMS) + "\n";
                 }
             }
 
@@ -1383,6 +1392,7 @@ namespace Assets.Scripts
         private void RecordEDA(int[] packageOfDataEDA)
         {
             string recordType = " ";
+            string adaptiveType = " ";
             if (eventManager.GetComponent<EventManager>().isFirstRecording)
             {
                 recordType = "Baseline:";
@@ -1390,6 +1400,14 @@ namespace Assets.Scripts
             else if (eventManager.GetComponent<EventManager>().recordMetrics)
             {
                 recordType = "Adaptive:";
+                if (eventManager.GetComponent<EventManager>().isFirstRun)
+                {
+                    adaptiveType = "Adaptive";
+                }
+                else
+                {
+                    adaptiveType = "Non-Adaptive";
+                }
             }
 
             //https://bitalino.com/storage/uploads/media/electrodermal-activity-eda-user-manual.pdf page 5 is the formula
@@ -1403,7 +1421,7 @@ namespace Assets.Scripts
                         //Transfer function
                         double tmp = packageOfDataEDA[i] / Math.Pow(2, 10) * 3.3 / 0.12;
                         
-                        EDAData += recordType + "," + DateTime.Now.ToString("hh-mm-ss") + "," + String.Format("{0:0.0000}", tmp) + "\n";
+                        EDAData += recordType + "," + adaptiveType + "," + DateTime.Now.ToString("hh-mm-ss") + "," + String.Format("{0:0.0000}", tmp) + "\n";
                         EDANow.Add(tmp);
                         EDADataCalc.Add(tmp);
                 }
@@ -1438,6 +1456,7 @@ namespace Assets.Scripts
         private void RecordECG(int[] packageOfDataECG)
         {
             string recordType = " ";
+            string adaptiveType = " ";
             if (eventManager.GetComponent<EventManager>().isFirstRecording)
             {
                 recordType = "Baseline:";
@@ -1445,6 +1464,14 @@ namespace Assets.Scripts
             else if (eventManager.GetComponent<EventManager>().recordMetrics)
             {
                 recordType = "Adaptive:";
+                if (eventManager.GetComponent<EventManager>().isFirstRun)
+                {
+                    adaptiveType = "Adaptive";
+                }
+                else
+                {
+                    adaptiveType = "Non-Adaptive";
+                }
             }
             // variable for calculate heart rate
             double[] tmpAr = new double[0];
@@ -1464,7 +1491,7 @@ namespace Assets.Scripts
                         //Calculate HR
                         ECGDataHRCalc.Add((float)tmp);
                         //recording data
-                        ECGData += recordType + "," + DateTime.Now.ToString("hh-mm-ss") + "," + String.Format("{0:0.0000}", tmp) + "\n";
+                        ECGData += recordType + "," + adaptiveType + "," + DateTime.Now.ToString("hh-mm-ss") + "," + String.Format("{0:0.0000}", tmp) + "\n";
 
                         // data for calculate heart rate
                         Array.Resize(ref tmpAr, tmpAr.Length + 1);
@@ -1509,6 +1536,7 @@ namespace Assets.Scripts
         private void CalculateHeartRate(List<float> ECGData)
         {
             string recordType = " ";
+            string adaptiveType = " ";
             if (eventManager.GetComponent<EventManager>().isFirstRecording)
             {
                 recordType = "Baseline:";
@@ -1516,6 +1544,14 @@ namespace Assets.Scripts
             else if (eventManager.GetComponent<EventManager>().recordMetrics)
             {
                 recordType = "Adaptive:";
+                if(eventManager.GetComponent<EventManager>().isFirstRun)
+                {
+                    adaptiveType = "Adaptive";
+                }
+                else
+                {
+                    adaptiveType = "Non-Adaptive";
+                }
             }
 
             //Check QRS complex
@@ -1575,7 +1611,7 @@ namespace Assets.Scripts
 
             tempHR = peaks[peaks.Count-1] - peaks[peaks.Count-2];
             heartRate = Mathf.RoundToInt((1.0f / tempHR) * 60.0f);
-            ECGHR += recordType + "," + DateTime.Now.ToString("hh-mm-ss") + "," + heartRate + "\n";
+            ECGHR += recordType + "," + adaptiveType + "," + DateTime.Now.ToString("hh-mm-ss") + "," + heartRate + "\n";
 
             HRText.text = "Heart Rate: " + heartRate;
         }

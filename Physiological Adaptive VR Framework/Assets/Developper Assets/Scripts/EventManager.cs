@@ -41,7 +41,8 @@ public class EventManager : MonoBehaviour
 
 
     //Radioactive Variables
-    public bool isFirstRun = true;
+    public bool isFirstRun = true; //True is Adaptive, false is non-Adaptive
+
     public GameObject sourceSet1;
     public GameObject sourceSet2;
     public List<GameObject> sources;
@@ -73,16 +74,6 @@ public class EventManager : MonoBehaviour
     void Update()
     {
 
-
-        //Checks to see if this is the participants first run.
-        //Changed manually by pressing the = key
-        //Depending on the run, the sources will spawn in different locations
-        if (isFirstRun && Input.GetKeyDown(KeyCode.Equals))
-        {
-            isFirstRun = false;
-        }
-
-
         //states
         switch(currentTask)
         {
@@ -94,6 +85,16 @@ public class EventManager : MonoBehaviour
 
                         lastTask = Task.FREEROAM;
                     }
+
+                    if(OVRInput.GetDown(OVRInput.Button.One))
+                    {
+                        isFirstRun = true;
+                    }
+                    if(OVRInput.GetDown(OVRInput.Button.Two))
+                    {
+                        isFirstRun = false;
+                    }
+
                     if(isConnected)
                     {
                         currentTask++;

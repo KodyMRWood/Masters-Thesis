@@ -25,8 +25,7 @@ public class DifficultyCalculator : MonoBehaviour
 
 
     //--- Private Variables ---
-
-
+    private EventManager m_eventManager = default;
     //--- Data Sets ---
     //Data from baseeline recording
     [HideInInspector]
@@ -208,7 +207,11 @@ public class DifficultyCalculator : MonoBehaviour
             adaptScore++;
         }
 
-        AdaptDifficulty(adaptScore);
+
+        if(m_eventManager.isFirstRun)
+        {
+            AdaptDifficulty(adaptScore);
+        }
 
     }
 
