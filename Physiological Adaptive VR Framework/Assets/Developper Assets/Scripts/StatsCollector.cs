@@ -39,13 +39,7 @@ public class StatsCollector : MonoBehaviour
     private void OnApplicationQuit()
     {
         isComplete = !isComplete;
-        printer.OutputCSV("Time to complete: ",timer.timeOfCompletion);
-        for(int x = 0; x < timeToFindEachSource.Count; x++)
-        {
-            //Debug.Log("Printing...");
-            //printer.OutputCSV("Task "+(x+1)+" time to complete: ",timer.taskTimes[x]);
-            printer.OutputCSV("Source:" + orderSourcesFound[x], timeToFindEachSource[x]);
-        }
+        //OutputTimes();
         printer.OutputClose();
         isWritten = true; 
     }
@@ -54,6 +48,19 @@ public class StatsCollector : MonoBehaviour
     {
         timeToFindEachSource.Add(time);
         orderSourcesFound.Add(index);
+    }
+
+    public  void OutputTimes()
+    {
+        printer.OutputCSV("Time to complete: ", timer.timeOfCompletion);
+        for (int x = 0; x < timeToFindEachSource.Count; x++)
+        {
+            //Debug.Log("Printing...");
+            //printer.OutputCSV("Task "+(x+1)+" time to complete: ",timer.taskTimes[x]);
+            printer.OutputCSV("Source:" + orderSourcesFound[x], timeToFindEachSource[x]);
+            timeToFindEachSource.Clear();
+            orderSourcesFound.Clear();
+        }
     }
 
 }

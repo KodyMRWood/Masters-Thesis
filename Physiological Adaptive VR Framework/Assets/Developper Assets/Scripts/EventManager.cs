@@ -82,17 +82,19 @@ public class EventManager : MonoBehaviour
                     if (lastTask != Task.FREEROAM)
                     {
                         //Does not have to do anything
-
+                        HUDController.hudText.SetHUDText("Please select a version using the A or B button on the right controller");
                         lastTask = Task.FREEROAM;
                     }
 
                     if(OVRInput.GetDown(OVRInput.Button.One))
                     {
                         isFirstRun = true;
+                        HUDController.hudText.SetHUDText("Mode 1 Selected");
                     }
                     if(OVRInput.GetDown(OVRInput.Button.Two))
                     {
                         isFirstRun = false;
+                        HUDController.hudText.SetHUDText("Mode 2 Selected");
                     }
 
                     if(isConnected)

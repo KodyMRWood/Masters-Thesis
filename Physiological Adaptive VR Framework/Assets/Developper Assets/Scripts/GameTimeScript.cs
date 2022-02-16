@@ -10,11 +10,15 @@ public class GameTimeScript : MonoBehaviour
     public float timeOfCompletion = 0.0f;
     public float[] taskTimes;
 
+   
+
     //--- Private Variables ---
     float taskTimer = 0.0f;
     bool timerOn = false;
     int taskOn = 0;
     bool isPause = false;
+    bool isSent = false;    
+    [SerializeField] private EventManager m_EventManager = default;
 
     // Start is called before the first frame update
     void Start()
@@ -26,53 +30,76 @@ public class GameTimeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Reset Timer
+        if (m_EventManager.currentTask == EventManager.Task.TUTORIAL)
+        {
+            isSent = false;
+        }
+        else if (m_EventManager.currentTask == EventManager.Task.END)
+        {
+            if(!isSent)
+            {
+                this.GetComponent<StatsCollector>().OutputTimes();
+                isSent = true;
+            }
+            timeOfCompletion = 0.0f;
+        }
+        else if(m_EventManager.currentTask == EventManager.Task.TASK)
+        {
+            timeOfCompletion += Time.deltaTime;
+        }
+
         //This will check to see if all the tasks are complete
         //If there are stop tracking stats and print the results on a .csv
-        if (!this.GetComponent<StatsCollector>().isComplete)
-        {
-            if (!isPause)
-            {
-                timeOfCompletion += Time.deltaTime;
-                if (timerOn)
-                {
-                    UpdateTaskTimer();
-                }
-            }
+        //if (!this.GetComponent<StatsCollector>().isComplete)
+        //{
+        //    if (!isPause)
+        //    {
+        //        timeOfCompletion += Time.deltaTime;
+        //        if (timerOn)
+        //        {
+        //            UpdateTaskTimer();
+        //        }
+        //    }
+        //
+        //
+        //    //if (Input.GetKeyDown(KeyCode.T))
+        //    //{
+        //    //    if (!isPause)
+        //    //    {
+        //    //        if (timerOn)
+        //    //        {
+        //    //            Debug.Log("Task in progress. Please wait until task is complete.");
+        //    //        }
+        //    //        else
+        //    //        {
+        //    //            StartTaskTimer();
+        //    //        }
+        //    //    }
+        //    //}
+        //    //if (Input.GetKeyDown(KeyCode.Y))
+        //    //{
+        //    //    if (!isPause)
+        //    //    {
+        //    //        if (timerOn)
+        //    //        {
+        //    //            StopTaskTimer(taskOn);
+        //    //        }
+        //    //        else
+        //    //        {
+        //    //            Debug.Log("Task has not be start. Please start task first.");
+        //    //        }
+        //    //    }
+        //    //}
+        //    //if (Input.GetKeyDown(KeyCode.P))
+        //    //{
+        //    //    PauseTimers();
+        //    //}
+        //}
 
+        
 
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                if (!isPause)
-                {
-                    if (timerOn)
-                    {
-                        Debug.Log("Task in progress. Please wait until task is complete.");
-                    }
-                    else
-                    {
-                        StartTaskTimer();
-                    }
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                if (!isPause)
-                {
-                    if (timerOn)
-                    {
-                        StopTaskTimer(taskOn);
-                    }
-                    else
-                    {
-                        Debug.Log("Task has not be start. Please start task first.");
-                    }
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                PauseTimers();
-            }
-        }
     }
 
 
@@ -100,6 +127,11 @@ public class GameTimeScript : MonoBehaviour
     public void PauseTimers()
     {
         isPause = !isPause;
+    }
+
+    public void ResetTimers()
+    {
+
     }
 
 }
